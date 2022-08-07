@@ -1,15 +1,10 @@
 import { useRouter } from "next/router";
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation } from "swiper";
-import { Autoplay, EffectFade } from "swiper";
-import "swiper/css";
-import "swiper/css/autoplay";
-import "swiper/css/navigation";
-import "swiper/css/effect-fade";
-import SwipArrows from "@/components/homePage/SwipArrows";
-SwiperCore.use([Navigation]);
-
+import { SwiperSlide } from "swiper/react";
+import LatestSwiperContainer from "../LatestSwiperContainer";
+import Image from "next/image";
+import clsx from "clsx";
+import { LocationMarkerIcon, CalendarIcon } from "@heroicons/react/outline";
 const data = [
   {
     id: 1,
@@ -21,7 +16,7 @@ const data = [
         title: "برنامج ذبح الاضاحي وتزيع لحومحا",
         location: "ريف حلب الشمالي",
         description:
-          "يستطيع المزودين والتجار تقديم عروض المناصات عبر هذه النافذة",
+          "يستطيع المزودين والتجار تقديم عروض المناصات عبر هذه النافذ والتجار تقديم عروض المناصات عبر هذه النافذة يستطيع المزودين والتجار تقديم عروض المناصات عبر هذه النافذة",
       },
       "en-US": {
         title: "Tender for the purchase of agricultural products",
@@ -134,52 +129,20 @@ const data = [
 ];
 
 const LatestNews = () => {
-  const prevRef = React.useRef(null);
-  const nextRef = React.useRef(null);
   return (
     <section>
-      <div className="flex justify-between py-5 items-center">
-        <h1>أخر الأخبار</h1>
-        <SwipArrows
-          arrowsStyle=" flex space-x-2"
-          nextClass="latest-next"
-          prevClass="latest-prev"
-          prevRef={prevRef}
-          nextRef={nextRef}
-        />
-      </div>
-
-      <Swiper
-        spaceBetween={5}
-        slidesPerView={1}
-        navigation={{
-          prevEl: prevRef.current,
-          nextEl: nextRef.current,
-        }}
-        onBeforeInit={(swiper) => {
-          swiper.params.navigation.prevEl = prevRef.current;
-          swiper.params.navigation.nextEl = nextRef.current;
-        }}
-        autoplay
-        loop={true}
-        loopFillGroupWithBlank={true}
-        modules={[Autoplay, EffectFade]}
-        effect="fade"
-        dir="ltr"
-      >
-        <main className=" relative">
-          <SwiperSlide>
-            <div className="bg-red-200 ">1</div>
-            <div className="bg-red-200 ">2</div>
-            <div className="bg-red-200 ">3</div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="bg-red-200 ">4</div>
-            <div className="bg-red-200 ">5</div>
-            <div className="bg-red-200 ">6</div>
-          </SwiperSlide>
-        </main>
-      </Swiper>
+      <LatestSwiperContainer sectionTitle="اخر الاخبار">
+        <SwiperSlide>
+          {data.slice(0, 3).map((item) => (
+            <News key={item.id} {...item} />
+          ))}
+        </SwiperSlide>
+        <SwiperSlide>
+          {data.slice(3, 6).map((item) => (
+            <News key={item.id} {...item} />
+          ))}
+        </SwiperSlide>
+      </LatestSwiperContainer>
     </section>
   );
 };
@@ -190,8 +153,33 @@ const News = ({ date, image, text }) => {
   const { locale } = useRouter();
   const { title, location, description } = text[locale];
   return (
-    <div>
-      <p>{title}</p>
+    <div
+      className={clsx("flex justify-end gap-4 bg-primaryWhite  ")}
+      style={{ direction: "rtl" }}
+    >
+      <div className="relative w-1/3">
+        <Image
+          src={image}
+          width={180}
+          height={130}
+          objectFit="cover"
+          className=""
+        />
+      </div>
+      <div className="w-2/3">
+        <h2 className="text-lg text-primaryPurple font-medium  ">{title}</h2>
+        <div className="flex gap-2 items-center">
+          <div className="flex gap-1 ">
+            <LocationMarkerIcon className="w-4 h-4 text-primaryPurple" />
+            <p className="text-sm">{location}</p>
+          </div>
+          <div className="flex gap-1 ">
+            <CalendarIcon className="w-4 h-4 text-primaryPurple" />
+            <p className="text-sm">{date}</p>
+          </div>
+        </div>
+        <p className="text-sm mt-1">{description}</p>
+      </div>
     </div>
   );
 };
