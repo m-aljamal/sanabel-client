@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.socialIcon {
+  @apply h-4 w-4 fill-slate-500 group-hover:fill-primaryPurple;
+}
+.swiper-prev {
+  color: white;
+  background-color: rgba(51, 25, 58, 0.7);
+  padding: 20px 5px;
+  border-radius: 5px;
+}
+.swiper-next {
+  color: white;
+  background-color: rgba(51, 25, 58, 0.7);
+  padding: 20px 5px;
+  border-radius: 5px;
+}
+
+.latest-prev{
+  color: white;
+  background-color: rgb(51, 25, 58);
+  padding: 0px 7px;
+  border-radius: 8px 0px 0px 8px;
+  
+  
+}
+.latest-next{
+  color: white;
+  background-color: rgb(51, 25, 58);
+  padding: 0px 7px;
+  border-radius: 0px 8px 8px 0px;
+  
+}
