@@ -5,6 +5,7 @@ import LatestSwiperContainer from "../LatestSwiperContainer";
 import Image from "next/image";
 import clsx from "clsx";
 import { LocationMarkerIcon, CalendarIcon } from "@heroicons/react/outline";
+import Link from "next/link";
 const data = [
   {
     id: 1,
@@ -149,37 +150,38 @@ const LatestNews = () => {
 
 export default LatestNews;
 
-const News = ({ date, image, text }) => {
+const News = ({ date, image, text, id }) => {
   const { locale } = useRouter();
   const { title, location, description } = text[locale];
   return (
-    <div
-      className={clsx("flex justify-end gap-4 bg-primaryWhite  ")}
-      style={{ direction: "rtl" }}
-    >
-      <div className="relative w-1/3">
-        <Image
-          src={image}
-          width={180}
-          height={130}
-          objectFit="cover"
-          className=""
-        />
-      </div>
-      <div className="w-2/3">
-        <h2 className="text-lg text-primaryPurple font-medium  ">{title}</h2>
-        <div className="flex gap-2 items-center">
-          <div className="flex gap-1 ">
-            <LocationMarkerIcon className="w-4 h-4 text-primaryPurple" />
-            <p className="text-sm">{location}</p>
+    <div className={clsx("bg-primaryWhite my-4   ")} style={{ direction: "rtl" }}>
+      <Link href={"/id"}>
+        <a className="sm:flex gap-4">
+          <div className="relative flex-shrink-0 ">
+            <Image
+              src={image}
+              width={180}
+              height={130}
+              objectFit="cover"
+              className=""
+            />
           </div>
-          <div className="flex gap-1 ">
-            <CalendarIcon className="w-4 h-4 text-primaryPurple" />
-            <p className="text-sm">{date}</p>
+          <div className="">
+            <h2 className="text-md text-primaryPurple font-medium">{title}</h2>
+            <div className="flex gap-2 items-center">
+              <div className="flex gap-1 ">
+                <CalendarIcon className="w-4 h-4 text-primaryPurple" />
+                <p className="text-sm">{date}</p>
+              </div>
+              <div className="flex gap-1 ">
+                <LocationMarkerIcon className="w-4 h-4 text-primaryPurple" />
+                <p className="text-sm">{location}</p>
+              </div>
+            </div>
+            <p className="text-sm mt-1">{description}</p>
           </div>
-        </div>
-        <p className="text-sm mt-1">{description}</p>
-      </div>
+        </a>
+      </Link>
     </div>
   );
 };
