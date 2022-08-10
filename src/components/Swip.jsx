@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
-import SwipArrows from "./homePage/SwipArrows";
+import SwipArrows from "./SwipArrows";
 SwiperCore.use([Navigation]);
 const Swip = ({ children, nextClass, prevClass, arrowsStyle, ...props }) => {
   const prevRef = React.useRef(null);

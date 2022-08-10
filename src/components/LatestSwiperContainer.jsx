@@ -6,16 +6,22 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
-import SwipArrows from "@/components/homePage/SwipArrows";
+import SwipArrows from "@/components/SwipArrows";
 SwiperCore.use([Navigation]);
 
-const LatestSwiperContainer = ({ children, sectionTitle }) => {
+const LatestSwiperContainer = ({ children, sectionTitle, ...props }) => {
   const prevRef = React.useRef(null);
   const nextRef = React.useRef(null);
   return (
     <section>
-      <div className="flex justify-between py-5 items-center">
-        <h1>{sectionTitle}</h1>
+      <div className="flex justify-between py-5 items-center ">
+        <div>
+          <h1 className="text-2xl">{sectionTitle}</h1>
+          <div className=" space-y-[2px]">
+            <div className="w-12 h-[1px]  bg-primaryPurple"></div>
+            <div className="w-12 h-[1px]  bg-primaryPurple"></div>
+          </div>
+        </div>
         <SwipArrows
           arrowsStyle="flex space-x-2"
           nextClass="latest-next"
@@ -26,8 +32,7 @@ const LatestSwiperContainer = ({ children, sectionTitle }) => {
       </div>
 
       <Swiper
-        spaceBetween={5}
-        slidesPerView={1}
+        {...props}
         navigation={{
           prevEl: prevRef.current,
           nextEl: nextRef.current,
@@ -37,13 +42,14 @@ const LatestSwiperContainer = ({ children, sectionTitle }) => {
           swiper.params.navigation.nextEl = nextRef.current;
         }}
         autoplay={{
-          delay: 10000,
+          delay: 20000,
         }}
         loop={true}
         loopFillGroupWithBlank={true}
         modules={[Autoplay, EffectFade]}
         effect="fade"
         dir="ltr"
+        
       >
         <main className=" relative">{children}</main>
       </Swiper>

@@ -9,6 +9,7 @@ import Link from "next/link";
 const data = [
   {
     id: 1,
+    slug: "news-1",
     date: "15-07-2022",
     image: "/images/news-1.jpg",
     link: "/",
@@ -29,6 +30,7 @@ const data = [
   },
   {
     id: 2,
+    slug: "news-2",
     link: "/",
     date: "15-07-2022",
     image: "/images/news-2.jpg",
@@ -49,6 +51,7 @@ const data = [
   },
   {
     id: 3,
+    slug: "news-3",
     link: "/",
     date: "15-07-2022",
     image: "/images/news-3.jpg",
@@ -69,6 +72,7 @@ const data = [
   },
   {
     id: 4,
+    slug: "news-4",
     link: "/",
     date: "15-07-2022",
     image: "/images/news-2.jpg",
@@ -76,8 +80,7 @@ const data = [
       "ar-SA": {
         title: "خبر 4",
         location: "ريف حلب الشمالي",
-        description:
-          "يستطيع المزودين والتجار تقديم عروض المناصات عبر هذه النافذة",
+        description: "يستطيع الم هذه النافذة",
       },
       "en-US": {
         title: "Tender for the purchase of agricultural products",
@@ -89,6 +92,7 @@ const data = [
   },
   {
     id: 5,
+    slug: "news-5",
     link: "/",
     date: "15-07-2022",
     image: "/images/news-3.jpg",
@@ -109,6 +113,7 @@ const data = [
   },
   {
     id: 6,
+    slug: "news-6",
     link: "/",
     date: "15-07-2022",
     image: "/images/news-1.jpg",
@@ -132,7 +137,11 @@ const data = [
 const LatestNews = () => {
   return (
     <section>
-      <LatestSwiperContainer sectionTitle="اخر الاخبار">
+      <LatestSwiperContainer
+        sectionTitle="أخر الأخبار"
+        spaceBetween={20}
+        slidesPerView={1}
+      >
         <SwiperSlide>
           {data.slice(0, 3).map((item) => (
             <News key={item.id} {...item} />
@@ -150,23 +159,26 @@ const LatestNews = () => {
 
 export default LatestNews;
 
-const News = ({ date, image, text, id }) => {
+const News = ({ date, image, text, id, slug }) => {
   const { locale } = useRouter();
   const { title, location, description } = text[locale];
   return (
-    <div className={clsx("bg-primaryWhite my-4   ")} style={{ direction: "rtl" }}>
-      <Link href={"/id"}>
-        <a className="sm:flex gap-4">
-          <div className="relative flex-shrink-0 ">
+    <div
+      className={clsx("bg-primaryWhite py-3  ")}
+      style={{ direction: "rtl" }}
+    >
+      <Link href={`/news/${slug}`}>
+        <a className="lg:flex   gap-4 ">
+          <div className="relative flex-shrink-0  lg:w-44  h-40z   ">
             <Image
               src={image}
-              width={180}
-              height={130}
+              layout="fill"
               objectFit="cover"
-              className=""
+              alt="news"
+              className="w-full h-full rounded-md"
             />
           </div>
-          <div className="">
+          <div className="w-full mt-4 lg:mt-0">
             <h2 className="text-md text-primaryPurple font-medium">{title}</h2>
             <div className="flex gap-2 items-center">
               <div className="flex gap-1 ">
