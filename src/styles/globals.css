@@ -18,20 +18,15 @@
   border-radius: 5px;
 }
 
-.latest-prev{
+.latest-prev {
   color: white;
   background-color: rgb(51, 25, 58);
   padding: 0px 7px;
   border-radius: 8px 0px 0px 8px;
-  
-  
 }
-.latest-next{
+.latest-next {
   color: white;
   background-color: rgb(51, 25, 58);
   padding: 0px 7px;
   border-radius: 0px 8px 8px 0px;
-  
 }
-
- 

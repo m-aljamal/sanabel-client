@@ -8,7 +8,7 @@ const Latest = () => {
   return (
     <section className="bg-primaryWhite py-8">
       <Container>
-        <div className="    grid md:grid-cols-2 grid-cols-1 gap-6   " >
+        <div className=" grid md:grid-cols-2 grid-cols-1 gap-6   " >
           <LatestNews />
           <MostCases />
         </div>

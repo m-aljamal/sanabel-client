@@ -19,19 +19,6 @@ export default function Home() {
         <Hero />
         <JoinUs />
         <Latest />
-        <div  className="grid grid-cols-2">
-          <div className="bg-red-500">
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-          </div>
-          <div className="bg-green-200">
-            2
-          </div>
-        </div>
       </main>
     </>
   );

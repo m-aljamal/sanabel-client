@@ -61,18 +61,8 @@ const data = [
 
 const MostCases = () => {
   return (
-    <div className="">
-      <LatestSwiperContainer
-        sectionTitle="أهم الحالات"
-        spaceBetween={20}
-        slidesPerView={1}
-      >
-        {data.map((item) => (
-          <SwiperSlide key={item.id}>
-            <Case key={item.id} {...item} />
-          </SwiperSlide>
-        ))}
-      </LatestSwiperContainer>
+    <div className=" bg-red-200  relative ">
+      <Case {...data[0]} />
     </div>
   );
 };
@@ -83,8 +73,8 @@ const Case = ({ id, total, paid, image, text }) => {
   const { locale } = useRouter();
   const { title, description } = text[locale];
   return (
-    <div className="bg-primaryWhite flex  gap-5" style={{ direction: "rtl" }}>
-      <div className=" relative h-60  w-1/2 ">
+    <div className="bg-primaryWhite flex  gap-5 h-full " style={{ direction: "rtl" }}>
+      <div className=" relative    w-1/2 ">
         <Image src={image} layout="fill" objectFit="cover" />
         <div className=" absolute z-50 text-white bottom-0   right-0 left-0 ">
           <p className="text-primaryPurple">Total</p>
@@ -93,7 +83,6 @@ const Case = ({ id, total, paid, image, text }) => {
       <div className="w-full">
         <h2 className="text-primaryPurple text-lg">{title}</h2>
         <p className="text-sm">{description}</p>
-        
       </div>
     </div>
   );

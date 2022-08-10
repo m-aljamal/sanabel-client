@@ -7,6 +7,7 @@ import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import SwipArrows from "@/components/SwipArrows";
+import Title from "./Title";
 SwiperCore.use([Navigation]);
 
 const LatestSwiperContainer = ({ children, sectionTitle, ...props }) => {
@@ -15,13 +16,7 @@ const LatestSwiperContainer = ({ children, sectionTitle, ...props }) => {
   return (
     <section>
       <div className="flex justify-between py-5 items-center ">
-        <div>
-          <h1 className="text-2xl">{sectionTitle}</h1>
-          <div className=" space-y-[2px]">
-            <div className="w-12 h-[1px]  bg-primaryPurple"></div>
-            <div className="w-12 h-[1px]  bg-primaryPurple"></div>
-          </div>
-        </div>
+        <Title title={sectionTitle} />
         <SwipArrows
           arrowsStyle="flex space-x-2"
           nextClass="latest-next"
@@ -49,7 +44,6 @@ const LatestSwiperContainer = ({ children, sectionTitle, ...props }) => {
         modules={[Autoplay, EffectFade]}
         effect="fade"
         dir="ltr"
-        
       >
         <main className=" relative">{children}</main>
       </Swiper>
