@@ -7,6 +7,7 @@ import LatestProjects from "@/components/homePage/LatestProjects";
 import About from "@/components/homePage/About";
 import Media from "@/components/homePage/Media";
 import Achivments from "@/components/homePage/Achivments";
+import SeccessStories from "@/components/homePage/SeccessStories";
 
 export default function Home() {
   return (
@@ -26,7 +27,11 @@ export default function Home() {
         <LatestProjects />
         <About />
         <Media />
-        <Achivments/>
+        <Achivments />
+        <SeccessStories />
+        <div className='mt-10'>
+          dsddddddddddddd
+        </div>
       </main>
     </>
   );
