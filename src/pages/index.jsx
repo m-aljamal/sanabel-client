@@ -5,6 +5,8 @@ import JoinUs from "@/components/homePage/JoinUs";
 import Latest from "@/components/homePage/Latest";
 import LatestProjects from "@/components/homePage/LatestProjects";
 import About from "@/components/homePage/About";
+import Media from "@/components/homePage/Media";
+import Achivments from "@/components/homePage/Achivments";
 
 export default function Home() {
   return (
@@ -23,6 +25,8 @@ export default function Home() {
         <Latest />
         <LatestProjects />
         <About />
+        <Media />
+        <Achivments/>
       </main>
     </>
   );

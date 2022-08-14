@@ -6,6 +6,18 @@ import { Title } from "../Title";
 import socialLinks from "@/constant/socialLinks";
 import ProgresPar from "../ProgresPar";
 import { Container } from "../Container";
+
+const MostCases = () => {
+  return (
+    <div className=" py-5">
+      <Title title="أهم الحالات" />
+      <Case />
+    </div>
+  );
+};
+
+export default MostCases;
+
 const data = [
   {
     id: 1,
@@ -28,18 +40,8 @@ const data = [
   },
 ];
 
-const MostCases = () => {
-  return (
-    <div className=" py-5">
-      <Title title="أهم الحالات" />
-      <Case {...data[0]} />
-    </div>
-  );
-};
-
-export default MostCases;
-
-const Case = ({ id, total, remain, image, text, present }) => {
+const Case = () => {
+  const { id, total, remain, image, text, present } = data[0];
   const { locale } = useRouter();
   const { title, description } = text[locale];
   return (

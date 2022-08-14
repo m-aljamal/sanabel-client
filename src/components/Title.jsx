@@ -11,10 +11,11 @@ const Title = ({ title }) => {
   );
 };
 
-const TitleWithIcon = ({ title }) => {
+const TitleWithIcon = ({ title, subTitle }) => {
   return (
     <div className="text-center">
       <h1 className={clsx(baseStyle)}>{title}</h1>
+      <h2 className="text-primaryPurple ">{subTitle}</h2>
       <div className="flex items-center justify-center">
         <Line />
         <Image src="/images/headerLogo.svg" width={20} height={20} />
