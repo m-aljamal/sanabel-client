@@ -92,7 +92,7 @@ const ProjectCard = ({ image, text, slug, beneficiary, id }) => {
   const { locale } = useRouter();
   const { title, description } = text[locale];
   return (
-    <div className=" border border-lightPurple ">
+    <div className=" border border-lightPurple shadow-md transition duration-150 ease-out hover:scale-110">
       <div className="relative h-[250px] w-full ">
         <Image src={image} layout="fill" objectFit="cover" />
       </div>
@@ -104,9 +104,9 @@ const ProjectCard = ({ image, text, slug, beneficiary, id }) => {
         <div className="flex md:flex-row flex-col gap-4 mt-5 justify-center">
           <ButtonLink href="/">تبرع الأن</ButtonLink>
           <ButtonLink href="/" variant="outline">
-            <div className="flex gap-2   ">
+            <div className="flex gap-2  ">
               <HeartIcon className="w-5 h-5 " />
-              {beneficiary}
+              <p>{beneficiary}</p>
               <p>مستفيد</p>
             </div>
           </ButtonLink>

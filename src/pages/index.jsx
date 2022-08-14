@@ -2,9 +2,10 @@ import Head from "next/head";
 import Header from "@/components/Header";
 import Hero from "@/components/homePage/Hero";
 import JoinUs from "@/components/homePage/JoinUs";
-
 import Latest from "@/components/homePage/Latest";
 import LatestProjects from "@/components/homePage/LatestProjects";
+import About from "@/components/homePage/About";
+
 export default function Home() {
   return (
     <>
@@ -20,7 +21,8 @@ export default function Home() {
         <Hero />
         <JoinUs />
         <Latest />
-        <LatestProjects/>
+        <LatestProjects />
+        <About />
       </main>
     </>
   );
