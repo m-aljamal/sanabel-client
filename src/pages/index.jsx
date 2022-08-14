@@ -4,6 +4,7 @@ import Hero from "@/components/homePage/Hero";
 import JoinUs from "@/components/homePage/JoinUs";
 
 import Latest from "@/components/homePage/Latest";
+import LatestProjects from "@/components/homePage/LatestProjects";
 export default function Home() {
   return (
     <>
@@ -19,6 +20,7 @@ export default function Home() {
         <Hero />
         <JoinUs />
         <Latest />
+        <LatestProjects/>
       </main>
     </>
   );

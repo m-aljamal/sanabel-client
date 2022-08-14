@@ -6,7 +6,7 @@ import Image from "next/image";
 import clsx from "clsx";
 import { LocationMarkerIcon, CalendarIcon } from "@heroicons/react/outline";
 import Link from "next/link";
-import Title from "../Title";
+import {Title} from "../Title";
 const data = [
   {
     id: 1,
@@ -79,22 +79,7 @@ const LatestNews = () => {
       <div className="py-5">
         <Title title="أخر الأخبار" />
       </div>
-      {/* <LatestSwiperContainer
-        sectionTitle="أخر الأخبار"
-        spaceBetween={20}
-        slidesPerView={1}
-      >
-        <SwiperSlide>
-          {data.slice(0, 3).map((item) => (
-            <News key={item.id} {...item} />
-          ))}
-        </SwiperSlide>
-        <SwiperSlide>
-          {data.slice(3, 6).map((item) => (
-            <News key={item.id} {...item} />
-          ))}
-        </SwiperSlide>
-      </LatestSwiperContainer> */}
+
       <div className="space-y-5">
         {data.map((news) => (
           <News key={news.id} {...news} />

@@ -7,7 +7,7 @@ import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import SwipArrows from "@/components/SwipArrows";
-import Title from "./Title";
+import {Title} from "./Title";
 SwiperCore.use([Navigation]);
 
 const LatestSwiperContainer = ({ children, sectionTitle, ...props }) => {

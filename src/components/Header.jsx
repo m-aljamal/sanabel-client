@@ -80,7 +80,7 @@ const LogoSection = () => {
             </div>
           </li>
           <li>
-            <ButtonLink href="/" className="hidden md:block">
+            <ButtonLink href="/" className="hidden md:block px-8">
               تبرع الأن
             </ButtonLink>
           </li>
@@ -175,7 +175,7 @@ const MobileNav = () => {
 const MainLinksNav = () => {
   const { locale } = useRouter();
   return (
-    <nav className="bg-primaryPurple text-white">
+    <nav className="bg-darkPurple text-white">
       <Container>
         <div className="md:flex items-center justify-between hidden ">
           <ul className="flex gap-8 py-4 ">
@@ -204,10 +204,10 @@ const MainLinksNav = () => {
 const Search = () => {
   return (
     <div className="flex relative ">
-      <div className=" absolute     left-2  text-gray-400  flex items-center   h-full">
+      <div className=" absolute left-2  text-gray-400  flex items-center   h-full">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 "
+          className="h-5 w-5 text-white"
           fill="currentColor"
         >
           <path d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" />
@@ -216,7 +216,7 @@ const Search = () => {
       <input
         type="text"
         placeholder="البحث...."
-        className="bg-[#4a2353] border-0 rounded-md placeholder-gray-400 pl-8"
+        className="bg-[#4a2353] border-0 rounded-md placeholder-gray-200 pl-8 focus:ring-1 focus:ring-gray-500"
       />
     </div>
   );

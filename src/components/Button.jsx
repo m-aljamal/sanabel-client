@@ -3,24 +3,23 @@ import clsx from "clsx";
 
 const baseStyles = {
   solid:
-    "group inline-flex items-center justify-center rounded-full py-1 px-6 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2",
+    "inline-flex justify-center rounded-2xl py-1 px-4 text-base   tracking-tight shadow-sm focus:outline-none",
   outline:
-    "group inline-flex ring-1 items-center   justify-center rounded-full py-1 px-4 text-sm focus:outline-none",
+    "inline-flex justify-center rounded-2xl border py-[calc(theme(spacing.1)-1px)] px-[calc(theme(spacing.4)-1px)] text-base   tracking-tight focus:outline-none",
 };
 
 const variantStyles = {
   solid: {
     slate:
-      "bg-primaryPurple text-white hover:bg-slate-700 hover:text-slate-100 active:bg-slate-800 active:text-slate-300 focus-visible:outline-slate-900",
-    blue: "bg-blue-600 text-white hover:text-slate-100 hover:bg-blue-500 active:bg-blue-800 active:text-blue-100 focus-visible:outline-blue-600",
+      "bg-primaryPurple text-white hover:bg-lightPurple focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-darkPurple active:bg-lightPurple active:text-white/80 disabled:opacity-30 disabled:hover:bg-slate-900",
+    blue: "bg-blue-600 text-white hover:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 active:bg-blue-700 active:text-white/80 disabled:opacity-30 disabled:hover:bg-blue-600",
     white:
-      "bg-white text-slate-900 hover:bg-blue-50 active:bg-blue-200 active:text-slate-600 focus-visible:outline-white",
+      "bg-white text-blue-600 hover:text-blue-700 focus-visible:text-blue-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:bg-blue-50 active:text-blue-900/80 disabled:opacity-40 disabled:hover:text-blue-600",
   },
   outline: {
     slate:
-      "ring-primaryPurple text-primaryPurple hover:text-slate-900 hover:ring-slate-300 active:bg-slate-100 active:text-slate-600 focus-visible:outline-blue-600 focus-visible:ring-slate-300",
-    white:
-      "ring-slate-700 text-white hover:ring-slate-500 active:ring-slate-700 active:text-slate-400 focus-visible:outline-white",
+      "border-primaryPurple text-primaryPurple hover:border-lightPurple hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lightPurple active:border-lightPurple active:bg-slate-50 active:text-lightPurple disabled:opacity-40 disabled:hover:border-slate-200 disabled:hover:bg-transparent",
+    blue: "border-blue-300 text-blue-600 hover:border-blue-400 hover:bg-blue-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 active:text-blue-600/70 disabled:opacity-40 disabled:hover:border-blue-300 disabled:hover:bg-transparent",
   },
 };
 

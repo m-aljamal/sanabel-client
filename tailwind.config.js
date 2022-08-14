@@ -21,9 +21,10 @@ module.exports = {
     },
     extend: {
       colors: {
-        primaryPurple: "#33193a",
-        lightPurple: "#4a2353",
-        lighterPurple: "#693077",
+        darkPurple: "#33193a",
+        primaryPurple: "#4a2353",
+        lightPurple: "#693077",
+
         primaryWhite: "#f1ebf2",
       },
       borderRadius: {
