@@ -31,6 +31,7 @@ export default function Home() {
         <SeccessStories />
         <div className='mt-10'>
           dsddddddddddddd
+          <img src="/images/j.gif" className="w-24"/>
         </div>
       </main>
     </>
