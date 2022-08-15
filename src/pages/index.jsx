@@ -7,7 +7,7 @@ import LatestProjects from "@/components/homePage/LatestProjects";
 import About from "@/components/homePage/About";
 import Media from "@/components/homePage/Media";
 import Achivments from "@/components/homePage/Achivments";
-import SeccessStories from "@/components/homePage/SeccessStories";
+import StoriesList from "@/components/homePage/StoriesList";
 
 export default function Home() {
   return (
@@ -28,11 +28,8 @@ export default function Home() {
         <About />
         <Media />
         <Achivments />
-        <SeccessStories />
-        <div className='mt-10'>
-          dsddddddddddddd
-          <img src="/images/j.gif" className="w-24"/>
-        </div>
+        <StoriesList />
+        <div className="mt-10">dsddddddddddddd</div>
       </main>
     </>
   );
