@@ -52,7 +52,7 @@ const Achivments = () => {
             <SeeMoreAchivments />
           </li>
           {data.map(({ icon, id, title, total }) => (
-            <li className="text-white text-center">
+            <li className="text-white text-center" key={id}>
               <Image src={icon} width={70} height={70} />
               <h2 className="sm:text-2xl text-xl font-bold">{total}</h2>
               <h2 className="text-xl">{title[locale]}</h2>

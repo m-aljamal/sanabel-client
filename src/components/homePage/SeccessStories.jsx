@@ -71,7 +71,7 @@ const SeccessStories = () => {
       <Container>
         <div className="grid grid-cols-3   my-10  border border-primaryPurple">
           {data.map((storey) => (
-            <SeccessStory {...storey} />
+            <SeccessStory {...storey} key={storey.id} />
           ))}
         </div>
       </Container>
