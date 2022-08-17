@@ -76,11 +76,6 @@ const StoriesList = () => {
             <SeccessStory {...storey} key={storey.id} />
           ))}
         </div>
-        {/* <div className="grid grid-cols-2 my-10 border border-primaryPurple md:hidden">
-          {data.map((storey) => (
-            <SeccessStory {...storey} key={storey.id} />
-          ))}
-        </div> */}
       </Container>
     </section>
   );

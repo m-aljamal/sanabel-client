@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .socialIcon {
-  @apply h-4 w-4 fill-gray-600 group-hover:fill-primaryPurple ;
+  @apply h-4 w-4 fill-gray-600 group-hover:fill-primaryPurple;
 }
 .swiper-prev {
   color: white;
@@ -30,3 +30,4 @@
   padding: 0px 7px;
   border-radius: 0px 8px 8px 0px;
 }
+

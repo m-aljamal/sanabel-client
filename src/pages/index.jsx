@@ -8,6 +8,8 @@ import About from "@/components/homePage/About";
 import Media from "@/components/homePage/Media";
 import Achivments from "@/components/homePage/Achivments";
 import StoriesList from "@/components/homePage/StoriesList";
+import AboutProjects from "@/components/homePage/AboutProjects";
+import Partnars from "@/components/homePage/Partnars";
 
 export default function Home() {
   return (
@@ -29,7 +31,8 @@ export default function Home() {
         <Media />
         <Achivments />
         <StoriesList />
-        <div className="mt-10">dsddddddddddddd</div>
+        <AboutProjects />
+        <Partnars />
       </main>
     </>
   );
