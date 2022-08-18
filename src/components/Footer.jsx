@@ -12,7 +12,7 @@ const Footer = () => {
   return (
     <footer className=" bg-primaryPurple py-10">
       <Container>
-        <div className="  grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4   gap-5 justify-items-center justify-cente     ">
+        <div className="  grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4   gap-5 justify-items-center      ">
           {/* start address */}
           <div>
             <div className="relative h-20  ">
@@ -22,7 +22,7 @@ const Footer = () => {
                 objectFit="contain"
               />
             </div>
-            <div className="text-white space-y-3">
+            <div className="text-white space-y-3 ">
               <p className="text-sm mt-5">
                 لمتابعتنا ولمشاهدة المزيد يرجى التواصل عبر الحسابات التالية:
               </p>
@@ -39,7 +39,7 @@ const Footer = () => {
                 icon="/images/footer/mail.svg"
                 label="info@sanabelsao.org"
               />
-              <div className="flex gap-2">
+              <div className="flex gap-2 justify-center sm:justify-start">
                 {socialLinks.map((s) => (
                   <a
                     href={s.link}
@@ -109,7 +109,7 @@ export default Footer;
 
 const FooterAddress = ({ icon, label, ...props }) => {
   return (
-    <div className="flex gap-2 items-center ">
+    <div className="flex gap-2 items-center justify-center sm:justify-start ">
       <div>
         <Image src={icon} width={40} height={30} objectFit="fill" />
       </div>
