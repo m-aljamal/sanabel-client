@@ -89,7 +89,7 @@ const Case = () => {
             {socialLinks.map((s) => (
               <a href={s.link} key={s.id}>
                 <li className="mt-4 rounded-full border border-primaryPurple p-[5px]">
-                  <s.icon />
+                  <s.icon className='socialIconCases'/>
                 </li>
               </a>
             ))}

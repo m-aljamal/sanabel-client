@@ -7,7 +7,7 @@ import clsx from "clsx";
 import { LocationMarkerIcon, CalendarIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import {Title} from "../Title";
-const data = [
+export  const newsData = [
   {
     id: 1,
     slug: "news-1",
@@ -81,7 +81,7 @@ const LatestNews = () => {
       </div>
 
       <div className="space-y-5">
-        {data.map((news) => (
+        {newsData.map((news) => (
           <News key={news.id} {...news} />
         ))}
       </div>

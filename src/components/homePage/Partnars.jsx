@@ -27,21 +27,10 @@ const Partnars = () => {
           dir="ltr"
           spaceBetween={10}
           slidesPerView={3}
-          // breakpoints={{
-          //   320:{
-          //     slidesPerView: 2,
-          //   },
-          //   640: {
-          //     slidesPerView: 3,
-          //   },
-          //   768: {
-          //     slidesPerView: 3,
-          //   },
-          // }}
         >
           {logos.map((logo) => (
             <SwiperSlide key={logo}>
-              <div className="relative h-14">
+              <div className="relative h-16">
                 <Image
                   src={logo}
                   layout="fill"

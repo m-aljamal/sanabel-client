@@ -28,7 +28,7 @@ const SoucialLinks = () => {
           {socialLinks.map((s) => (
             <a href={s.link} target="_blank" rel="noreferrer" key={s.id}>
               <li className="p-3 group">
-                <s.icon />
+                <s.icon className='socialIconHeader'/>
               </li>
             </a>
           ))}

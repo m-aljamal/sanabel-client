@@ -2,8 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-.socialIcon {
+.socialIconHeader {
   @apply h-4 w-4 fill-gray-600 group-hover:fill-primaryPurple;
+}
+.socialIconFooter {
+  @apply h-4 w-4  fill-white ;
+}
+.socialIconCases {
+  @apply h-4 w-4  fill-primaryPurple ;
 }
 .swiper-prev {
   color: white;

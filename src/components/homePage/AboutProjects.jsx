@@ -12,7 +12,7 @@ const AboutProjects = () => {
               <div className=" md:translate-y-8 hidden md:block  flex-shrink-0 ">
                 <Image
                   src="/placeHolder/student.png"
-                  width={350}
+                  width={300}
                   height={350}
                   objectFit="fill"
                 />
