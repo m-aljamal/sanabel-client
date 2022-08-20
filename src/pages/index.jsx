@@ -9,8 +9,9 @@ import Achivments from "@/components/homePage/Achivments";
 import StoriesList from "@/components/homePage/StoriesList";
 import AboutProjects from "@/components/homePage/AboutProjects";
 import Partnars from "@/components/homePage/Partnars";
-
-export default function Home() {
+import client, { imageBuilder } from "@/lib/sanity";
+import Image from "next/image";
+export default function Home({ heroImages }) {
   return (
     <>
       <Head>
@@ -22,7 +23,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <Hero />
+        <Hero heroImages={heroImages} />
         <JoinUs />
         <Latest />
         <LatestProjects />
@@ -35,4 +36,23 @@ export default function Home() {
       </main>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const heroImages = await client.fetch(
+    `*[_type == "hero"]{
+      _id,
+      image,
+      block,
+      subtitle{
+        ar,
+        en,
+      },
+    }`
+  );
+  return {
+    props: {
+      heroImages,
+    },
+  };
 }
