@@ -52,7 +52,7 @@ const LogoSection = () => {
                 <div
                   className={clsx(
                     " border-primaryPurple  text-primaryPurple font-bold",
-                    locale === "ar-SA" ? "border-r-2 pr-2" : "border-l-2 pl-2"
+                    locale === "ar" ? "border-r-2 pr-2" : "border-l-2 pl-2"
                   )}
                 >
                   <p>منظمة الســــنابل</p>

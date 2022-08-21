@@ -3,8 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   i18n: {
-    locales: ["ar-SA", "en-US"],
-    defaultLocale: "ar-SA",
+    locales: ["ar", "en"],
+    defaultLocale: "ar",
   },
   images: {
     domains: ["cdn.sanity.io"],

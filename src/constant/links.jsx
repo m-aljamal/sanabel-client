@@ -2,56 +2,56 @@ export const links = [
   {
     href: "/",
     label: {
-      "ar-SA": "الرئيسية",
-      "en-US": "Home",
+      "ar": "الرئيسية",
+      "en": "Home",
     },
     id: 1,
   },
   {
     href: "/about",
     label: {
-      "ar-SA": "من نحن",
-      "en-US": "About",
+      "ar": "من نحن",
+      "en": "About",
     },
     id: 2,
   },
   {
     href: "/projects",
     label: {
-      "ar-SA": "المشاريع",
-      "en-US": "Projects",
+      "ar": "المشاريع",
+      "en": "Projects",
     },
     id: 3,
   },
   {
     href: "/Cases",
     label: {
-      "ar-SA": "الحالات",
-      "en-US": "Cases",
+      "ar": "الحالات",
+      "en": "Cases",
     },
     id: 4,
   },
   {
     href: "/success",
     label: {
-      "ar-SA": "قصص النجاح",
-      "en-US": "Success Stories",
+      "ar": "قصص النجاح",
+      "en": "Success Stories",
     },
     id: 5,
   },
   {
     href: "/contact",
     label: {
-      "ar-SA": "تواصل معنا",
-      "en-US": "Contact",
+      "ar": "تواصل معنا",
+      "en": "Contact",
     },
     id: 6,
   },
   {
     href: "/donate",
     label: {
-      "ar-SA": "للتبرع",
-      "en-US": "Donate",
+      "ar": "للتبرع",
+      "en": "Donate",
     },
     id: 7,
   },

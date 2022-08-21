@@ -71,9 +71,9 @@ const Footer = () => {
           <div className="text-white mt-5 hidden md:block">
             <h2 className="font-bold mb-8">اخر الأخبار </h2>
             <ul className="space-y-5">
-              {newsData.map(({ id, text }) => (
+              {/* {newsData.map(({ id, text }) => (
                 <li key={id}>{text[locale]?.title}</li>
-              ))}
+              ))} */}
             </ul>
           </div>
           {/* start form */}

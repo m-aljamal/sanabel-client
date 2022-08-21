@@ -9,9 +9,9 @@ import Achivments from "@/components/homePage/Achivments";
 import StoriesList from "@/components/homePage/StoriesList";
 import AboutProjects from "@/components/homePage/AboutProjects";
 import Partnars from "@/components/homePage/Partnars";
-import client, { imageBuilder } from "@/lib/sanity";
-import Image from "next/image";
-export default function Home({ heroImages }) {
+import client from "@/lib/sanity";
+import { heroImagesQuery, latestNewsQuery } from "@/lib/queries";
+export default function Home({ heroImages, latestNews }) {
   return (
     <>
       <Head>
@@ -21,11 +21,10 @@ export default function Home({ heroImages }) {
           content="Most bookkeeping software is accurate, but hard to use. We make the opposite trade-off, and hope you don’t get audited."
         />
       </Head>
-
       <main>
         <Hero heroImages={heroImages} />
         <JoinUs />
-        <Latest />
+        <Latest newsData={latestNews} />
         <LatestProjects />
         <About />
         <Media />
@@ -38,21 +37,13 @@ export default function Home({ heroImages }) {
   );
 }
 
-export async function getStaticProps() {
-  const heroImages = await client.fetch(
-    `*[_type == "hero"]{
-      _id,
-      image,
-      block,
-      subtitle{
-        ar,
-        en,
-      },
-    }`
-  );
+export async function getStaticProps({ local }) {
+  const heroImages = await client.fetch(heroImagesQuery);
+  const latestNews = await client.fetch(latestNewsQuery);
   return {
     props: {
       heroImages,
+      latestNews,
     },
   };
 }

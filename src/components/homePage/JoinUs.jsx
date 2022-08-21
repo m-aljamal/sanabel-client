@@ -9,13 +9,13 @@ const data = [
     icon: "/images/tender-02.svg",
     background: "/images/background-1.jpg",
     text: {
-      "ar-SA": {
+      "ar": {
         title: "مناقصات",
         description:
-          "يستطيع المزودين والتجار تقديم عروض المناصات عبر هذه النافذة",
+          "يستطيع المزودين والتجار تقديم عروض المناقصات عبر هذه النافذة",
         buttonText: "طلب التزويد",
       },
-      "en-US": {
+      "en": {
         title: "Offers",
         description:
           "The suppliers and traders can offer their offers through this window",
@@ -27,13 +27,13 @@ const data = [
     id: 2,
     background: "/images/background-2.jpg",
     text: {
-      "ar-SA": {
+      "ar": {
         title: "للتطوع",
         description:
           "الكثير من العمل والمجد بانتظارك بادر للتطوع في خدمة أهلنا في كل مكان",
         buttonText: "تطوع الآن",
       },
-      "en-US": {
+      "en": {
         title: "Volunteer",
         description:
           "Many jobs are waiting for you to volunteer in our service in any place",
@@ -46,13 +46,13 @@ const data = [
     id: 3,
     background: "/images/background-3.jpg",
     text: {
-      "ar-SA": {
+      "ar": {
         title: "للتوظيف",
         description:
           "إذا كان لديك الخبرة الكافية وتؤمن بالعمل اﻹنساني فنحن نبحث عنك!",
         buttonText: "طلبات التوظيف",
       },
-      "en-US": {
+      "en": {
         title: "Employment",
         description:
           "If you have the necessary experience and trust in the work of an Egyptian human being, we will search for you!",

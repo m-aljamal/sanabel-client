@@ -12,13 +12,13 @@ const data = [
     image: "/images/news-1.jpg",
     date: "2022/07/15",
     text: {
-      "ar-SA": {
+      "ar": {
         title: "برنامج ذبح الاضاحي وتزيع لحوم 1",
         description:
           "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق. .",
         location: "ريف حلب الشمالي",
       },
-      "en-US": {
+      "en": {
         title: "Program to buy and sell 1",
         description:
           "This is just an example text to show how a text can be replaced in the same space, you can generate many other texts like this one or many others, just add more words to increase the number of letters that the application can generate.",
@@ -31,13 +31,13 @@ const data = [
     image: "/images/news-1.jpg",
     date: "2022/07/15",
     text: {
-      "ar-SA": {
+      "ar": {
         title: "برنامج ذبح الاضاحي وتزيع لحوم 2",
         description:
           "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق. .",
         location: "ريف حلب الشمالي",
       },
-      "en-US": {
+      "en": {
         title: "Program to buy and sell 1",
         description:
           "This is just an example text to show how a text can be replaced in the same space, you can generate many other texts like this one or many others, just add more words to increase the number of letters that the application can generate.",
@@ -50,13 +50,13 @@ const data = [
     image: "/images/news-3.jpg",
     date: "2022/07/15",
     text: {
-      "ar-SA": {
+      "ar": {
         title: "برنامج ذبح الاضاحي وتزيع لحوم 3",
         description:
           "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق. .",
         location: "ريف حلب الشمالي",
       },
-      "en-US": {
+      "en": {
         title: "Program to buy and sell 1",
         description:
           "This is just an example text to show how a text can be replaced in the same space, you can generate many other texts like this one or many others, just add more words to increase the number of letters that the application can generate.",

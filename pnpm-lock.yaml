@@ -11,6 +11,7 @@ specifiers:
   eslint: 8.20.0
   eslint-config-next: 12.2.2
   focus-visible: ^5.2.0
+  groq: ^2.29.3
   next: 12.2.2
   next-sanity: ^0.8.1
   postcss: ^8.4.14
@@ -28,6 +29,7 @@ dependencies:
   '@tailwindcss/forms': 0.5.2_tailwindcss@3.1.6
   clsx: 1.2.1
   focus-visible: 5.2.0
+  groq: 2.29.3
   next: 12.2.2_biqbaboplfbrettd7655fr4n2y
   next-sanity: 0.8.1_react@18.2.0
   postcss-focus-visible: 7.0.0_postcss@8.4.14

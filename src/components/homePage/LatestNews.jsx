@@ -1,79 +1,12 @@
 import { useRouter } from "next/router";
 import React from "react";
-import { SwiperSlide } from "swiper/react";
-import LatestSwiperContainer from "../LatestSwiperContainer";
 import Image from "next/image";
-import clsx from "clsx";
 import { LocationMarkerIcon, CalendarIcon } from "@heroicons/react/outline";
 import Link from "next/link";
-import {Title} from "../Title";
-export  const newsData = [
-  {
-    id: 1,
-    slug: "news-1",
-    date: "15-07-2022",
-    image: "/images/news-1.jpg",
-    link: "/",
-    text: {
-      "ar-SA": {
-        title: "برنامج ذبح الاضاحي وتزيع لحومحا",
-        location: "ريف حلب الشمالي",
-        description:
-          "يستطيع المزودين والتجار تقديم عروض المناصات عبر هذه النافذ والتجار تقديم عروض المناصات عبر هذه النافذة يستطيع المزودين والتجار تقديم عروض المناصات عبر هذه النافذة",
-      },
-      "en-US": {
-        title: "Tender for the purchase of agricultural products",
-        location: "Riyad al-Shamal",
-        description:
-          "The suppliers and traders can offer their offers through this window",
-      },
-    },
-  },
-  {
-    id: 2,
-    slug: "news-2",
-    link: "/",
-    date: "15-07-2022",
-    image: "/images/news-2.jpg",
-    text: {
-      "ar-SA": {
-        title: "خبر 2",
-        location: "ريف حلب الشمالي",
-        description:
-          "يستطيع المزودين والتجار تقديم عروض المناصات عبر هذه النافذة",
-      },
-      "en-US": {
-        title: "Tender for the purchase of agricultural products",
-        location: "Riyad al-Shamal",
-        description:
-          "The suppliers and traders can offer their offers through this window",
-      },
-    },
-  },
-  {
-    id: 3,
-    slug: "news-3",
-    link: "/",
-    date: "15-07-2022",
-    image: "/images/news-3.jpg",
-    text: {
-      "ar-SA": {
-        title: "خبر 3",
-        location: "ريف حلب الشمالي",
-        description:
-          "يستطيع المزودين والتجار تقديم عروض المناصات عبر هذه النافذة",
-      },
-      "en-US": {
-        title: "Tender for the purchase of agricultural products",
-        location: "Riyad al-Shamal",
-        description:
-          "The suppliers and traders can offer their offers through this window",
-      },
-    },
-  },
-];
+import { Title } from "../Title";
+import { imageBuilder } from "@/lib/sanity";
 
-const LatestNews = () => {
+const LatestNews = ({ newsData }) => {
   return (
     <section>
       <div className="py-5">
@@ -82,7 +15,7 @@ const LatestNews = () => {
 
       <div className="space-y-5">
         {newsData.map((news) => (
-          <News key={news.id} {...news} />
+          <News key={news._id} {...news} />
         ))}
       </div>
     </section>
@@ -91,16 +24,16 @@ const LatestNews = () => {
 
 export default LatestNews;
 
-const News = ({ date, image, text, id, slug }) => {
+const News = ({ title, slug, newDate, location, shortDescription, image }) => {
   const { locale } = useRouter();
-  const { title, location, description } = text[locale];
+
   return (
-    <div className={clsx("bg-primaryWhite ")} style={{ direction: "rtl" }}>
-      <Link href={`/news/${slug}`}>
-        <a className="lg:flex   gap-4 ">
+    <section>
+      <Link href={`/news/${slug.current}`}>
+        <a className="lg:flex gap-4">
           <div className="relative flex-shrink-0  lg:w-44  lg:h-36 h-60   ">
             <Image
-              src={image}
+              src={imageBuilder(image).url()}
               layout="fill"
               objectFit="cover"
               alt="news"
@@ -108,21 +41,25 @@ const News = ({ date, image, text, id, slug }) => {
             />
           </div>
           <div className="w-full mt-4 lg:mt-0">
-            <h2 className="text-md text-primaryPurple font-medium ">{title}</h2>
+            <h2 className="text-md text-primaryPurple font-medium ">
+              {title[locale]}
+            </h2>
             <div className="flex gap-2 items-center">
               <div className="flex gap-1 ">
                 <CalendarIcon className="w-4 h-4 text-primaryPurple" />
-                <p className="text-sm">{date}</p>
+                <p className="text-sm">
+                  {new Date(newDate).toLocaleDateString()}
+                </p>
               </div>
               <div className="flex gap-1 ">
                 <LocationMarkerIcon className="w-4 h-4 text-primaryPurple" />
-                <p className="text-sm">{location}</p>
+                <p className="text-sm">{location.title[locale]}</p>
               </div>
             </div>
-            <p className="text-sm mt-1">{description}</p>
+            <p className="text-sm mt-1">{shortDescription[locale]}</p>
           </div>
         </a>
       </Link>
-    </div>
+    </section>
   );
 };

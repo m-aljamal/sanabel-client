@@ -9,8 +9,8 @@ const data = [
     icon: "/images/project-02.svg",
     total: 45,
     title: {
-      "ar-SA": "مشروع",
-      "en-US": "Project",
+      "ar": "مشروع",
+      "en": "Project",
     },
   },
   {
@@ -18,8 +18,8 @@ const data = [
     icon: "/images/Location-02.svg",
     total: 90,
     title: {
-      "ar-SA": "منطقة",
-      "en-US": "Area",
+      "ar": "منطقة",
+      "en": "Area",
     },
   },
   {
@@ -27,8 +27,8 @@ const data = [
     icon: "/images/Student-02.svg",
     total: 1500,
     title: {
-      "ar-SA": "طلاب",
-      "en-US": "Students",
+      "ar": "طلاب",
+      "en": "Students",
     },
   },
   {
@@ -36,8 +36,8 @@ const data = [
     icon: "/images/beneficiary-02.svg",
     total: 500000,
     title: {
-      "ar-SA": "مستفيد",
-      "en-US": "Beneficiaries",
+      "ar": "مستفيد",
+      "en": "Beneficiaries",
     },
   },
 ];

@@ -27,12 +27,12 @@ const data = [
     present: Math.round((8000 / 15000) * 100),
     image: "/images/case-01.jpg",
     text: {
-      "ar-SA": {
+      "ar": {
         title: "الحالات الأكثر شيوعاً",
         description:
           "تسهيل أداء نسك الهدي والفدية على حجاج بيت الله الحرام، وأداء نسك الأضحية والصدقة نيابة عنهم وعمّن يرغب في ذلك من عموم المسلمين، وتوزيع اللحوم على مستحقيها.",
       },
-      "en-US": {
+      "en": {
         title: "Most cases",
         description: "this is english text",
       },

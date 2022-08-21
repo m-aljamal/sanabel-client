@@ -13,7 +13,7 @@ export default function LocalSwitcher() {
           return (
             <li key={local}>
               <Link href={{ pathname, query }} as={asPath} locale={local}>
-                {local === "ar-SA" ? "AR" : "EN"}
+                {local === "ar" ? "AR" : "EN"}
               </Link>
             </li>
           );
