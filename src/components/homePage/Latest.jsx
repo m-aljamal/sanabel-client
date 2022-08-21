@@ -1,16 +1,14 @@
 import React from "react";
-import { SwiperSlide } from "swiper/react";
 import { Container } from "../Container";
-import LatestSwiperContainer from "../LatestSwiperContainer";
 import LatestNews from "./LatestNews";
-import MostCases from "./MostCases";
-const Latest = ({ newsData }) => {
+import HomePageCase from "./HomePageCase";
+const Latest = ({ newsData, homePagecase }) => {
   return (
     <section className="bg-primaryWhite py-8">
       <Container>
         <div className=" grid md:grid-cols-2 grid-cols-1 gap-6   ">
           <LatestNews newsData={newsData} />
-          <MostCases />
+          <HomePageCase homePagecase={homePagecase} />
         </div>
       </Container>
     </section>

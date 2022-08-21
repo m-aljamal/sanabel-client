@@ -18,3 +18,14 @@ export const latestNewsQuery = groq`*[_type == "news"] | order(newDate desc) [0.
         shortDescription,
         image,
       }`;
+
+export const casesQuery = groq`*[_type == "projectCase" && showOnHome == true ] | order(_updatedAt desc)  [0]{
+        _id,
+        title,
+        shortDescription,
+        slug,
+        image,
+        total,
+        totalPaied,
+       "remaining": total - totalPaied,
+} `;

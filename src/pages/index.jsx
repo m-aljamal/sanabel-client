@@ -10,8 +10,8 @@ import StoriesList from "@/components/homePage/StoriesList";
 import AboutProjects from "@/components/homePage/AboutProjects";
 import Partnars from "@/components/homePage/Partnars";
 import client from "@/lib/sanity";
-import { heroImagesQuery, latestNewsQuery } from "@/lib/queries";
-export default function Home({ heroImages, latestNews }) {
+import { heroImagesQuery, latestNewsQuery, casesQuery } from "@/lib/queries";
+export default function Home({ heroImages, latestNews, homePagecase }) {
   return (
     <>
       <Head>
@@ -24,7 +24,7 @@ export default function Home({ heroImages, latestNews }) {
       <main>
         <Hero heroImages={heroImages} />
         <JoinUs />
-        <Latest newsData={latestNews} />
+        <Latest newsData={latestNews} homePagecase={homePagecase} />
         <LatestProjects />
         <About />
         <Media />
@@ -40,10 +40,12 @@ export default function Home({ heroImages, latestNews }) {
 export async function getStaticProps({ local }) {
   const heroImages = await client.fetch(heroImagesQuery);
   const latestNews = await client.fetch(latestNewsQuery);
+  const homePagecase = await client.fetch(casesQuery);
   return {
     props: {
       heroImages,
       latestNews,
+      homePagecase,
     },
   };
 }
