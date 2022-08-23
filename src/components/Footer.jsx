@@ -15,7 +15,7 @@ const Footer = () => {
         <div className="  grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4   gap-5 justify-items-center      ">
           {/* start address */}
           <div>
-            <div className="relative h-20  ">
+            <div className="relative md:h-20 h-14 ">
               <Image
                 src="/images/footer/logoWhite.svg"
                 layout="fill"
