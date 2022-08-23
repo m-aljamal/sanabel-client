@@ -5,6 +5,7 @@ import { Autoplay } from "swiper";
 import Image from "next/image";
 import "swiper/css";
 import "swiper/css/autoplay";
+import { imageBuilder } from "@/lib/sanity";
 const logos = [
   "/placeHolder/partners-logo-02.jpg",
   "/placeHolder/partners-logo-03.jpg",
@@ -14,7 +15,7 @@ const logos = [
   "/placeHolder/partners-logo-07.jpg",
 ];
 
-const Partnars = () => {
+const Partnars = ({ partnersLogos }) => {
   return (
     <section className="py-10">
       <TitleWithIcon title="شركاؤنا في العمل الإنساني" />
@@ -28,11 +29,11 @@ const Partnars = () => {
           spaceBetween={10}
           slidesPerView={3}
         >
-          {logos.map((logo) => (
-            <SwiperSlide key={logo}>
+          {partnersLogos.map((logo) => (
+            <SwiperSlide key={logo._id}>
               <div className="relative h-16">
                 <Image
-                  src={logo}
+                  src={imageBuilder(logo.image).url()}
                   layout="fill"
                   objectFit="contain"
                   lang="partner"

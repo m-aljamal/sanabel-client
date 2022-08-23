@@ -18,7 +18,7 @@ const TitleWithIcon = ({ title, subTitle }) => {
       <h2 className="text-primaryPurple ">{subTitle}</h2>
       <div className="flex items-center justify-center">
         <Line />
-        <Image src="/images/headerLogo.svg" width={20} height={20} />
+        <Image src="/images/smallLogo.svg" width={20} height={20} />
         <Line />
       </div>
     </div>

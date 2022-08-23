@@ -107,7 +107,7 @@ const JoinSection = ({ icon, text, background }) => {
                 href="/"
                 variant="outline"
                 color="white"
-                className="mt-2 ring-white text-xs"
+                className="mt-2 ring-white text-xs px-6"
               >
                 {buttonText}
               </ButtonLink>

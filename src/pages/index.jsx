@@ -10,8 +10,28 @@ import StoriesList from "@/components/homePage/StoriesList";
 import AboutProjects from "@/components/homePage/AboutProjects";
 import Partnars from "@/components/homePage/Partnars";
 import client from "@/lib/sanity";
-import { heroImagesQuery, latestNewsQuery, casesQuery } from "@/lib/queries";
-export default function Home({ heroImages, latestNews, homePagecase }) {
+import {
+  heroImagesQuery,
+  latestNewsQuery,
+  casesQuery,
+  latestProjectsQuery,
+  mediaQuery,
+  achivmentsHomePageQuery,
+  successStoriesQuery,
+  aboutProjectQuery,
+  partnersQury,
+} from "@/lib/queries";
+export default function Home({
+  heroImages,
+  latestNews,
+  homePagecase,
+  latestProjects,
+  mediaData,
+  achivmentsHomePage,
+  successStories,
+  aboutProject,
+  partnersLogos,
+}) {
   return (
     <>
       <Head>
@@ -25,27 +45,39 @@ export default function Home({ heroImages, latestNews, homePagecase }) {
         <Hero heroImages={heroImages} />
         <JoinUs />
         <Latest newsData={latestNews} homePagecase={homePagecase} />
-        <LatestProjects />
+        <LatestProjects projects={latestProjects} />
         <About />
-        <Media />
-        <Achivments />
-        <StoriesList />
-        <AboutProjects />
-        <Partnars />
+        <Media mediaData={mediaData} />
+        <Achivments achivmentsData={achivmentsHomePage} />
+        <StoriesList successStories={successStories} />
+        <AboutProjects aboutProject={aboutProject} />
+        <Partnars partnersLogos={partnersLogos} />
       </main>
     </>
   );
 }
 
-export async function getStaticProps({ local }) {
+export async function getStaticProps() {
   const heroImages = await client.fetch(heroImagesQuery);
   const latestNews = await client.fetch(latestNewsQuery);
   const homePagecase = await client.fetch(casesQuery);
+  const latestProjects = await client.fetch(latestProjectsQuery);
+  const mediaData = await client.fetch(mediaQuery);
+  const achivmentsHomePage = await client.fetch(achivmentsHomePageQuery);
+  const successStories = await client.fetch(successStoriesQuery);
+  const aboutProject = await client.fetch(aboutProjectQuery);
+  const partnersLogos = await client.fetch(partnersQury);
   return {
     props: {
       heroImages,
       latestNews,
       homePagecase,
+      latestProjects,
+      mediaData,
+      achivmentsHomePage,
+      successStories,
+      aboutProject,
+      partnersLogos,
     },
   };
 }

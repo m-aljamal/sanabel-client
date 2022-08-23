@@ -10,14 +10,20 @@ const About = () => {
         <Container>
           <div className="text-center md:w-1/2 mx-auto">
             <Image src="/images/whiteLogo.svg" width={50} height={50} />
-            <h2 className="md:text-2xl text-lg font-bold">منظمة السنابل.... نحن!</h2>
-            <h3 className="text-lg my-2">غير ربحية</h3>
-            <p className='mb-3'>
-              فلا أحد يرفض أو يكره أو يتجنب الشعور بالسعادة، ولكن بفضل هؤلاء
-              الأشخاص الذين لا يدركون بأن السعادة لا بد أن نستشعرها بصورة أكثر
-              عقلانية ومنطقية فيعرضهم هذا لمواجهة الظروف الأليمة، وأكرر بأنه لا
+            <h2 className="md:text-2xl text-lg font-bold">
+              منظمة السنابل… نحنُ !
+            </h2>
+
+            <p className="mb-3">
+              منظمة مجتمع مدني غير ربحية مستقلة... تأسست سنة 2014 في الشمال
+              السوري ورسميًا في تركيا سنة 2019 وتهدف لتقديم الخدمات الإنسانية
+              للناس الأكثر ضعفًا بغض النظر عن العرق أو الدين أو اللون أو
+              الانتماءات السياسية، بغية إعادة النهوض بالمجتمع السوري على أسس من
+              العدالة والمساوات والحرية...
             </p>
-            <ButtonLink href="/"  color="white">تعرف أكثر علينا</ButtonLink>
+            <ButtonLink href="/" color="white" className='px-8'>
+              تعرف أكثر علينا
+            </ButtonLink>
           </div>
         </Container>
       </div>

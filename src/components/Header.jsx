@@ -28,7 +28,7 @@ const SoucialLinks = () => {
           {socialLinks.map((s) => (
             <a href={s.link} target="_blank" rel="noreferrer" key={s.id}>
               <li className="p-3 group">
-                <s.icon className='socialIconHeader'/>
+                <s.icon className="socialIconHeader" />
               </li>
             </a>
           ))}
@@ -44,21 +44,16 @@ const LogoSection = () => {
     <nav className="py-5 relative z-50">
       <Container>
         <ul className="flex items-center justify-between ">
-          <li>
+          <li className=" relative h-14 w-52">
             <Link href="/">
-              <a className="flex items-center space-x-2 ">
+              <>
                 <span className="sr-only">Home</span>
-                <Image src="/images/headerLogo.svg" width={50} height={50} />
-                <div
-                  className={clsx(
-                    " border-primaryPurple  text-primaryPurple font-bold",
-                    locale === "ar" ? "border-r-2 pr-2" : "border-l-2 pl-2"
-                  )}
-                >
-                  <p>منظمة الســــنابل</p>
-                  <p>BAŞAKLAR DERNEĞİ</p>
-                </div>
-              </a>
+                <Image
+                  src="/images/headerLogo.svg"
+                  layout="fill"
+                  objectFit="fill"
+                />
+              </>
             </Link>
           </li>
           <li className=" hidden md:block">
@@ -80,7 +75,7 @@ const LogoSection = () => {
             </div>
           </li>
           <li>
-            <ButtonLink href="/" className="hidden md:block px-8">
+            <ButtonLink href="/" className="hidden md:block px-8 font-bold">
               تبرع الأن
             </ButtonLink>
           </li>

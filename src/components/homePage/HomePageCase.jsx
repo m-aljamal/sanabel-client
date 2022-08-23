@@ -90,8 +90,8 @@ const Case = ({ homePagecase }) => {
           <p className="text-sm mt-5">{shortDescription[locale]}</p>
         </div>
         <div>
-          <div className=" mb-5 flex lg:flex-row flex-col justify-center gap-5">
-            <ButtonLink href="/" className="px-3">
+          <div className=" mb-5 flex xl:flex-row flex-col   gap-5">
+            <ButtonLink href="/" className="px-8">
               تبرع الأن
             </ButtonLink>
             <ButtonLink href="/" variant="outline" className="px-3">
@@ -101,7 +101,7 @@ const Case = ({ homePagecase }) => {
           <p className="text-primaryPurple font-medium">
             ساعدنا في المشاركة للتبرع عبر:
           </p>
-          <ul className="flex justify-center gap-4 ">
+          <ul className="flex   gap-4 ">
             {socialLinks.map((s) => (
               <a href={s.link} key={s.id}>
                 <li className="mt-4 rounded-full border border-primaryPurple p-[5px]">
