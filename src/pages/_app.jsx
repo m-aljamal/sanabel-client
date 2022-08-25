@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <main
       style={{
-        direction: locale === "en-US" ? "ltr" : "rtl",
+        direction: locale === "en" ? "ltr" : "rtl",
       }}
     >
       <Header />

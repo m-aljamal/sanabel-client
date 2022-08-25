@@ -2,9 +2,9 @@ import clsx from "clsx";
 import React from "react";
 import Image from "next/image";
 const baseStyle = "text-lg font-semibold text-primaryPurple";
-const Title = ({ title }) => {
+const Title = ({ title, className }) => {
   return (
-    <div>
+    <div className={className}>
       <h1 className={clsx(baseStyle)}>{title}</h1>
       <Line />
     </div>
@@ -29,7 +29,7 @@ export { TitleWithIcon, Title };
 
 const Line = () => {
   return (
-    <div className=" space-y-[2px]">
+    <div className=" space-y-[2px] ">
       <div className="w-14 h-[1px]  bg-primaryPurple"></div>
       <div className="w-14 h-[1px]  bg-primaryPurple"></div>
     </div>
