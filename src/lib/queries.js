@@ -68,3 +68,10 @@ export const partnersQury = groq`*[_type == "partners"] | order(_updatedAt desc)
   image,
   _id
 }`;
+
+export const aboutAchivmetnsListQuery = groq`*[_type == "achievement"] | order(_updatedAt desc){
+  _id,
+  title,
+  number,
+  image,
+}`;

@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
+import { ButtonLink } from "../Button";
 import { Container } from "../Container";
 import { Title } from "../Title";
 
@@ -115,6 +116,13 @@ const Programmes = () => {
               <div className="text-primaryPurple">
                 <h2 className="font-bold">{title[locale]}</h2>
                 <p className="text-sm">{description[locale]}</p>
+                <ButtonLink
+                  href="/"
+                  variant="outline"
+                  className="border-0 font-medium "
+                >
+                  مشاهدة المزيد
+                </ButtonLink>
               </div>
             </li>
           ))}
