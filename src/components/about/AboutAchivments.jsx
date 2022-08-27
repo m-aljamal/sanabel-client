@@ -5,9 +5,9 @@ import React from "react";
 import { Button } from "../Button";
 import { Container } from "../Container";
 import { TitleWithIcon } from "../Title";
-
+import CountUp from "react-countup";
 const AboutAchivments = ({ achivmentsList }) => {
-  const [numberOfAchivments, setNumberOfAchivments] = React.useState(10);
+  const [numberOfAchivments, setNumberOfAchivments] = React.useState(4);
   const { locale } = useRouter();
   const sectionTitle = {
     ar: {
@@ -20,17 +20,10 @@ const AboutAchivments = ({ achivmentsList }) => {
     },
   };
   const { title, subtitle } = sectionTitle[locale];
-  const testPosts = [
-    ...achivmentsList,
-    ...achivmentsList,
-    ...achivmentsList,
-    ...achivmentsList,
-    ...achivmentsList,
-  ];
 
   function addMoreAchivments() {
-    if (numberOfAchivments < testPosts.length) {
-      setNumberOfAchivments(numberOfAchivments + 10);
+    if (numberOfAchivments < achivmentsList.length) {
+      setNumberOfAchivments(numberOfAchivments + 8);
     }
   }
 
@@ -38,20 +31,30 @@ const AboutAchivments = ({ achivmentsList }) => {
     <section className="bg-primaryPurple py-10">
       <Container>
         <TitleWithIcon title={title} subTitle={subtitle} color="white" />
-        <div className=" grid grid-cols-5 place-items-center mt-10 gap-8">
-          {testPosts.slice(0, numberOfAchivments).map((archive) => (
-            <div key={archive._id} className="text-white text-center">
+        <div className="grid grid-cols-4 grid-flow-row place-items-center mt-10 gap-6">
+          {achivmentsList.slice(0, numberOfAchivments).map((archive, i) => (
+            <div
+              key={i}
+              className="text-white flex flex-col space-y-2 items-center"
+            >
               <Image
                 src={imageBuilder(archive.image).url()}
                 width={50}
                 height={50}
               />
-              <p className="text-xl font-bold">{archive.number}</p>
-              <h2 className="text-xl ">{archive.title[locale]}</h2>
+              <CountUp
+                start={0}
+                end={archive.number}
+                duration={2}
+                separator=" "
+                className="md:text-xl font-bold"
+              />
+
+              <h2 className="md:text-xl ">{archive.title[locale]}</h2>
             </div>
           ))}
         </div>
-        {testPosts.length > numberOfAchivments ? (
+        {achivmentsList.length > numberOfAchivments ? (
           <div
             className="flex justify-center mt-10"
             onClick={addMoreAchivments}

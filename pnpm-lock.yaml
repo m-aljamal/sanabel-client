@@ -17,6 +17,7 @@ specifiers:
   postcss: ^8.4.14
   postcss-focus-visible: ^7.0.0
   react: 18.2.0
+  react-countup: ^6.3.0
   react-dom: 18.2.0
   swiper: ^8.3.2
   tailwindcss: ^3.1.6
@@ -34,6 +35,7 @@ dependencies:
   next-sanity: 0.8.1_react@18.2.0
   postcss-focus-visible: 7.0.0_postcss@8.4.14
   react: 18.2.0
+  react-countup: 6.3.0_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
   swiper: 8.3.2
 
@@ -686,6 +688,10 @@ packages:
 
   /core-util-is/1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
+    dev: false
+
+  /countup.js/2.3.2:
+    resolution: {integrity: sha512-dQ7F/CmKGjaO6cDfhtEXwsKVlXIpJ89dFs8PvkaZH9jBVJ2Z8GU4iwG/qP7MgY8qwr+1skbwR6qecWWQLUzB8Q==}
     dev: false
 
   /create-error-class/3.0.2:
@@ -2071,6 +2077,15 @@ packages:
   /quick-lru/5.1.1:
     resolution: {integrity: sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==}
     engines: {node: '>=10'}
+
+  /react-countup/6.3.0_react@18.2.0:
+    resolution: {integrity: sha512-uZsE+kuisXp/3OZeAuq2lzp6sXKmzw331Et5CRy4ueR9VcOp7z7T6/O1F04BC2Pa2frKmIITsghi3Hh933qWXQ==}
+    peerDependencies:
+      react: '>= 16.3.0'
+    dependencies:
+      countup.js: 2.3.2
+      react: 18.2.0
+    dev: false
 
   /react-dom/18.2.0_react@18.2.0:
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
