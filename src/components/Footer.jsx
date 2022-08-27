@@ -5,12 +5,16 @@ import Link from "next/link";
 import { links } from "@/constant/links";
 import { useRouter } from "next/router";
 import socialLinks from "@/constant/socialLinks";
-import { newsData } from "./homePage/LatestNews";
 const Footer = () => {
   const { locale } = useRouter();
-
+  const text = {
+    rights: {
+      ar: "جميع الحقوق محفوظة لصالح منظمة السنابل",
+      en: "All rights reserved to Sanabel organization",
+    },
+  };
   return (
-    <footer className=" bg-primaryPurple py-10">
+    <footer className=" bg-primaryPurple  pt-10 pb-5 relative">
       <Container>
         <div className="  grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4   gap-5 justify-items-center      ">
           {/* start address */}
@@ -99,6 +103,10 @@ const Footer = () => {
               </form>
             </div>
           </div>
+        </div>
+        <div>
+          <div className="bg-gray-200 h-[1px] w-full absolute left-0 right-0 bottom-[60px]"></div>
+          <p className="text-white w-full text-center pt-16  text-sm">{text.rights[locale]} {new Date().getFullYear()}</p>
         </div>
       </Container>
     </footer>
