@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 import Image from "next/image";
-const baseStyle = "md:text-2xl text-xl font-semibold  ";
+const baseStyle = " text-xl   font-semibold  ";
 const colorStyles = {
   primary: {
     text: "text-primaryPurple",

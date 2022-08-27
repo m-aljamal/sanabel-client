@@ -6,14 +6,7 @@ import Image from "next/image";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { imageBuilder } from "@/lib/sanity";
-const logos = [
-  "/placeHolder/partners-logo-02.jpg",
-  "/placeHolder/partners-logo-03.jpg",
-  "/placeHolder/partners-logo-04.jpg",
-  "/placeHolder/partners-logo-05.jpg",
-  "/placeHolder/partners-logo-06.jpg",
-  "/placeHolder/partners-logo-07.jpg",
-];
+
 
 const Partnars = ({ partnersLogos }) => {
   return (
