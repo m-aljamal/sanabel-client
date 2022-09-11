@@ -1,8 +1,6 @@
-import React from "react";
 import { TitleWithIcon } from "../Title";
 import Image from "next/image";
 import { imageBuilder } from "@/lib/sanity";
-
 const Media = ({ mediaData }) => {
   return (
     <section>

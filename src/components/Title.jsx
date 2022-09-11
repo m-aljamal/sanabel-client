@@ -14,7 +14,7 @@ const colorStyles = {
 };
 const Title = ({ title, className, color = "primary" }) => {
   return (
-    <div className={className}>
+    <div className={className} >
       <h1 className={clsx(baseStyle, [colorStyles[color].text])}>{title}</h1>
       <Line color={color} />
     </div>

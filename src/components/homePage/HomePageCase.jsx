@@ -19,27 +19,7 @@ const HomePageCase = ({ homePagecase }) => {
 
 export default HomePageCase;
 
-const data = [
-  {
-    id: 1,
-    total: 15000,
-    remain: 10000,
 
-    present: Math.round((8000 / 15000) * 100),
-    image: "/images/case-01.jpg",
-    text: {
-      ar: {
-        title: "الحالات الأكثر شيوعاً",
-        description:
-          "تسهيل أداء نسك الهدي والفدية على حجاج بيت الله الحرام، وأداء نسك الأضحية والصدقة نيابة عنهم وعمّن يرغب في ذلك من عموم المسلمين، وتوزيع اللحوم على مستحقيها.",
-      },
-      en: {
-        title: "Most cases",
-        description: "this is english text",
-      },
-    },
-  },
-];
 
 const Case = ({ homePagecase }) => {
   const { locale } = useRouter();
@@ -90,7 +70,7 @@ const Case = ({ homePagecase }) => {
           <p className="text-sm mt-5">{shortDescription[locale]}</p>
         </div>
         <div>
-          <div className=" mb-5 flex xl:flex-row flex-col   gap-5">
+          <div className=" mb-5 flex xl:flex-row flex-col gap-5">
             <ButtonLink href="/" className="px-8">
               تبرع الأن
             </ButtonLink>
@@ -101,7 +81,7 @@ const Case = ({ homePagecase }) => {
           <p className="text-primaryPurple font-medium">
             ساعدنا في المشاركة للتبرع عبر:
           </p>
-          <ul className="flex   gap-4 ">
+          <ul className="flex gap-4 ">
             {socialLinks.map((s) => (
               <a href={s.link} key={s.id}>
                 <li className="mt-4 rounded-full border border-primaryPurple p-[5px]">

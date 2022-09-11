@@ -36,8 +36,39 @@ export const latestProjectsQuery = groq`*[_type == "project"] | order(_updatedAt
   shortDescription,
   slug,
   title,
-        _id,
+ _id,
 }`;
+
+export const projectsQuery = groq`*[_type == "project"] | order(_updatedAt desc){
+    image, 
+    numberBeneficiaries,
+    shortDescription,
+    slug,
+    title,
+   _id,
+   category->,
+   body,
+    date,
+    location->{
+      title
+    },
+    accept,
+    total,
+    target,
+    socialLinks{
+      facebook,
+      twitter,
+      instagram,
+      youtube,
+      telegram,
+    },
+    
+  }`;
+
+export const projectsCategoriesQuery = groq`*[_type == "projectCategory"]{
+    title,
+    _id
+  }`;
 
 export const mediaQuery = groq`*[_type == "media"  ] | order(_updatedAt desc){
   image,

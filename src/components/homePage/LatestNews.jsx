@@ -5,6 +5,7 @@ import { LocationMarkerIcon, CalendarIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { Title } from "../Title";
 import { imageBuilder } from "@/lib/sanity";
+import DateLocation from "../DateLocation";
 
 const LatestNews = ({ newsData }) => {
   return (
@@ -44,18 +45,7 @@ const News = ({ title, slug, newDate, location, shortDescription, image }) => {
             <h2 className="text-md text-primaryPurple font-medium ">
               {title[locale]}
             </h2>
-            <div className="flex gap-2 items-center">
-              <div className="flex gap-1 ">
-                <CalendarIcon className="w-4 h-4 text-primaryPurple" />
-                <p className="text-sm">
-                  {new Date(newDate).toLocaleDateString()}
-                </p>
-              </div>
-              <div className="flex gap-1 ">
-                <LocationMarkerIcon className="w-4 h-4 text-primaryPurple" />
-                <p className="text-sm">{location.title[locale]}</p>
-              </div>
-            </div>
+            <DateLocation date={newDate} location={location.title[locale]} />
             <p className="text-sm mt-1">{shortDescription[locale]}</p>
           </div>
         </a>

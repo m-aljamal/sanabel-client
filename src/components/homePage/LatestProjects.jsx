@@ -3,9 +3,9 @@ import { Container } from "../Container";
 import { TitleWithIcon } from "../Title";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { ButtonLink } from "../Button";
-import { HeartIcon } from "@heroicons/react/solid";
+
 import { imageBuilder } from "@/lib/sanity";
+import Btn_Donate_Benfi from "../Btn_Donate_Benfi";
 
 const LatestProjects = ({ projects }) => {
   return (
@@ -39,18 +39,7 @@ const ProjectCard = ({ project }) => {
       <div className="p-4">
         <h2 className="text-primaryPurple font-medium mb-4">{title[locale]}</h2>
         <p>{shortDescription[locale]}</p>
-        <div className="flex md:flex-row flex-col gap-4 mt-5 justify-center">
-          <ButtonLink href="/" className="px-8">
-            تبرع الأن
-          </ButtonLink>
-          <ButtonLink href="/" variant="outline">
-            <div className="flex gap-2  ">
-              <HeartIcon className="w-5 h-5 " />
-              <p>{numberBeneficiaries}</p>
-              <p>مستفيد</p>
-            </div>
-          </ButtonLink>
-        </div>
+        <Btn_Donate_Benfi numberBeneficiaries={numberBeneficiaries} />
       </div>
     </div>
   );

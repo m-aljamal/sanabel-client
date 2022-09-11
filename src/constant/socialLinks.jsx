@@ -1,3 +1,10 @@
+import {
+  GrFacebookOption,
+  GrYoutube,
+  GrInstagram,
+  GrTwitter,
+} from "react-icons/gr";
+import { FaTelegramPlane } from "react-icons/fa";
 const socialLinks = [
   {
     id: 1,
@@ -64,4 +71,11 @@ const socialLinks = [
   },
 ];
 
+export const socialMediaIcons = {
+  facebook: <GrFacebookOption className="socialIconCases " />,
+  twitter: <GrTwitter className="socialIconCases" />,
+  instagram: <GrInstagram className="socialIconCases" />,
+  youtube: <GrYoutube className="socialIconCases" />,
+  telegram: <FaTelegramPlane className="socialIconCases" />,
+};
 export default socialLinks;
