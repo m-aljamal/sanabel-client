@@ -13,7 +13,7 @@ import client from "@/lib/sanity";
 import {
   heroImagesQuery,
   latestNewsQuery,
-  casesQuery,
+  homePageCasesQuery,
   latestProjectsQuery,
   mediaQuery,
   achivmentsHomePageQuery,
@@ -60,7 +60,7 @@ export default function Home({
 export async function getStaticProps() {
   const heroImages = await client.fetch(heroImagesQuery);
   const latestNews = await client.fetch(latestNewsQuery);
-  const homePagecase = await client.fetch(casesQuery);
+  const homePagecase = await client.fetch(homePageCasesQuery);
   const latestProjects = await client.fetch(latestProjectsQuery);
   const mediaData = await client.fetch(mediaQuery);
   const achivmentsHomePage = await client.fetch(achivmentsHomePageQuery);
