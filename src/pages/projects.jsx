@@ -12,9 +12,15 @@ import { PortableText } from "@portabletext/react";
 import Btn_Donate_Benfi from "@/components/Btn_Donate_Benfi";
 import { socialMediaIcons } from "@/constant/socialLinks";
 import ProgresPar from "@/components/ProgresPar";
-import { aboutAchivmetnsListQuery } from "@/lib/queries";
+import { aboutAchivmetnsListQuery, partnersQury } from "@/lib/queries";
 import AboutAchivments from "@/components/about/AboutAchivments";
-const projects = ({ projects, projectsCategories, achivmentsList }) => {
+import Partnars from "@/components/homePage/Partnars";
+const projects = ({
+  projects,
+  projectsCategories,
+  achivmentsList,
+  partnersLogos,
+}) => {
   const { locale } = useRouter();
   const programTitle = {
     ar: "برامجنا",
@@ -61,7 +67,10 @@ const projects = ({ projects, projectsCategories, achivmentsList }) => {
           </div>
         </Container>
         <section className="mt-10">
-          <AboutAchivments achivmentsList={achivmentsList} />
+          <AboutAchivments achivmentsList={achivmentsList} style="light" />
+        </section>
+        <section>
+          <Partnars partnersLogos={partnersLogos} />
         </section>
       </div>
     </section>
@@ -152,12 +161,14 @@ export async function getStaticProps() {
   const projects = await client.fetch(projectsQuery);
   const projectsCategories = await client.fetch(projectsCategoriesQuery);
   const achivmentsList = await client.fetch(aboutAchivmetnsListQuery);
+  const partnersLogos = await client.fetch(partnersQury);
 
   return {
     props: {
       projects,
       projectsCategories,
       achivmentsList,
+      partnersLogos,
     },
   };
 }

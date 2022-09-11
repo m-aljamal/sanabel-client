@@ -24,7 +24,7 @@ export const links = [
     id: 3,
   },
   {
-    href: "/Cases",
+    href: "/cases",
     label: {
       ar: "الحالات",
       en: "Cases",

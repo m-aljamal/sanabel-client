@@ -15,12 +15,12 @@ const AboutProjects = ({ aboutProject }) => {
         <div className=" absolute  flex justify-center items-center h-full w-full">
           <Container>
             <div className=" flex md:flex-row flex-col-reverse  justify-center gap-4 items-center  ">
-              <div className=" md:translate-y-8 hidden md:block  flex-shrink-0 ">
+              <div className=" md:translate-y-7 hidden md:block  flex-shrink-0 ">
                 <Image
                   src={imageBuilder(image).url()}
                   width={300}
                   height={350}
-                  objectFit="fill"
+                  objectFit="contain"
                 />
               </div>
               <div className="text-white md:w-[600px]   ">

@@ -105,4 +105,5 @@ export const aboutAchivmetnsListQuery = groq`*[_type == "achievement"] | order(_
   title,
   number,
   image,
+  darkImage
 }`;

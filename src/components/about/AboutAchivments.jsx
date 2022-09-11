@@ -6,7 +6,24 @@ import { Button } from "../Button";
 import { Container } from "../Container";
 import { TitleWithIcon } from "../Title";
 import CountUp from "react-countup";
-const AboutAchivments = ({ achivmentsList }) => {
+import clsx from "clsx";
+
+const baseStyle = {
+  dark: {
+    bg: "bg-primaryPurple",
+    titleStyle: "white",
+    list: "text-white",
+    buttonStyle: "white",
+  },
+  light: {
+    bg: "bg-gray-100",
+    titleStyle: "primary",
+    list: "text-primaryPurple",
+    buttonStyle: "slate",
+  },
+};
+
+const AboutAchivments = ({ achivmentsList, style = "dark" }) => {
   const [numberOfAchivments, setNumberOfAchivments] = React.useState(4);
   const { locale } = useRouter();
   const sectionTitle = {
@@ -27,18 +44,24 @@ const AboutAchivments = ({ achivmentsList }) => {
     }
   }
 
+  const { bg, titleStyle, list, buttonStyle } = baseStyle[style];
   return (
-    <section className="bg-primaryPurple py-10">
+    <section className={clsx("py-10", bg)}>
       <Container>
-        <TitleWithIcon title={title} subTitle={subtitle} color="white" />
+        <TitleWithIcon title={title} subTitle={subtitle} color={titleStyle} />
         <div className="grid grid-cols-4 grid-flow-row place-items-center mt-10 gap-6">
           {achivmentsList.slice(0, numberOfAchivments).map((archive, i) => (
             <div
               key={i}
-              className="text-white flex flex-col space-y-2 items-center"
+              className={clsx(
+                "text-white flex flex-col space-y-2 items-center",
+                list
+              )}
             >
               <Image
-                src={imageBuilder(archive.image).url()}
+                src={imageBuilder(
+                  style === "light" ? archive.darkImage : archive.image
+                ).url()}
                 width={50}
                 height={50}
               />
@@ -59,7 +82,7 @@ const AboutAchivments = ({ achivmentsList }) => {
             className="flex justify-center mt-10"
             onClick={addMoreAchivments}
           >
-            <Button color="white">مشاهدة المزيد</Button>
+            <Button color={buttonStyle}>مشاهدة المزيد</Button>
           </div>
         ) : null}
       </Container>
