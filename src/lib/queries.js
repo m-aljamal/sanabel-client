@@ -30,7 +30,17 @@ export const homePageCasesQuery = groq`*[_type == "projectCase" && showOnHome ==
        "remaining": total - totalPaied,
 } `;
 
-export const 
+export const casesQuery = groq`*[_type == "projectCase" ] | order(_updatedAt desc){
+  _id,
+  title,
+  shortDescription,
+  slug,
+  image,
+  total,
+  totalPaied,
+ "remaining": total - totalPaied,
+  body
+}`;
 
 export const latestProjectsQuery = groq`*[_type == "project"] | order(_updatedAt desc)  [0...3]{
   image, 
