@@ -2,8 +2,8 @@ import React from "react";
 
 const ProgresPar = ({ present }) => {
   return (
-    <div className="px-4   flex justify-center  mb-8 ">
-      <div className="w-full  ring-1 ring-gray-500  h-4 bg-white rounded-lg">
+    <div className="px-4 flex justify-center mb-8">
+      <div className="w-full ring-1 ring-gray-500  h-4 bg-white rounded-lg">
         <div
           className={` bg-primaryPurple h-4 rounded-r-lg relative`}
           style={{ width: `${present}%` }}

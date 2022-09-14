@@ -89,6 +89,16 @@ export const mediaQuery = groq`*[_type == "media"  ] | order(_updatedAt desc){
 
 export const achivmentsHomePageQuery = groq`*[_type == "achievement"] | order(_updatedAt desc) [0...4]`;
 
+export const successStoriesPageQuery = groq`*[_type == "success"] | order(_updatedAt desc){
+  _id,
+  date,
+  image,
+  successLocation->{
+    title
+    },
+  title,
+  body,
+}`;
 export const successStoriesQuery = groq`*[_type == "success"] | order(_updatedAt desc)[0...3]{
   _id,
   date,
