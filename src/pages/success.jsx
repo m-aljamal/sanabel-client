@@ -30,8 +30,8 @@ const SuccessCard = ({ story }) => {
   const { date, image, successLocation, title } = story;
   return (
     <Container>
-      <div className=" grid grid-cols-2  bg-white shadow-lg">
-        <div className=" relative  ">
+      <div className=" grid md:grid-cols-2 grid-cols-1  bg-white shadow-lg">
+        <div className=" relative h-[250px] md:h-auto  ">
           <Image
             src={imageBuilder(image).url()}
             layout="fill"
