@@ -78,7 +78,7 @@ const donate = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({
-        donateAmount: +e.target.amount.value,
+      donateAmount: +e.target.amount.value,
     });
   };
 
@@ -91,14 +91,31 @@ const donate = () => {
           <div>
             <form onSubmit={handleSubmit}>
               <p>{donateAmount}</p>
-              <input type="radio" id="amount" value={10} name="amount" className="  appearance-none checked:bg-primaryPurple default:ring-2 valid:border-green-500 in-range:border-green-500" />
-              <label htmlFor="amount" className="mr-2 text-primaryPurple">
-                10$
-              </label>
-              <input type="radio" id="amount" value={20} name="amount" className="checked:bg-primaryPurple appearance-none"/>
-              <label htmlFor="amount" className="mr-2 text-primaryPurple">
-                20$
-              </label>
+              <div className=" flex justify-between gap-2">
+                <Radio id="amount" value={10} name="amount">
+                  10$
+                </Radio>
+                <Radio id="amount" value={20} name="amount">
+                  20$
+                </Radio>
+                <Radio id="amount" value={50} name="amount">
+                  50$
+                </Radio>
+                <Radio id="amount" value={100} name="amount">
+                  100$
+                </Radio>
+                <Radio id="amount" value={150} name="amount">
+                  150$
+                </Radio>
+                <Radio id="amount" value={200} name="amount">
+                  200$
+                </Radio>
+                <input
+                  id="otherAmount"
+                  placeholder={other}
+                  className="border"
+                />
+              </div>
               <Button type="submit">{btntext}</Button>
             </form>
           </div>
@@ -109,3 +126,19 @@ const donate = () => {
 };
 
 export default donate;
+
+const Radio = ({ id, children, ...props }) => {
+  return (
+    <div>
+      <input
+        type="radio"
+        id={id}
+        className="appearance-none checked:bg-primaryPurple ring-0"
+        {...props}
+      />
+      <label htmlFor={id} className="mr-2 text-primaryPurple">
+        {children}
+      </label>
+    </div>
+  );
+};
