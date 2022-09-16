@@ -13,6 +13,8 @@ const donate = () => {
       donateAmount: "قيمة التبرع",
       other: "مبلغ مختلف",
       donateInfo: "معلومات المتبرع",
+      personInfoTitle:
+        "بعد القيام بتعبئة المعلومات التالية سيتم التواصل مع حضرتكم وتزويدكم بالمعلومات وطرق التبرع لحسابتنا الرسمية",
       fullName: "الاسم الكامل",
       nameText: "يرجى كتابة الاسم والكنية هنا",
       country: "الدولة",
@@ -34,6 +36,8 @@ const donate = () => {
       donateAmount: "Total Donate",
       other: "Other",
       donateInfo: "Donor Information",
+      personInfoTitle:
+        "After filling out the following information, we will contact you and provide you with information and ways to donate to our official account",
       fullName: "Full Name",
       nameText: "Please enter your name and surname here",
       country: "Country",
@@ -73,12 +77,19 @@ const donate = () => {
     notes,
     notesText,
     btntext,
+    personInfoTitle,
   } = text[locale];
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({
       donateAmount: +e.target.amount.value,
+      fullName: e.target.name.value,
+      country: e.target.country.value,
+      city: e.target.city.value,
+      phone: e.target.phone.value,
+      email: e.target.email.value,
+      donateForProject: e.target.donateForProject.value,
     });
   };
 
@@ -90,33 +101,73 @@ const donate = () => {
           <TitleWithIcon title={title} />
           <div>
             <form onSubmit={handleSubmit}>
-              <p>{donateAmount}</p>
-              <div className=" flex justify-between gap-2">
-                <Radio id="amount" value={10} name="amount">
-                  10$
-                </Radio>
-                <Radio id="amount" value={20} name="amount">
-                  20$
-                </Radio>
-                <Radio id="amount" value={50} name="amount">
-                  50$
-                </Radio>
-                <Radio id="amount" value={100} name="amount">
-                  100$
-                </Radio>
-                <Radio id="amount" value={150} name="amount">
-                  150$
-                </Radio>
-                <Radio id="amount" value={200} name="amount">
-                  200$
-                </Radio>
-                <input
-                  id="otherAmount"
-                  placeholder={other}
-                  className="border"
-                />
+              <div className=" space-y-5 mb-5">
+                <h2 className="font-bold text-primaryPurple">{donateAmount}</h2>
+                <div className=" flex justify-between gap-2">
+                  <Radio id="amount" value={10} name="amount">
+                    10$
+                  </Radio>
+                  <Radio id="amount" value={20} name="amount">
+                    20$
+                  </Radio>
+                  <Radio id="amount" value={50} name="amount">
+                    50$
+                  </Radio>
+                  <Radio id="amount" value={100} name="amount">
+                    100$
+                  </Radio>
+                  <Radio id="amount" value={150} name="amount">
+                    150$
+                  </Radio>
+                  <Radio id="amount" value={200} name="amount">
+                    200$
+                  </Radio>
+                  <input
+                    id="otherAmount"
+                    placeholder={other}
+                    className="border"
+                  />
+                </div>
               </div>
-              <Button type="submit">{btntext}</Button>
+              <div className=" space-y-5">
+                <div className="py-4 space-y-3">
+                  <h2 className="font-bold text-primaryPurple">{donateInfo}</h2>
+                  <p>{personInfoTitle}</p>
+                </div>
+                <InputGroup>
+                  <Input title={fullName} placeholder={nameText} id="name" />
+                  <Input
+                    title={country}
+                    placeholder={countryText}
+                    id="country"
+                  />
+                  <Input title={city} placeholder={cityText} id="city" />
+                </InputGroup>
+                <InputGroup>
+                  <Input id="phone" title={phone} placeholder={phoneText} />
+                  <Input id="email" title={email} placeholder={emailText} />
+                  <Input
+                    id="donateForProject"
+                    title={donteForProject}
+                    placeholder={donteForProjectText}
+                  />
+                </InputGroup>
+                <div className=" space-y-3 grid grid-cols-3 gap-16 items-end">
+                  <div className=" col-span-2  ">
+                    <label htmlFor="notes" className="block text-lightPurple ">
+                      {notes}
+                    </label>
+                    <textarea
+                      id="notes"
+                      placeholder={notesText}
+                      className="border w-full resize-none"
+                    />
+                  </div>
+                  <Button type="submit" className="w-full h-fit rounded-none">
+                    {btntext}
+                  </Button>
+                </div>
+              </div>
             </form>
           </div>
         </Container>
@@ -141,4 +192,17 @@ const Radio = ({ id, children, ...props }) => {
       </label>
     </div>
   );
+};
+
+const Input = ({ ...props }) => {
+  return (
+    <div className="space-y-3">
+      <label className="block text-lightPurple">{props.title}</label>
+      <input className="border w-full p-1" {...props} />
+    </div>
+  );
+};
+
+const InputGroup = ({ children }) => {
+  return <div className=" grid grid-cols-3 gap-16">{children}</div>;
 };
