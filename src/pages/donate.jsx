@@ -7,6 +7,7 @@ import React from "react";
 import { partnersQury } from "@/lib/queries";
 import Partnars from "@/components/homePage/Partnars";
 import { client } from "@/lib/sanity";
+import clsx from "clsx";
 
 const donate = ({ partnersLogos }) => {
   const { locale } = useRouter();
@@ -126,7 +127,11 @@ const donate = ({ partnersLogos }) => {
                   <Radio id="amount" value={200} name="amount">
                     200$
                   </Radio>
-                  <Input id="otherAmount" placeholder={other} />
+                  <Input
+                    id="otherAmount"
+                    placeholder={other}
+                    className="space-y-0"
+                  />
                 </div>
               </div>
               <div className=" space-y-5">
@@ -153,7 +158,7 @@ const donate = ({ partnersLogos }) => {
                   />
                 </InputGroup>
 
-                <div className="col-span-2">
+                <div className="col-span-2 space-y-3">
                   <label htmlFor="notes" className="block text-lightPurple  ">
                     {notes}
                   </label>
@@ -195,9 +200,9 @@ const Radio = ({ id, children, ...props }) => {
   );
 };
 
-const Input = ({ ...props }) => {
+const Input = ({ className, ...props }) => {
   return (
-    <div className="space-y-3">
+    <div className={clsx("space-y-3", className)}>
       <label className="block text-lightPurple">{props.title}</label>
       <input className="border w-full p-1 placeholder:text-xs" {...props} />
     </div>
@@ -205,7 +210,11 @@ const Input = ({ ...props }) => {
 };
 
 const InputGroup = ({ children }) => {
-  return <div className=" grid md:grid-cols-3 grid-cols-1 gap-5 md:gap-16">{children}</div>;
+  return (
+    <div className=" grid md:grid-cols-3 grid-cols-1 gap-5 md:gap-16">
+      {children}
+    </div>
+  );
 };
 
 export async function getStaticProps() {
