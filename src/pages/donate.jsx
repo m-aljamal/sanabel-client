@@ -103,11 +103,11 @@ const donate = ({ partnersLogos }) => {
       <div className="py-8">
         <Container>
           <TitleWithIcon title={title} />
-          <div>
+          <div className="py-5">
             <form onSubmit={handleSubmit}>
               <div className=" space-y-5 mb-5">
                 <h2 className="font-bold text-primaryPurple">{donateAmount}</h2>
-                <div className=" flex justify-between gap-2">
+                <div className=" flex md:flex-row flex-col justify-between gap-2">
                   <Radio id="amount" value={10} name="amount">
                     10$
                   </Radio>
@@ -126,11 +126,7 @@ const donate = ({ partnersLogos }) => {
                   <Radio id="amount" value={200} name="amount">
                     200$
                   </Radio>
-                  <input
-                    id="otherAmount"
-                    placeholder={other}
-                    className="border"
-                  />
+                  <Input id="otherAmount" placeholder={other} />
                 </div>
               </div>
               <div className=" space-y-5">
@@ -164,7 +160,7 @@ const donate = ({ partnersLogos }) => {
                   <textarea
                     id="notes"
                     placeholder={notesText}
-                    className="active:border-black w-full border-gray-300 resize-none focus:outline-none focus:border-black focus:ring-black focus:ring-1 sm:text-sm"
+                    className="active:border-black w-full placeholder:text-xs border-gray-300 resize-none focus:outline-none focus:border-black focus:ring-black focus:ring-1 sm:text-sm"
                   />
                 </div>
 
@@ -189,7 +185,7 @@ const Radio = ({ id, children, ...props }) => {
       <input
         type="radio"
         id={id}
-        className="appearance-none checked:bg-primaryPurple ring-0"
+        className="appearance-none checked:bg-primaryPurple ring-0 "
         {...props}
       />
       <label htmlFor={id} className="mr-2 text-primaryPurple">
@@ -203,13 +199,13 @@ const Input = ({ ...props }) => {
   return (
     <div className="space-y-3">
       <label className="block text-lightPurple">{props.title}</label>
-      <input className="border w-full p-1" {...props} />
+      <input className="border w-full p-1 placeholder:text-xs" {...props} />
     </div>
   );
 };
 
 const InputGroup = ({ children }) => {
-  return <div className=" grid grid-cols-3 gap-16">{children}</div>;
+  return <div className=" grid md:grid-cols-3 grid-cols-1 gap-5 md:gap-16">{children}</div>;
 };
 
 export async function getStaticProps() {
