@@ -4,8 +4,11 @@ import PageHero from "@/components/PageHero";
 import { TitleWithIcon } from "@/components/Title";
 import { useRouter } from "next/router";
 import React from "react";
+import { partnersQury } from "@/lib/queries";
+import Partnars from "@/components/homePage/Partnars";
+import { client } from "@/lib/sanity";
 
-const donate = () => {
+const donate = ({ partnersLogos }) => {
   const { locale } = useRouter();
   const text = {
     ar: {
@@ -90,6 +93,7 @@ const donate = () => {
       phone: e.target.phone.value,
       email: e.target.email.value,
       donateForProject: e.target.donateForProject.value,
+      notes: e.target.notes.value,
     });
   };
 
@@ -152,26 +156,27 @@ const donate = () => {
                     placeholder={donteForProjectText}
                   />
                 </InputGroup>
-                <div className=" space-y-3 grid grid-cols-3 gap-16 items-end">
-                  <div className=" col-span-2  ">
-                    <label htmlFor="notes" className="block text-lightPurple ">
-                      {notes}
-                    </label>
-                    <textarea
-                      id="notes"
-                      placeholder={notesText}
-                      className="border w-full resize-none"
-                    />
-                  </div>
-                  <Button type="submit" className="w-full h-fit rounded-none">
-                    {btntext}
-                  </Button>
+
+                <div className="col-span-2">
+                  <label htmlFor="notes" className="block text-lightPurple  ">
+                    {notes}
+                  </label>
+                  <textarea
+                    id="notes"
+                    placeholder={notesText}
+                    className="active:border-black w-full border-gray-300 resize-none focus:outline-none focus:border-black focus:ring-black focus:ring-1 sm:text-sm"
+                  />
                 </div>
+
+                <Button type="submit" className="    rounded-none  ">
+                  {btntext}
+                </Button>
               </div>
             </form>
           </div>
         </Container>
       </div>
+      <Partnars partnersLogos={partnersLogos} />
     </section>
   );
 };
@@ -206,3 +211,12 @@ const Input = ({ ...props }) => {
 const InputGroup = ({ children }) => {
   return <div className=" grid grid-cols-3 gap-16">{children}</div>;
 };
+
+export async function getStaticProps() {
+  const partnersLogos = await client.fetch(partnersQury);
+  return {
+    props: {
+      partnersLogos,
+    },
+  };
+}
