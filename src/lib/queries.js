@@ -77,6 +77,32 @@ export const projectsQuery = groq`*[_type == "project"] | order(_updatedAt desc)
     
   }`;
 
+export const projectQuery = groq`*[_type == "project" && slug.current == $slug][0]{
+    image, 
+    numberBeneficiaries,
+    shortDescription,
+    slug,
+    title,
+   _id,
+   category->,
+   body,
+    date,
+    location->{
+      title
+    },
+    accept,
+    total,
+    target,
+    socialLinks{
+      facebook,
+      twitter,
+      instagram,
+      youtube,
+      telegram,
+    },
+    
+  }`;
+
 export const projectsCategoriesQuery = groq`*[_type == "projectCategory"]{
     title,
     _id

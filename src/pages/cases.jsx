@@ -41,7 +41,7 @@ export async function getStaticProps({ locale }) {
 
 const CaseCard = ({ onseCase }) => {
   const { locale } = useRouter();
-  const { image, title, total, remaining, shortDescription, totalPaied } =
+  const { image, title, total, remaining, shortDescription, totalPaied, slug } =
     onseCase;
   const text = {
     ar: {
@@ -86,7 +86,10 @@ const CaseCard = ({ onseCase }) => {
               </div>
             </div>
 
-            <ButtonLink href="/" className="text-xs  mt-5 ">
+            <ButtonLink
+              href={`case/${slug.current}`}
+              className="text-xs  mt-5 "
+            >
               {btn}
             </ButtonLink>
           </div>

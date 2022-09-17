@@ -10,11 +10,12 @@ import Image from "next/image";
 import DateLocation from "@/components/DateLocation";
 import { PortableText } from "@portabletext/react";
 import Btn_Donate_Benfi from "@/components/Btn_Donate_Benfi";
-import { socialMediaIcons } from "@/constant/socialLinks";
 import ProgresPar from "@/components/ProgresPar";
 import { aboutAchivmetnsListQuery, partnersQury } from "@/lib/queries";
 import AboutAchivments from "@/components/about/AboutAchivments";
 import Partnars from "@/components/homePage/Partnars";
+import Link from "next/link";
+import ContentSocialLinks from "@/components/ContentSocialLinks";
 const projects = ({
   projects,
   projectsCategories,
@@ -93,13 +94,8 @@ const ProjectCard = ({ project }) => {
     },
   };
 
-  const socialLinksKeys = Object.keys(project.socialLinks).filter(
-    (key) => project.socialLinks[key]
-  );
-
   const { target, total } = text[locale];
   const presentage = Math.round((project.total / project.target) * 100);
-
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 gap-8 mt-10 border  border-primaryPurple">
       <div className="relative w-full h-80 md:h-auto ">
@@ -134,23 +130,13 @@ const ProjectCard = ({ project }) => {
         </div>
         <div className="my-8">
           <PortableText value={project.body[locale]} />
+          <Link href={`project/${project.slug.current}`}>المزيد....</Link>
         </div>
         <div className="lg:flex justify-between items-center">
           <Btn_Donate_Benfi numberBeneficiaries={project.numberBeneficiaries} />
-          <div className="flex gap-1  pt-4 lg:pt-0 justify-center">
-            {socialLinksKeys?.map((social) => (
-              <a
-                href={project.socialLinks[social]}
-                target="_blank"
-                rel="noreferrer"
-                key={social}
-              >
-                <div className="rounded-full border hover:bg-violet-100 border-primaryPurple p-[5px] ">
-                  {socialMediaIcons[social]}
-                </div>
-              </a>
-            ))}
-          </div>
+          {project.socialLinks && (
+            <ContentSocialLinks socialLinks={project.socialLinks} />
+          )}
         </div>
       </div>
     </div>
