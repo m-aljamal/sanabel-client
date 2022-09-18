@@ -2,7 +2,11 @@ import HeroLink from "@/components/HeroLink";
 import { useRouter } from "next/router";
 import React from "react";
 import { client, imageBuilder } from "@/lib/sanity";
-import { projectQuery } from "@/lib/queries";
+import {
+  projectQuery,
+  moreProjectsQuery,
+  projectsCategoriesQuery,
+} from "@/lib/queries";
 import { Container } from "@/components/Container";
 import Image from "next/image";
 import DateLocation from "@/components/DateLocation";
@@ -12,7 +16,9 @@ import Achivment from "@/components/Achivment";
 import { useText } from "@/constant/useText";
 import ProgresPar from "@/components/ProgresPar";
 import { calculatePercentage } from "@/lib/helperFunctions";
-const Project = ({ project }) => {
+import { ButtonLink } from "@/components/Button";
+import Link from "next/link";
+const Project = ({ project, moreProjects, projectsCategories }) => {
   const { locale } = useRouter();
   const {
     title,
@@ -25,9 +31,10 @@ const Project = ({ project }) => {
     socialLinks,
     date,
     remaining,
+    projectImages,
     achivments,
   } = project;
-  console.log(project);
+
   const text = {
     ar: {
       projects: "المشاريع",
@@ -40,14 +47,13 @@ const Project = ({ project }) => {
     targetTotal: { total: totalText, target: targetText },
   } = useText();
   const presentage = calculatePercentage(total, target);
-
   return (
     <div className="mb-8">
       <Container>
         <HeroLink title={title[locale]} linkText={text[locale].projects} />
-        <div className=" flex  gap-10  ">
-          <div className="  w-2/3">
-            <div className="relative w-full  h-[350px]">
+        <div className="flex gap-10">
+          <div className="w-2/3">
+            <div className="relative w-full h-[450px]">
               <Image
                 src={imageBuilder(image).url()}
                 layout="fill"
@@ -60,7 +66,7 @@ const Project = ({ project }) => {
               </h2>
               <div className="flex justify-between items-end">
                 <DateLocation date={date} location={location.title[locale]} />
-                <ContentSocialLinks socialLinks={project.socialLinks} />
+                <ContentSocialLinks socialLinks={socialLinks} />
               </div>
               <PortableText value={body[locale]} />
               <div className="flex gap-8">
@@ -73,7 +79,7 @@ const Project = ({ project }) => {
                   />
                 ))}
               </div>
-              <div className="flex justify-between pt-8 items-center font-semibold">
+              <div className="flex justify-between pt-5 items-center font-semibold">
                 <div className="text-primaryPurple">
                   <span>{totalText}: </span>
                   <span>{total}$</span>
@@ -83,18 +89,68 @@ const Project = ({ project }) => {
                   <span>{target}$</span>
                 </div>
               </div>
-              <div>
-                <ProgresPar present={presentage} className="px-0" />
+              <ProgresPar present={presentage} className="px-0" />
+              <div className=" pt-5">
+                <ButtonLink href="/donate" className="rounded-none ">
+                  تبرع الان
+                </ButtonLink>
               </div>
             </div>
           </div>
           <div className="w-1/3">
-            <h2>منشورات شائعة</h2>
-            <h2>othre</h2>
-            <h2>othre</h2>
-            <h2>othre</h2>
-            <h2>othre</h2>
-            <h2>othre</h2>
+            <h2 className="text-primaryPurple font-semibold text-sm  ">
+              منشورات شائعة
+            </h2>
+            <div className="space-y-5  mt-3">
+              {moreProjects?.map((project) => (
+                <div
+                  key={project._id}
+                  className=" border-b border-primaryPurple "
+                >
+                  <div className=" flex  gap-3 pb-3 ">
+                    <div className=" relative  w-1/3 h-20">
+                      <Image
+                        src={imageBuilder(project.image).url()}
+                        layout="fill"
+                        objectFit="cover"
+                      />
+                    </div>
+                    <div>
+                      <h2 className="text-sm">{project.title[locale]}</h2>
+                      <Link href={`/project/${project.slug.current}`}>
+                        <a className="text-xs text-primaryPurple font-medium">
+                          اضفط هنا للمشاهدة
+                        </a>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-3">
+              <h2 className="text-primaryPurple font-semibold text-sm">
+                برامجنا
+              </h2>
+              <ul className="grid grid-cols-3 gap-3 list-disc mt-4">
+                {projectsCategories?.map((cat) => (
+                  <li key={cat._id} className="text-xs">
+                    {cat.title[locale]}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className=" grid grid-cols-2 gap-[0.5px] mt-5">
+              {projectImages.length &&
+                projectImages.map((img) => (
+                  <div key={img._key} className=" relative h-28">
+                    <Image
+                      src={imageBuilder(img).url()}
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+                ))}
+            </div>
           </div>
         </div>
       </Container>
@@ -102,51 +158,6 @@ const Project = ({ project }) => {
   );
 };
 
-// accept
-// :
-// {_type: 'localeString', ar: 'أُنجز المشروع', en: 'Project accomplished'}
-// achivments
-// :
-// null
-// body
-// :
-// {_type: 'localeBlock', ar: Array(1), en: Array(1)}
-// category
-// :
-// {_createdAt: '2022-09-10T12:30:18Z', _id: '6b5fe970-6872-40a2-a6fc-d95ac3dc1d12', _rev: 'imagPqDWG1ImSbXkko2ToR', _type: 'projectCategory', _updatedAt: '2022-09-14T07:07:32Z', …}
-// date
-// :
-// "2016-06-23"
-// image
-// :
-// {_type: 'image', asset: {…}}
-// location
-// :
-// {title: {…}}
-// numberBeneficiaries
-// :
-// 25371
-// shortDescription
-// :
-// {_type: 'localeText', ar: 'مشروع توزيع قرطاسية ووسائل تعليمية كاملة في الغوطة الشرقية', en: 'A project to distribute complete stationery and educational aids in Eastern Ghouta'}
-// slug
-// :
-// {_type: 'slug', current: 'stationery-distribution'}
-// socialLinks
-// :
-// {facebook: 'https://www.facebook.com/SanabelAlamal.S.A.O', instagram: 'https://www.instagram.com/sanabelalamal.s.a.o', telegram: 'https://t.me/sanabesao', twitter: 'https://twitter.com/SanabelSAO', youtube: 'https://www.youtube.com/channel/UCVorx5BxYaYbdE_gxDD1xXA'}
-// target
-// :
-// 45000
-// title
-// :
-// {_type: 'localeString', ar: 'توزيع قرطاسية', en: 'stationery distribution'}
-// total
-// :
-// 45000
-// _id
-// :
-// "7fdfa53a-5139-4fe
 export default Project;
 
 export async function getStaticPaths({ locales }) {
@@ -177,9 +188,17 @@ export async function getStaticProps({ params }) {
     slug: params.slug,
   });
 
+  const moreProjects = await client.fetch(moreProjectsQuery, {
+    slug: params.slug,
+  });
+
+  const projectsCategories = await client.fetch(projectsCategoriesQuery);
+
   return {
     props: {
       project,
+      moreProjects,
+      projectsCategories,
     },
   };
 }
