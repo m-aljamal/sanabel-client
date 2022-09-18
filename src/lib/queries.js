@@ -67,6 +67,7 @@ export const projectsQuery = groq`*[_type == "project"] | order(_updatedAt desc)
     accept,
     total,
     target,
+    "remaining": target - total,
     socialLinks{
       facebook,
       twitter,
@@ -93,6 +94,7 @@ export const projectQuery = groq`*[_type == "project" && slug.current == $slug][
     accept,
     total,
     target,
+    "remaining": target - total,
     socialLinks{
       facebook,
       twitter,
@@ -100,6 +102,12 @@ export const projectQuery = groq`*[_type == "project" && slug.current == $slug][
       youtube,
       telegram,
     },
+    achivments[]{
+      image,
+      number,
+      title,
+      _key
+    } 
     
   }`;
 

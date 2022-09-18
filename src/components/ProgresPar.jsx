@@ -1,8 +1,9 @@
+import clsx from "clsx";
 import React from "react";
 
-const ProgresPar = ({ present }) => {
+const ProgresPar = ({ present, className }) => {
   return (
-    <div className="px-4 flex justify-center mb-8">
+    <div className={clsx("px-4 flex justify-center mb-8", className)}>
       <div className="w-full ring-1 ring-gray-500  h-4 bg-white rounded-lg">
         <div
           className={` bg-primaryPurple h-4 rounded-r-lg relative`}

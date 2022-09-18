@@ -6,7 +6,9 @@ import { useRouter } from "next/router";
 const HeroLink = ({ title, linkText }) => {
   const { locale } = useRouter();
   const homePageLink = links.find((link) => link.href === "/");
-  const textLink = links.find((link) => link.label[locale] === linkText).href;
+  const textLink = links.find(
+    (link) => link.label[locale].toLowerCase() === linkText.toLowerCase()
+  ).href;
 
   return (
     <div className="text-center space-y-3 py-16">

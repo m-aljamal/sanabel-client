@@ -16,6 +16,8 @@ import AboutAchivments from "@/components/about/AboutAchivments";
 import Partnars from "@/components/homePage/Partnars";
 import Link from "next/link";
 import ContentSocialLinks from "@/components/ContentSocialLinks";
+import { useText } from "@/constant/useText";
+import { calculatePercentage } from "@/lib/helperFunctions";
 const projects = ({
   projects,
   projectsCategories,
@@ -83,19 +85,11 @@ export default projects;
 const ProjectCard = ({ project }) => {
   const { locale } = useRouter();
 
-  const text = {
-    ar: {
-      target: "الهدف",
-      total: "المجموع",
-    },
-    en: {
-      target: "Target",
-      total: "Total",
-    },
-  };
+  const {
+    targetTotal: { target, total },
+  } = useText();
+  const presentage = calculatePercentage(project.total, project.target);
 
-  const { target, total } = text[locale];
-  const presentage = Math.round((project.total / project.target) * 100);
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 gap-8 mt-10 border  border-primaryPurple">
       <div className="relative w-full h-80 md:h-auto ">
