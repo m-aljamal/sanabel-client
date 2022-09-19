@@ -85,9 +85,7 @@ export default projects;
 const ProjectCard = ({ project }) => {
   const { locale } = useRouter();
 
-  const {
-    targetTotal: { target, total },
-  } = useText();
+  const { targetText, totalText } = useText();
   const presentage = calculatePercentage(project.total, project.target);
 
   return (
@@ -109,10 +107,10 @@ const ProjectCard = ({ project }) => {
         </h1>
         <div className="flex gap-16 text-sm py-3">
           <p>
-            {total}: {project.total}$
+            {totalText}: {project.total}$
           </p>
           <p className="text-red-600">
-            {target}: {project.target}$
+            {targetText}: {project.target}$
           </p>
         </div>
         <div className="sm:flex justify-between">
