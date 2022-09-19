@@ -53,10 +53,7 @@ const AboutAchivments = ({ achivmentsList, style = "dark" }) => {
           {achivmentsList.slice(0, numberOfAchivments).map((archive, i) => (
             <div
               key={i}
-              className={clsx(
-                "text-white flex flex-col space-y-2 items-center",
-                list
-              )}
+              className={clsx("flex flex-col space-y-2 items-center", list)}
             >
               <Image
                 src={imageBuilder(
