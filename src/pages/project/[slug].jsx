@@ -138,7 +138,7 @@ const Project = ({ project, moreProjects, projectsCategories }) => {
                 {projectsCategories?.map((cat) => (
                   <li
                     key={cat._id}
-                    className="text-sm"
+                    className="text-sm hover:text-lightPurple cursor-pointer"
                     onClick={() => setSelectedCategory(cat)}
                   >
                     <Link href="/projects">{cat.title[locale]}</Link>

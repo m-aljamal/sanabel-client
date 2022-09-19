@@ -39,6 +39,15 @@ const projects = ({
       selectedCategory?._id === "all"
   );
 
+  const langStyle = {
+    ar: {
+      roundedBr: "md:first:rounded-r-lg md:last:rounded-l-lg",
+    },
+    en: {
+      roundedBr: "md:first:rounded-l-lg md:last:rounded-r-lg",
+    },
+  };
+  const { roundedBr } = langStyle[locale];
   return (
     <section>
       <PageHero />
@@ -52,10 +61,11 @@ const projects = ({
               {[allCategory, ...projectsCategories].map((category) => (
                 <button
                   className={clsx(
-                    " px-7 py-3 md:first:rounded-r-lg md:last:rounded-l-lg  ",
+                    " px-7 py-3 ",
                     category._id === selectedCategory?._id
                       ? "bg-primaryPurple text-white"
-                      : "bg-gray-100 text-primaryPurple border-primaryPurple border"
+                      : "bg-gray-100 text-primaryPurple border-primaryPurple border",
+                    roundedBr
                   )}
                   key={category._id}
                   onClick={() => setSelectedCategory(category)}
@@ -92,7 +102,7 @@ const ProjectCard = ({ project }) => {
   const presentage = calculatePercentage(project.total, project.target);
 
   return (
-    <div className="grid md:grid-cols-2 grid-cols-1 gap-8 mt-10 border  border-primaryPurple">
+    <div className="grid md:grid-cols-2 grid-cols-1 gap-2 mt-10 border  border-primaryPurple">
       <div className="relative w-full h-80 md:h-auto ">
         <Image
           src={imageBuilder(project.image).url()}
@@ -104,7 +114,7 @@ const ProjectCard = ({ project }) => {
           <ProgresPar present={presentage} />
         </div>
       </div>
-      <div className="pt-5 pl-5 pb-5 pr-5 md:pr-0">
+      <div className="p-5">
         <h1 className="text-primaryPurple font-medium">
           {project.title[locale]}
         </h1>
