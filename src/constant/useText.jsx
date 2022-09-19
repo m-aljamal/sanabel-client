@@ -3,18 +3,28 @@ import { useRouter } from "next/router";
 export const useText = () => {
   const { locale } = useRouter();
 
-  const targetTotal = {
+  const text = {
     ar: {
-      target: "الهدف",
-      total: "المجموع",
+      targetText: "الهدف",
+      totalText: "المجموع",
+      projectsText: "المشاريع",
+      donateNowText: "تبرع الآن",
+      commonPostsText: "منشورات شائعة",
+      clickHereToSeeText: "انقر هنا للمشاهدة",
+      ourProgramsText: "برامجنا",
     },
     en: {
-      target: "Target",
-      total: "Total",
+      targetText: "Target",
+      totalText: "Total",
+      projectsText: "Projects",
+      donateNowText: "Donate Now",
+      commonPostsText: "Common Posts",
+      clickHereToSeeText: "Click here to see",
+      ourProgramsText: "Our Programs",
     },
   };
 
   return {
-    targetTotal: targetTotal[locale],
+    ...text[locale],
   };
 };

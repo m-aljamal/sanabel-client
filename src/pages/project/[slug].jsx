@@ -27,30 +27,26 @@ const Project = ({ project, moreProjects, projectsCategories }) => {
     location,
     target,
     total,
-    numberBeneficiaries,
     socialLinks,
     date,
-    remaining,
     projectImages,
     achivments,
   } = project;
 
-  const text = {
-    ar: {
-      projects: "المشاريع",
-    },
-    en: {
-      projects: "Projects",
-    },
-  };
   const {
-    targetTotal: { total: totalText, target: targetText },
+    totalText,
+    targetText,
+    projectsText,
+    donateNowText,
+    commonPostsText,
+    clickHereToSeeText,
+    ourProgramsText,
   } = useText();
   const presentage = calculatePercentage(total, target);
   return (
     <div className="mb-8">
       <Container>
-        <HeroLink title={title[locale]} linkText={text[locale].projects} />
+        <HeroLink title={title[locale]} linkText={projectsText} />
         <div className="flex md:flex-row  flex-col gap-10">
           <div className="md:w-2/3">
             <div className="relative w-full h-[450px]">
@@ -66,7 +62,10 @@ const Project = ({ project, moreProjects, projectsCategories }) => {
               </h2>
               <div className="flex justify-between items-end">
                 <DateLocation date={date} location={location.title[locale]} />
-                <ContentSocialLinks socialLinks={socialLinks}  className=' flex-wrap'/>
+                <ContentSocialLinks
+                  socialLinks={socialLinks}
+                  className=" flex-wrap"
+                />
               </div>
               <PortableText value={body[locale]} />
               <div className="flex gap-8 flex-wrap">
@@ -92,14 +91,14 @@ const Project = ({ project, moreProjects, projectsCategories }) => {
               <ProgresPar present={presentage} className="px-0" />
               <div className=" pt-5">
                 <ButtonLink href="/donate" className="rounded-none ">
-                  تبرع الان
+                  {donateNowText}
                 </ButtonLink>
               </div>
             </div>
           </div>
           <div className="md:w-1/3">
             <h2 className="text-primaryPurple font-semibold text-sm  ">
-              منشورات شائعة
+              {commonPostsText}
             </h2>
             <div className="md:space-y-5  mt-3 sm:grid sm:grid-cols-3 space-y-3 sm:space-y-0  md:block">
               {moreProjects?.map((project) => (
@@ -119,7 +118,7 @@ const Project = ({ project, moreProjects, projectsCategories }) => {
                       <h2 className="text-sm">{project.title[locale]}</h2>
                       <Link href={`/project/${project.slug.current}`}>
                         <a className="text-xs text-primaryPurple font-medium">
-                          اضفط هنا للمشاهدة
+                          {clickHereToSeeText}
                         </a>
                       </Link>
                     </div>
@@ -129,7 +128,7 @@ const Project = ({ project, moreProjects, projectsCategories }) => {
             </div>
             <div className="mt-3">
               <h2 className="text-primaryPurple font-semibold text-sm">
-                برامجنا
+                {ourProgramsText}
               </h2>
               <ul className="grid grid-cols-3  md:grid-cols-2 lg:grid-cols-3 gap-2 list-disc mt-4 place-items-center md:place-items-start ">
                 {projectsCategories?.map((cat) => (
