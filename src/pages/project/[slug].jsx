@@ -18,6 +18,7 @@ import ProgresPar from "@/components/ProgresPar";
 import { calculatePercentage } from "@/lib/helperFunctions";
 import { ButtonLink } from "@/components/Button";
 import Link from "next/link";
+import { useProjectCategory } from "@/context/ProjectCategory";
 const Project = ({ project, moreProjects, projectsCategories }) => {
   const { locale } = useRouter();
   const {
@@ -43,6 +44,9 @@ const Project = ({ project, moreProjects, projectsCategories }) => {
     ourProgramsText,
   } = useText();
   const presentage = calculatePercentage(total, target);
+
+  const { setSelectedCategory } = useProjectCategory();
+
   return (
     <div className="mb-8">
       <Container>
@@ -130,10 +134,14 @@ const Project = ({ project, moreProjects, projectsCategories }) => {
               <h2 className="text-primaryPurple font-semibold text-sm">
                 {ourProgramsText}
               </h2>
-              <ul className="grid grid-cols-3  md:grid-cols-2 lg:grid-cols-3 gap-2 list-disc mt-4 place-items-center md:place-items-start ">
+              <ul className="grid grid-cols-2 sm:grid-cols-3  md:grid-cols-2  lg:grid-cols-3 gap-2 list-disc mt-4 place-items-center md:place-items-start ">
                 {projectsCategories?.map((cat) => (
-                  <li key={cat._id} className="text-xs">
-                    {cat.title[locale]}
+                  <li
+                    key={cat._id}
+                    className="text-sm"
+                    onClick={() => setSelectedCategory(cat)}
+                  >
+                    <Link href="/projects">{cat.title[locale]}</Link>
                   </li>
                 ))}
               </ul>

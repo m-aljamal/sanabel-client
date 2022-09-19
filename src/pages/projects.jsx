@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { projectsQuery, projectsCategoriesQuery } from "@/lib/queries";
 import { client, imageBuilder } from "@/lib/sanity";
 import PageHero from "@/components/PageHero";
@@ -18,6 +18,7 @@ import Link from "next/link";
 import ContentSocialLinks from "@/components/ContentSocialLinks";
 import { useText } from "@/constant/useText";
 import { calculatePercentage } from "@/lib/helperFunctions";
+import { useProjectCategory, allCategory } from "@/context/ProjectCategory";
 const projects = ({
   projects,
   projectsCategories,
@@ -29,11 +30,13 @@ const projects = ({
     ar: "برامجنا",
     en: "Our Programs",
   };
-  const [selectedCategory, setSelectedCategory] = React.useState(
-    projectsCategories[0]
-  );
+
+  const { setSelectedCategory, selectedCategory } = useProjectCategory();
+
   const filtredProjects = projects.filter(
-    (project) => project.category._id === selectedCategory._id
+    (project) =>
+      project.category._id === selectedCategory?._id ||
+      selectedCategory?._id === "all"
   );
 
   return (
@@ -45,12 +48,12 @@ const projects = ({
             <Title title={programTitle[locale]} />
           </div>
           <div>
-            <div className="flex flex-col md:flex-row justify-center gap-3    ">
-              {projectsCategories.map((category) => (
+            <div className="flex flex-col md:flex-row justify-center gap-3">
+              {[allCategory, ...projectsCategories].map((category) => (
                 <button
                   className={clsx(
                     " px-7 py-3 md:first:rounded-r-lg md:last:rounded-l-lg  ",
-                    category._id === selectedCategory._id
+                    category._id === selectedCategory?._id
                       ? "bg-primaryPurple text-white"
                       : "bg-gray-100 text-primaryPurple border-primaryPurple border"
                   )}

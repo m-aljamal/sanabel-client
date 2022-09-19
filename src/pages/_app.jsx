@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import { useRouter } from "next/router";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { ProjectCategoryProvider } from "@/context/ProjectCategory";
 function MyApp({ Component, pageProps }) {
   const { locale } = useRouter();
   return (
@@ -11,7 +12,9 @@ function MyApp({ Component, pageProps }) {
       }}
     >
       <Header />
-      <Component {...pageProps} />
+      <ProjectCategoryProvider>
+        <Component {...pageProps} />
+      </ProjectCategoryProvider>
       <Footer />
     </main>
   );

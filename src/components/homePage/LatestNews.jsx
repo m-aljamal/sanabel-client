@@ -30,26 +30,24 @@ const News = ({ title, slug, newDate, location, shortDescription, image }) => {
 
   return (
     <section>
-      <Link href={`/news/${slug.current}`}>
-        <a className="lg:flex gap-4">
-          <div className="relative flex-shrink-0  lg:w-44  lg:h-36 h-60   ">
-            <Image
-              src={imageBuilder(image).url()}
-              layout="fill"
-              objectFit="cover"
-              alt="news"
-              className="w-full h-full"
-            />
-          </div>
-          <div className="w-full mt-4 lg:mt-0">
-            <h2 className="text-md text-primaryPurple font-medium ">
-              {title[locale]}
-            </h2>
-            <DateLocation date={newDate} location={location.title[locale]} />
-            <p className="text-sm mt-1">{shortDescription[locale]}</p>
-          </div>
-        </a>
-      </Link>
+      <a className="lg:flex gap-4">
+        <div className="relative flex-shrink-0  lg:w-44  lg:h-36 h-60   ">
+          <Image
+            src={imageBuilder(image).url()}
+            layout="fill"
+            objectFit="cover"
+            alt="news"
+            className="w-full h-full"
+          />
+        </div>
+        <div className="w-full mt-4 lg:mt-0">
+          <h2 className="text-md text-primaryPurple font-medium ">
+            {title[locale]}
+          </h2>
+          <DateLocation date={newDate} location={location.title[locale]} />
+          <p className="text-sm mt-1">{shortDescription[locale]}</p>
+        </div>
+      </a>
     </section>
   );
 };
