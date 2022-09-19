@@ -51,8 +51,8 @@ const Project = ({ project, moreProjects, projectsCategories }) => {
     <div className="mb-8">
       <Container>
         <HeroLink title={title[locale]} linkText={text[locale].projects} />
-        <div className="flex gap-10">
-          <div className="w-2/3">
+        <div className="flex md:flex-row  flex-col gap-10">
+          <div className="md:w-2/3">
             <div className="relative w-full h-[450px]">
               <Image
                 src={imageBuilder(image).url()}
@@ -66,10 +66,10 @@ const Project = ({ project, moreProjects, projectsCategories }) => {
               </h2>
               <div className="flex justify-between items-end">
                 <DateLocation date={date} location={location.title[locale]} />
-                <ContentSocialLinks socialLinks={socialLinks} />
+                <ContentSocialLinks socialLinks={socialLinks}  className=' flex-wrap'/>
               </div>
               <PortableText value={body[locale]} />
-              <div className="flex gap-8">
+              <div className="flex gap-8 flex-wrap">
                 {achivments?.map((achiv) => (
                   <Achivment
                     key={achiv._key}
@@ -97,11 +97,11 @@ const Project = ({ project, moreProjects, projectsCategories }) => {
               </div>
             </div>
           </div>
-          <div className="w-1/3">
+          <div className="md:w-1/3">
             <h2 className="text-primaryPurple font-semibold text-sm  ">
               منشورات شائعة
             </h2>
-            <div className="space-y-5  mt-3">
+            <div className="md:space-y-5  mt-3 sm:grid sm:grid-cols-3 space-y-3 sm:space-y-0  md:block">
               {moreProjects?.map((project) => (
                 <div
                   key={project._id}
@@ -131,7 +131,7 @@ const Project = ({ project, moreProjects, projectsCategories }) => {
               <h2 className="text-primaryPurple font-semibold text-sm">
                 برامجنا
               </h2>
-              <ul className="grid grid-cols-3 gap-3 list-disc mt-4">
+              <ul className="grid grid-cols-3  md:grid-cols-2 lg:grid-cols-3 gap-2 list-disc mt-4 place-items-center md:place-items-start ">
                 {projectsCategories?.map((cat) => (
                   <li key={cat._id} className="text-xs">
                     {cat.title[locale]}
@@ -140,16 +140,15 @@ const Project = ({ project, moreProjects, projectsCategories }) => {
               </ul>
             </div>
             <div className=" grid grid-cols-2 gap-[0.5px] mt-5">
-              {projectImages.length &&
-                projectImages.map((img) => (
-                  <div key={img._key} className=" relative h-28">
-                    <Image
-                      src={imageBuilder(img).url()}
-                      layout="fill"
-                      objectFit="cover"
-                    />
-                  </div>
-                ))}
+              {projectImages?.map((img) => (
+                <div key={img._key} className=" relative h-28">
+                  <Image
+                    src={imageBuilder(img).url()}
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>

@@ -1,12 +1,13 @@
 import React from "react";
 import { socialMediaIcons } from "@/constant/socialLinks";
+import clsx from "clsx";
 
-const ContentSocialLinks = ({ socialLinks }) => {
+const ContentSocialLinks = ({ socialLinks, className }) => {
   const socialLinksKeys = Object.keys(socialLinks).filter(
     (key) => socialLinks[key]
   );
   return (
-    <div className="flex gap-1  pt-4 lg:pt-0 justify-center">
+    <div className={clsx("flex gap-1  pt-4 lg:pt-0 justify-center", className)}>
       {socialLinksKeys?.map((social) => (
         <a
           href={socialLinks[social]}
