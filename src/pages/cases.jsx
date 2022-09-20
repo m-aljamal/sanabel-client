@@ -28,7 +28,7 @@ const cases = ({ cases, partnersLogos }) => {
 
 export default cases;
 
-export async function getStaticProps({ locale }) {
+export async function getStaticProps() {
   const cases = await client.fetch(casesQuery);
   const partnersLogos = await client.fetch(partnersQury);
   return {

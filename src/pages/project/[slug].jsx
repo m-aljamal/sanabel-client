@@ -6,6 +6,7 @@ import {
   projectsCategoriesQuery,
 } from "@/lib/queries";
 import ContantPage from "@/components/ContantPage";
+import { fetchPageData } from "@/lib/helperFunctions";
 
 const Project = ({ project, moreProjects, projectsCategories }) => {
   return (
@@ -43,20 +44,24 @@ export async function getStaticPaths({ locales }) {
 }
 
 export async function getStaticProps({ params }) {
-  const project = await client.fetch(projectQuery, {
+  // const project = await client.fetch(projectQuery, {
+  //   slug: params.slug,
+  // });
+
+  // const moreProjects = await client.fetch(moreProjectsQuery, {
+  //   slug: params.slug,
+  // });
+
+  // const projectsCategories = await client.fetch(projectsCategoriesQuery);
+
+  const { pageData, morePost, projectsCategories } = await fetchPageData({
     slug: params.slug,
   });
-
-  const moreProjects = await client.fetch(moreProjectsQuery, {
-    slug: params.slug,
-  });
-
-  const projectsCategories = await client.fetch(projectsCategoriesQuery);
 
   return {
     props: {
-      project,
-      moreProjects,
+      project: pageData,
+      moreProjects: morePost,
       projectsCategories,
     },
   };
