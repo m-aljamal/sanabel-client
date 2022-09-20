@@ -84,7 +84,7 @@ export const projectQuery = groq`*[_type == "project" && slug.current == $slug][
     shortDescription,
     slug,
     title,
-    projectImages,
+    images,
    _id,
    category->,
    body,
