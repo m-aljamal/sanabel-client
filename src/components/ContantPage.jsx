@@ -29,6 +29,8 @@ const ContantPage = ({
     commonPostsText,
     clickHereToSeeText,
     ourProgramsText,
+    CasesText,
+    successStoryText,
   } = useText();
 
   const pagesInfo = {
@@ -36,8 +38,14 @@ const ContantPage = ({
       linkText: projectsText,
       morePostLink: "project",
     },
-    case: {},
-    success: {},
+    case: {
+      linkText: CasesText,
+      morePostLink: "case",
+    },
+    success: {
+      linkText: successStoryText,
+      morePostLink: "success-story",
+    },
   };
 
   const {
@@ -54,7 +62,6 @@ const ContantPage = ({
   } = pageContent;
 
   const presentage = calculatePercentage(total, target);
-
   const { setSelectedCategory } = useProjectCategory();
   const { locale } = useRouter();
   const { linkText, morePostLink } = pagesInfo[page];
@@ -77,9 +84,12 @@ const ContantPage = ({
                   {title[locale]}
                 </h2>
                 <div className="flex justify-between items-end">
-                  <DateLocation date={date} location={location.title[locale]} />
+                  <DateLocation
+                    date={date}
+                    location={location?.title[locale]}
+                  />
                   <ContentSocialLinks
-                    socialLinks={socialLinks}
+                    socialLinks={socialLinks || {}}
                     className=" flex-wrap"
                   />
                 </div>

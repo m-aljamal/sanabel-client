@@ -82,9 +82,9 @@ const projects = ({
             </div>
           </div>
         </Container>
-        <section className="mt-10">
+        {/* <section className="mt-10">
           <AboutAchivments achivmentsList={achivmentsList} style="light" />
-        </section>
+        </section> */}
         <section>
           <Partnars partnersLogos={partnersLogos} />
         </section>
@@ -100,12 +100,20 @@ const ProjectCard = ({ project }) => {
 
   const { targetText, totalText } = useText();
   const presentage = calculatePercentage(project.total, project.target);
-
+  const {
+    mainImage,
+    target,
+    paid,
+    location,
+    shortDescription,
+    numberBeneficiaries,
+    socialLinks,
+  } = project.info;
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 gap-2 mt-10 border  border-primaryPurple">
       <div className="relative w-full h-80 md:h-auto ">
         <Image
-          src={imageBuilder(project.image).url()}
+          src={imageBuilder(mainImage).url()}
           layout="fill"
           objectFit="cover"
         />
@@ -120,27 +128,24 @@ const ProjectCard = ({ project }) => {
         </h1>
         <div className="flex gap-16 text-sm py-3">
           <p>
-            {totalText}: {project.total}$
+            {totalText}: {paid}$
           </p>
           <p className="text-red-600">
-            {targetText}: {project.target}$
+            {targetText}: {target}$
           </p>
         </div>
         <div className="sm:flex justify-between">
-          <DateLocation
-            date={project.date}
-            location={project.location.title[locale]}
-          />
+          <DateLocation date={project.date} location={location.title[locale]} />
           <p className="text-sm py-2 md:py-0">{project.accept[locale]}</p>
         </div>
         <div className="my-8">
-          <PortableText value={project.body[locale]} />
+          <p>{shortDescription[locale]}</p>
           <Link href={`project/${project.slug.current}`}>المزيد....</Link>
         </div>
         <div className="lg:flex justify-between items-center">
-          <Btn_Donate_Benfi numberBeneficiaries={project.numberBeneficiaries} />
+          <Btn_Donate_Benfi numberBeneficiaries={numberBeneficiaries} />
           {project.socialLinks && (
-            <ContentSocialLinks socialLinks={project.socialLinks} />
+            <ContentSocialLinks socialLinks={socialLinks} />
           )}
         </div>
       </div>

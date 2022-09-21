@@ -8,15 +8,21 @@ import { Container } from "@/components/Container";
 import DateLocation from "@/components/DateLocation";
 import Partnars from "@/components/homePage/Partnars";
 import Btn_Donate_Benfi from "@/components/Btn_Donate_Benfi";
+import { ButtonLink } from "@/components/Button";
+import { useText } from "@/constant/useText";
 const success = ({ successStories, partnersLogos }) => {
+  const { noDataFound } = useText();
   return (
     <section>
       <PageHero />
-
       <div className="space-y-10 py-20 bg-gray-100">
-        {successStories.map((story) => (
-          <SuccessCard story={story} key={story._id} />
-        ))}
+        {successStories.length ? (
+          successStories?.map((story) => (
+            <SuccessCard story={story} key={story._id} />
+          ))
+        ) : (
+          <p className="text-center text-red-600">{noDataFound}</p>
+        )}
       </div>
       <Partnars partnersLogos={partnersLogos} />
     </section>
@@ -27,27 +33,31 @@ export default success;
 
 const SuccessCard = ({ story }) => {
   const { locale } = useRouter();
-  const { date, image, successLocation, title } = story;
+  const { info, title, slug } = story;
   return (
     <Container>
-      <div className=" grid md:grid-cols-2 grid-cols-1  bg-white shadow-lg">
+      <div className="grid md:grid-cols-2 grid-cols-1  bg-white shadow-lg ">
         <div className=" relative h-[250px] md:h-auto  ">
           <Image
-            src={imageBuilder(image).url()}
+            src={imageBuilder(info.mainImage).url()}
             layout="fill"
             objectFit="cover"
           />
         </div>
         <div className="p-4 space-y-3">
           <h2 className="text-primaryPurple">{title[locale]}</h2>
-          <DateLocation date={date} location={successLocation.title[locale]} />
-          <p>
-            Nostrud esse sunt consectetur aliqua magna incididunt do amet ipsum
-            veniam mollit cupidatat esse. Sit adipisicing esse reprehenderit
-            ullamco Lorem et ipsum cupidatat eiusmod occaecat dolor occaecat. Ad
-            excepteur non esse nulla est ipsum et minim.
-          </p>
-          <Btn_Donate_Benfi btnText="seeStory" numberBeneficiaries="50" />
+          <DateLocation
+            date={info.date}
+            location={info.location.title[locale]}
+          />
+          <p>{info.shortDescription[locale]}</p>
+          {/* <Btn_Donate_Benfi btnText="seeStory" numberBeneficiaries="50" /> */}
+          <ButtonLink
+            href={`/success-story/${slug.current}`}
+            className="px-7 text-[12px] "
+          >
+            مشاهدة القصة
+          </ButtonLink>
         </div>
       </div>
     </Container>

@@ -12,6 +12,9 @@ export const useText = () => {
       commonPostsText: "منشورات شائعة",
       clickHereToSeeText: "انقر هنا للمشاهدة",
       ourProgramsText: "برامجنا",
+      CasesText: "الحالات",
+      successStoryText: "قصص النجاح",
+      noDataFound: "لم يتم العثور على بيانات",
     },
     en: {
       targetText: "Target",
@@ -21,6 +24,9 @@ export const useText = () => {
       commonPostsText: "Common Posts",
       clickHereToSeeText: "Click here to see",
       ourProgramsText: "Our Programs",
+      CasesText: "Cases",
+      successStoryText: "Success Stories",
+      noDataFound: "No Data Found",
     },
   };
 

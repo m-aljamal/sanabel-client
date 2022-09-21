@@ -5,14 +5,13 @@ import { useRouter } from "next/router";
 import { Container } from "../Container";
 import { LocationMarkerIcon, CalendarIcon } from "@heroicons/react/outline";
 import { imageBuilder } from "@/lib/sanity";
-import { PortableText } from "@portabletext/react";
 
 const StoriesList = ({ successStories }) => {
   return (
     <section className=" mt-10  ">
       <TitleWithIcon title="قصص النجاح" />
       <Container>
-        <div className=" lg:grid grid-cols-3   my-10 border border-primaryPurple  ">
+        <div className=" lg:grid grid-cols-3 my-10 border border-primaryPurple">
           {successStories.map((storey) => (
             <SeccessStory storey={storey} key={storey._id} />
           ))}
@@ -24,15 +23,17 @@ const StoriesList = ({ successStories }) => {
 
 const SeccessStory = ({ storey }) => {
   const { locale } = useRouter();
-  const { date, image, successLocation, title, body } = storey;
-
+  const {
+    title,
+    info: { date, mainImage, shortDescription, location },
+  } = storey;
   return (
     <div
-      className={`flex  lg:even:flex-col lg:flex-col-reverse flex-col sm:flex-row  sm:even:flex-row-reverse `}
+      className={`flex lg:even:flex-col lg:flex-col-reverse flex-col sm:flex-row  sm:even:flex-row-reverse `}
     >
-      <div className=" relative h-[300px]   sm:w-[50%] lg:w-full">
+      <div className="relative h-[300px] sm:w-[50%] lg:w-full">
         <Image
-          src={imageBuilder(image).url()}
+          src={imageBuilder(mainImage).url()}
           objectFit="cover"
           layout="fill"
         />
@@ -48,10 +49,10 @@ const SeccessStory = ({ storey }) => {
             </div>
             <div className="flex gap-1 ">
               <LocationMarkerIcon className="w-4 h-4 text-primaryPurple" />
-              <p className="text-sm">{successLocation.title[locale]}</p>
+              <p className="text-sm">{location.title[locale]}</p>
             </div>
           </div>
-          <PortableText value={body[locale]} />
+          <p>{shortDescription[locale]}</p>
         </div>
       </div>
     </div>

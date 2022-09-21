@@ -42,6 +42,26 @@ export const casesQuery = groq`*[_type == "projectCase" ] | order(_updatedAt des
   body
 }`;
 
+export const caseQuery = groq`*[_type == "projectCase" && slug.current == $slug][0]{
+  _id,
+  title,
+  shortDescription,
+  slug,
+  image,
+  total,
+  totalPaied,
+  "remaining": total - totalPaied,
+  body,
+  achivments,
+  date,
+  location->{
+    title
+  },
+  socialLinks,
+  "target": totalPaied,
+  "presentage": totalPaied / total * 100
+}`;
+
 export const latestProjectsQuery = groq`*[_type == "project"] | order(_updatedAt desc)  [0...3]{
   image, 
   numberBeneficiaries,
@@ -51,23 +71,20 @@ export const latestProjectsQuery = groq`*[_type == "project"] | order(_updatedAt
  _id,
 }`;
 
-export const projectsQuery = groq`*[_type == "project"] | order(_updatedAt desc){
-    image, 
-    numberBeneficiaries,
+export const projectsQuery = groq`*[_type == "project"  && info.showOnHome == true] | order(_updatedAt desc){
+   
+  slug,
+  title,
+  _id,
+  category->,
+  accept,
+   
+  info{
+    target, 
+    paid,
+    mainImage,
     shortDescription,
-    slug,
-    title,
-   _id,
-   category->,
-   body,
     date,
-    location->{
-      title
-    },
-    accept,
-    total,
-    target,
-    "remaining": target - total,
     socialLinks{
       facebook,
       twitter,
@@ -75,7 +92,11 @@ export const projectsQuery = groq`*[_type == "project"] | order(_updatedAt desc)
       youtube,
       telegram,
     },
-    
+    numberBeneficiaries,
+    location->{
+      title
+    },
+  }
   }`;
 
 export const projectQuery = groq`*[_type == "project" && slug.current == $slug][0]{
@@ -120,6 +141,22 @@ export const moreProjectsQuery = groq`*[_type == "project" && slug.current != $s
     
   }`;
 
+export const moreCasesQuery = groq`*[_type == "projectCase" && slug.current != $slug][0...3]{
+  _id,
+  title,  
+  slug,
+  image,
+
+}`;
+
+export const moreSuccessStoriesQuery = groq`*[_type == "successStory" && slug.current != $slug][0...3]{
+  _id,
+  title,  
+  slug,
+  image,
+
+}`;
+
 export const projectsCategoriesQuery = groq`*[_type == "projectCategory"]{
     title,
     _id
@@ -133,19 +170,37 @@ export const mediaQuery = groq`*[_type == "media"  ] | order(_updatedAt desc){
 export const achivmentsHomePageQuery = groq`*[_type == "achievement"] | order(_updatedAt desc) [0...4]`;
 
 export const successStoriesPageQuery = groq`*[_type == "success"] | order(_updatedAt desc){
-  _id,
-  date,
-  image,
-  successLocation->{
-    title
-    },
+  slug,
   title,
-  body,
+  _id,
+  info{
+    mainImage,
+    shortDescription,
+    date,
+    location->{
+      title
+    },
+  }
+} `;
+export const successStoriesQuery = groq`*[_type == "success" && info.showOnHome == true]   | order(_updatedAt desc)[0...3]{
+  _id,
+  title,
+  slug,
+  info{
+    mainImage,
+    date,
+    shortDescription,
+    location->{
+      title
+    },
+  }
 }`;
-export const successStoriesQuery = groq`*[_type == "success"] | order(_updatedAt desc)[0...3]{
+
+export const successStoryQuery = groq`*[_type == "success" && slug.current == $slug][0]{
   _id,
   date,
   image,
+  slug,
   successLocation->{
     title
     },
