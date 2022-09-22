@@ -50,18 +50,20 @@ const ContantPage = ({
 
   const {
     title,
-    image,
-    date,
-    location,
-    socialLinks,
-    body,
-    achivments,
-    total,
-    target,
-    images,
+    info: {
+      mainImage,
+      date,
+      location,
+      socialLinks,
+      body,
+      achivments,
+      target,
+      paid,
+      images,
+    },
   } = pageContent;
 
-  const presentage = calculatePercentage(total, target);
+  const presentage = calculatePercentage(paid, target);
   const { setSelectedCategory } = useProjectCategory();
   const { locale } = useRouter();
   const { linkText, morePostLink } = pagesInfo[page];
@@ -74,7 +76,7 @@ const ContantPage = ({
             <div className="md:w-2/3">
               <div className="relative w-full h-[450px]">
                 <Image
-                  src={imageBuilder(image).url()}
+                  src={imageBuilder(mainImage).url()}
                   layout="fill"
                   objectFit="cover"
                 />
@@ -107,7 +109,7 @@ const ContantPage = ({
                 <div className="flex justify-between pt-5 items-center font-semibold">
                   <div className="text-primaryPurple">
                     <span>{totalText}: </span>
-                    <span>{total}$</span>
+                    <span>{paid}$</span>
                   </div>
                   <div className="text-red-600">
                     <span>{targetText}: </span>
@@ -135,7 +137,7 @@ const ContantPage = ({
                     <div className=" flex  gap-3 pb-3 ">
                       <div className=" relative  w-1/3 h-20">
                         <Image
-                          src={imageBuilder(post.image).url()}
+                          src={imageBuilder(post.info.mainImage).url()}
                           layout="fill"
                           objectFit="cover"
                         />

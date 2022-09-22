@@ -57,20 +57,24 @@ const AboutAchivments = ({ achivmentsList, style = "dark" }) => {
             >
               <Image
                 src={imageBuilder(
-                  style === "light" ? archive.darkImage : archive.image
+                  style === "light"
+                    ? archive.darkImage
+                    : archive.achievement.image
                 ).url()}
                 width={50}
                 height={50}
               />
               <CountUp
                 start={0}
-                end={archive.number}
+                end={archive.achievement.number}
                 duration={2}
                 separator=" "
                 className="md:text-xl font-bold"
               />
 
-              <h2 className="md:text-xl ">{archive.title[locale]}</h2>
+              <h2 className="md:text-xl ">
+                {archive.achievement.title[locale]}
+              </h2>
             </div>
           ))}
         </div>

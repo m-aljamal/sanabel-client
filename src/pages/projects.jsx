@@ -30,7 +30,6 @@ const projects = ({
     ar: "برامجنا",
     en: "Our Programs",
   };
-
   const { setSelectedCategory, selectedCategory } = useProjectCategory();
 
   const filtredProjects = projects.filter(
@@ -82,9 +81,9 @@ const projects = ({
             </div>
           </div>
         </Container>
-        {/* <section className="mt-10">
+        <section className="mt-10">
           <AboutAchivments achivmentsList={achivmentsList} style="light" />
-        </section> */}
+        </section>
         <section>
           <Partnars partnersLogos={partnersLogos} />
         </section>
@@ -99,7 +98,6 @@ const ProjectCard = ({ project }) => {
   const { locale } = useRouter();
 
   const { targetText, totalText } = useText();
-  const presentage = calculatePercentage(project.total, project.target);
   const {
     mainImage,
     target,
@@ -109,6 +107,8 @@ const ProjectCard = ({ project }) => {
     numberBeneficiaries,
     socialLinks,
   } = project.info;
+  const presentage = calculatePercentage(paid, target);
+
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 gap-2 mt-10 border  border-primaryPurple">
       <div className="relative w-full h-80 md:h-auto ">
@@ -136,7 +136,9 @@ const ProjectCard = ({ project }) => {
         </div>
         <div className="sm:flex justify-between">
           <DateLocation date={project.date} location={location.title[locale]} />
-          <p className="text-sm py-2 md:py-0">{project.accept[locale]}</p>
+          {project?.accept ? (
+            <p className="text-sm py-2 md:py-0">{project?.accept[locale]}</p>
+          ) : null}
         </div>
         <div className="my-8">
           <p>{shortDescription[locale]}</p>

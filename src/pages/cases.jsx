@@ -8,6 +8,7 @@ import { Container } from "@/components/Container";
 import CircleProgres from "@/components/CircleProgres";
 import { ButtonLink } from "@/components/Button";
 import Partnars from "@/components/homePage/Partnars";
+import { calculatePercentage } from "@/lib/helperFunctions";
 const cases = ({ cases, partnersLogos }) => {
   return (
     <section>
@@ -41,8 +42,11 @@ export async function getStaticProps() {
 
 const CaseCard = ({ onseCase }) => {
   const { locale } = useRouter();
-  const { image, title, total, remaining, shortDescription, totalPaied, slug } =
-    onseCase;
+  const {
+    title,
+    slug,
+    info: { mainImage, shortDescription, target, paid },
+  } = onseCase;
   const text = {
     ar: {
       requested: "المطلوب",
@@ -56,13 +60,13 @@ const CaseCard = ({ onseCase }) => {
     },
   };
   const { requested, remaningText, btn } = text[locale];
-  const presentage = Math.round((totalPaied / total) * 100);
+  const presentage = calculatePercentage(paid, target);
 
   return (
     <div>
       <div className="relative w-full  h-[300px] ">
         <Image
-          src={imageBuilder(image).url()}
+          src={imageBuilder(mainImage).url()}
           layout="fill"
           objectFit="cover"
         />
@@ -78,10 +82,10 @@ const CaseCard = ({ onseCase }) => {
               <CircleProgres percentage={presentage} />
               <div className="text-sm text-primaryPurple">
                 <p>
-                  {requested}: {total}$
+                  {requested}: {target}$
                 </p>
                 <p>
-                  {remaningText}: {remaining}$
+                  {remaningText}: {paid}$
                 </p>
               </div>
             </div>
