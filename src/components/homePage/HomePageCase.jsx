@@ -19,21 +19,13 @@ const HomePageCase = ({ homePagecase }) => {
 
 export default HomePageCase;
 
-
-
 const Case = ({ homePagecase }) => {
   const { locale } = useRouter();
   const {
     title,
-    totalPaied,
-    total,
-    image,
-    remaining,
-
-    shortDescription,
+    info: { target, paid, mainImage, shortDescription },
   } = homePagecase;
-  const presentage = Math.round((totalPaied / total) * 100);
-
+  const presentage = Math.round((paid / target) * 100);
   return (
     <div
       className="bg-primaryWhite flex lg:flex-row  flex-col gap-5 h-full py-5 "
@@ -41,7 +33,7 @@ const Case = ({ homePagecase }) => {
     >
       <div className=" relative w-full md:h-full h-[500px]">
         <Image
-          src={imageBuilder(image).url()}
+          src={imageBuilder(mainImage).url()}
           layout="fill"
           objectFit="cover"
         />
@@ -51,12 +43,12 @@ const Case = ({ homePagecase }) => {
           <Container>
             <div className=" flex justify-between   font-medium text-center">
               <div>
-                <p>{total}$</p>
+                <p>{target}$</p>
                 <p>المجموع</p>
               </div>
               <div>
-                <p>{remaining}$</p>
-                <p>المتبقي</p>
+                <p>{paid}$</p>
+                <p>المدفوع</p>
               </div>
             </div>
           </Container>

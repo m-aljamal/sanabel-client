@@ -5,8 +5,7 @@ import { useRouter } from "next/router";
 import { ButtonLink } from "../Button";
 import { imageBuilder } from "@/lib/sanity";
 
-
-const Achivments = ({achivmentsData}) => {
+const Achivments = ({ achivmentsData }) => {
   const { locale } = useRouter();
   return (
     <section className="bg-primaryPurple mt-1">
@@ -17,12 +16,18 @@ const Achivments = ({achivmentsData}) => {
           </li>
           {achivmentsData.map((achiv) => (
             <li className="text-white text-center" key={achiv._id}>
-              <Image src={imageBuilder(achiv.image).url() } width={70} height={70} />
-              <h2 className="sm:text-2xl text-xl font-bold">{achiv.number}</h2>
-              <h2 className="text-xl">{achiv.title[locale]}</h2>
+              <Image
+                src={imageBuilder(achiv.achievement.image).url()}
+                width={70}
+                height={70}
+              />
+              <h2 className="sm:text-2xl text-xl font-bold">
+                {achiv.achievement.number}
+              </h2>
+              <h2 className="text-xl">{achiv.achievement.title[locale]}</h2>
             </li>
           ))}
-          <li className='sm:hidden col-span-2 text-center'>
+          <li className="sm:hidden col-span-2 text-center">
             <SeeMoreAchivments />
           </li>
         </ul>

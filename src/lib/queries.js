@@ -19,15 +19,17 @@ export const latestNewsQuery = groq`*[_type == "news"] | order(newDate desc) [0.
         image,
       }`;
 
-export const homePageCasesQuery = groq`*[_type == "projectCase" && showOnHome == true ] | order(_updatedAt desc)  [0]{
+export const homePageCasesQuery = groq`*[_type == "projectCase" && info.showOnHome == true ] | order(_updatedAt desc)  [0]{
         _id,
         title,
-        shortDescription,
         slug,
-        image,
-        total,
-        totalPaied,
-       "remaining": total - totalPaied,
+        info{
+          shortDescription,
+          mainImage,
+           target,
+          paid,
+           
+      }
 } `;
 
 export const casesQuery = groq`*[_type == "projectCase"  ] | order(_updatedAt desc){
@@ -78,16 +80,19 @@ export const caseQuery = groq`*[_type == "projectCase" && slug.current == $slug]
   }
 }`;
 
-export const latestProjectsQuery = groq`*[_type == "project"] | order(_updatedAt desc)  [0...3]{
-  image, 
-  numberBeneficiaries,
-  shortDescription,
+export const latestProjectsQuery = groq`*[_type == "project" && info.showOnHome == true] | order(_updatedAt desc)  [0...3]{
+  info{
+    mainImage, 
+    numberBeneficiaries,
+    shortDescription,
+  },
   slug,
   title,
  _id,
+ 
 }`;
 
-export const projectsQuery = groq`*[_type == "project"  && info.showOnHome == true] | order(_updatedAt desc){
+export const projectsQuery = groq`*[_type == "project" ] | order(_updatedAt desc){
    
   slug,
   title,
@@ -211,7 +216,7 @@ export const successStoriesPageQuery = groq`*[_type == "success"] | order(_updat
     },
   }
 } `;
-export const successStoriesQuery = groq`*[_type == "success" && info.showOnHome == true]   | order(_updatedAt desc)[0...3]{
+export const successStoriesQuery = groq`*[_type == "success" && info.showOnHome == true] | order(_updatedAt desc)[0...3]{
   _id,
   title,
   slug,

@@ -26,12 +26,12 @@ export default LatestProjects;
 
 const ProjectCard = ({ project }) => {
   const { locale } = useRouter();
-  const { image, numberBeneficiaries, shortDescription, title, slug } = project;
+  const {  title, info:{mainImage, numberBeneficiaries, shortDescription,} } = project;
   return (
     <div className=" border border-lightPurple shadow-md transition duration-150 ease-out hover:scale-110">
       <div className="relative h-[250px] w-full ">
         <Image
-          src={imageBuilder(image).url()}
+          src={imageBuilder(mainImage).url()}
           layout="fill"
           objectFit="cover"
         />
