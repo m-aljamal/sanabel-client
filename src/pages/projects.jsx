@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { projectsQuery, projectsCategoriesQuery } from "@/lib/queries";
 import { client, imageBuilder } from "@/lib/sanity";
 import PageHero from "@/components/PageHero";
@@ -8,7 +8,6 @@ import { Container } from "@/components/Container";
 import clsx from "clsx";
 import Image from "next/image";
 import DateLocation from "@/components/DateLocation";
-import { PortableText } from "@portabletext/react";
 import Btn_Donate_Benfi from "@/components/Btn_Donate_Benfi";
 import ProgresPar from "@/components/ProgresPar";
 import { aboutAchivmetnsListQuery, partnersQury } from "@/lib/queries";
@@ -106,6 +105,7 @@ const ProjectCard = ({ project }) => {
     shortDescription,
     numberBeneficiaries,
     socialLinks,
+    date,
   } = project.info;
   const presentage = calculatePercentage(paid, target);
 
@@ -135,7 +135,7 @@ const ProjectCard = ({ project }) => {
           </p>
         </div>
         <div className="sm:flex justify-between">
-          <DateLocation date={project.date} location={location.title[locale]} />
+          <DateLocation date={date} location={location.title[locale]} />
           {project?.accept ? (
             <p className="text-sm py-2 md:py-0">{project?.accept[locale]}</p>
           ) : null}

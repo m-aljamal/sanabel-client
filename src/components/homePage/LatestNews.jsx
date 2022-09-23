@@ -1,8 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
 import Image from "next/image";
-import { LocationMarkerIcon, CalendarIcon } from "@heroicons/react/outline";
-import Link from "next/link";
 import { Title } from "../Title";
 import { imageBuilder } from "@/lib/sanity";
 import DateLocation from "../DateLocation";
@@ -25,13 +23,13 @@ const LatestNews = ({ newsData }) => {
 
 export default LatestNews;
 
-const News = ({ title, slug, newDate, location, shortDescription, image }) => {
+const News = ({ title, newDate, location, shortDescription, image }) => {
   const { locale } = useRouter();
 
   return (
     <section>
-      <a className="lg:flex gap-4">
-        <div className="relative flex-shrink-0  lg:w-44  lg:h-36 h-60   ">
+      <a className=" grid sm:grid-cols-2 grid-cols-1 gap-4">
+        <div className="relative flex-shrink-0      h-52  ">
           <Image
             src={imageBuilder(image).url()}
             layout="fill"

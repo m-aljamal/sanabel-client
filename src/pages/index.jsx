@@ -58,15 +58,28 @@ export default function Home({
 }
 
 export async function getStaticProps() {
-  const heroImages = await client.fetch(heroImagesQuery);
-  const latestNews = await client.fetch(latestNewsQuery);
-  const homePagecase = await client.fetch(homePageCasesQuery);
-  const latestProjects = await client.fetch(latestProjectsQuery);
-  const mediaData = await client.fetch(mediaQuery);
-  const achivmentsHomePage = await client.fetch(achivmentsHomePageQuery);
-  const successStories = await client.fetch(successStoriesQuery);
-  const aboutProject = await client.fetch(aboutProjectQuery);
-  const partnersLogos = await client.fetch(partnersQury);
+  const [
+    heroImages,
+    latestNews,
+    homePagecase,
+    latestProjects,
+    mediaData,
+    achivmentsHomePage,
+    successStories,
+    aboutProject,
+    partnersLogos,
+  ] = await Promise.all([
+    client.fetch(heroImagesQuery),
+    client.fetch(latestNewsQuery),
+    client.fetch(homePageCasesQuery),
+    client.fetch(latestProjectsQuery),
+    client.fetch(mediaQuery),
+    client.fetch(achivmentsHomePageQuery),
+    client.fetch(successStoriesQuery),
+    client.fetch(aboutProjectQuery),
+    client.fetch(partnersQury),
+  ]);
+
   return {
     props: {
       heroImages,

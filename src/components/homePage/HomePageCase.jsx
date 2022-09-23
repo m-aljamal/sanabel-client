@@ -7,10 +7,11 @@ import socialLinks from "@/constant/socialLinks";
 import ProgresPar from "../ProgresPar";
 import { Container } from "../Container";
 import { imageBuilder } from "@/lib/sanity";
+import clsx from "clsx";
 
 const HomePageCase = ({ homePagecase }) => {
   return (
-    <div className=" py-5">
+    <div className=" py-5 ">
       <Title title="أهم الحالات" />
       <Case homePagecase={homePagecase} />
     </div>
@@ -28,8 +29,9 @@ const Case = ({ homePagecase }) => {
   const presentage = Math.round((paid / target) * 100);
   return (
     <div
-      className="bg-primaryWhite flex lg:flex-row  flex-col gap-5 h-full py-5 "
-      style={{ direction: "rtl" }}
+      className={clsx(
+        "bg-primaryWhite flex flex-col  sm:flex-row gap-5 h-full py-5"
+      )}
     >
       <div className=" relative w-full md:h-full h-[500px]">
         <Image
