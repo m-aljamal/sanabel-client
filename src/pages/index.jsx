@@ -79,7 +79,6 @@ export async function getStaticProps() {
     client.fetch(aboutProjectQuery),
     client.fetch(partnersQury),
   ]);
-
   return {
     props: {
       heroImages,

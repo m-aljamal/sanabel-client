@@ -8,7 +8,7 @@ import React from "react";
 import { ImLocation2 } from "react-icons/im";
 import { FaPhoneVolume } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import { partnersQury } from "@/lib/queries";
+import { partnersQury, panerImageQuery } from "@/lib/queries";
 import {
   ADDRESS,
   CONTACT_EMAIL,
@@ -19,7 +19,7 @@ import {
 import { client } from "@/lib/sanity";
 import Partnars from "@/components/homePage/Partnars";
 
-const contact = ({ partnersLogos }) => {
+const contact = ({ partnersLogos, panerImage }) => {
   const { locale } = useRouter();
   const text = {
     ar: {
@@ -32,7 +32,7 @@ const contact = ({ partnersLogos }) => {
   const { title } = text[locale];
   return (
     <section>
-      <PageHero />
+      <PageHero paner={panerImage} />
       <div className="pt-10">
         <Container>
           <TitleWithIcon title={title} />
@@ -208,9 +208,12 @@ const Address = () => {
 
 export async function getStaticProps() {
   const partnersLogos = await client.fetch(partnersQury);
+  const panerImage = await client.fetch(panerImageQuery, { page: "Contact" });
+
   return {
     props: {
       partnersLogos,
+      panerImage,
     },
   };
 }

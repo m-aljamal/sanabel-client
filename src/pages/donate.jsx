@@ -4,12 +4,12 @@ import PageHero from "@/components/PageHero";
 import { TitleWithIcon } from "@/components/Title";
 import { useRouter } from "next/router";
 import React from "react";
-import { partnersQury } from "@/lib/queries";
+import { partnersQury, panerImageQuery } from "@/lib/queries";
 import Partnars from "@/components/homePage/Partnars";
 import { client } from "@/lib/sanity";
 import clsx from "clsx";
 
-const donate = ({ partnersLogos }) => {
+const donate = ({ partnersLogos, panerImage }) => {
   const { locale } = useRouter();
   const text = {
     ar: {
@@ -100,7 +100,7 @@ const donate = ({ partnersLogos }) => {
 
   return (
     <section>
-      <PageHero />
+      <PageHero paner={panerImage} />
       <div className="py-8">
         <Container>
           <TitleWithIcon title={title} />
@@ -219,9 +219,12 @@ const InputGroup = ({ children }) => {
 
 export async function getStaticProps() {
   const partnersLogos = await client.fetch(partnersQury);
+  const panerImage = await client.fetch(panerImageQuery, { page: "Donate" });
+
   return {
     props: {
       partnersLogos,
+      panerImage,
     },
   };
 }

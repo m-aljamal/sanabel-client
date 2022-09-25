@@ -1,6 +1,10 @@
 import PageHero from "@/components/PageHero";
 import React from "react";
-import { successStoriesPageQuery, partnersQury } from "@/lib/queries";
+import {
+  successStoriesPageQuery,
+  partnersQury,
+  panerImageQuery,
+} from "@/lib/queries";
 import client, { imageBuilder } from "@/lib/sanity";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -10,11 +14,11 @@ import Partnars from "@/components/homePage/Partnars";
 import Btn_Donate_Benfi from "@/components/Btn_Donate_Benfi";
 import { ButtonLink } from "@/components/Button";
 import { useText } from "@/constant/useText";
-const success = ({ successStories, partnersLogos }) => {
+const success = ({ successStories, partnersLogos, panerImage }) => {
   const { noDataFound } = useText();
   return (
     <section>
-      <PageHero />
+      <PageHero paner={panerImage} />
       <div className="space-y-10 py-20 bg-gray-100">
         {successStories.length ? (
           successStories?.map((story) => (
@@ -67,11 +71,15 @@ const SuccessCard = ({ story }) => {
 export async function getStaticProps() {
   const successStories = await client.fetch(successStoriesPageQuery);
   const partnersLogos = await client.fetch(partnersQury);
+  const panerImage = await client.fetch(panerImageQuery, {
+    page: "Success Stories",
+  });
 
   return {
     props: {
       successStories,
       partnersLogos,
+      panerImage,
     },
   };
 }

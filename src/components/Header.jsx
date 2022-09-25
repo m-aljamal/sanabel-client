@@ -1,5 +1,5 @@
 import socialLinks from "@/constant/socialLinks";
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Container } from "./Container";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,7 +9,8 @@ import { useRouter } from "next/router";
 import clsx from "clsx";
 import LocalSwitcher from "./LocalSwitcher";
 import { Popover, Transition } from "@headlessui/react";
-
+import client from "@/lib/sanity";
+import { searchQuery } from "@/lib/queries";
 const Header = () => {
   return (
     <header>
@@ -197,6 +198,21 @@ const MainLinksNav = () => {
 };
 
 const Search = () => {
+  const [search, setSearch] = React.useState("");
+  useEffect(() => {
+    const timer = setTimeout(async () => {
+      const data = await fetchSerch();
+      console.log(data);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [search]);
+
+  const fetchSerch = async () => {
+    const res = await client.fetch(searchQuery, {
+      search,
+    });
+    return res;
+  };
   return (
     <div className="flex relative ">
       <div className=" absolute left-2  text-gray-400  flex items-center   h-full">
@@ -209,9 +225,11 @@ const Search = () => {
         </svg>
       </div>
       <input
-        type="text"
+        type="search"
         placeholder="البحث...."
         className="bg-[#4a2353] border-0 rounded-md placeholder-gray-200 pl-8 focus:ring-1 focus:ring-gray-500"
+        id="search"
+        onChange={(e) => setSearch(e.target.value)}
       />
     </div>
   );

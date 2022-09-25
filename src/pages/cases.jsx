@@ -1,7 +1,7 @@
 import PageHero from "@/components/PageHero";
 import client, { imageBuilder } from "@/lib/sanity";
 import React from "react";
-import { casesQuery, partnersQury } from "@/lib/queries";
+import { casesQuery, partnersQury, panerImageQuery } from "@/lib/queries";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { Container } from "@/components/Container";
@@ -9,10 +9,10 @@ import CircleProgres from "@/components/CircleProgres";
 import { ButtonLink } from "@/components/Button";
 import Partnars from "@/components/homePage/Partnars";
 import { calculatePercentage } from "@/lib/helperFunctions";
-const cases = ({ cases, partnersLogos }) => {
+const cases = ({ cases, partnersLogos, panerImage }) => {
   return (
     <section>
-      <PageHero />
+      <PageHero paner={panerImage} />
       <div className="bg-gray-200">
         <Container>
           <div className=" grid md:grid-cols-3  sm:grid-cols-2 grid-cols-1  py-10 gap-6   ">
@@ -32,10 +32,13 @@ export default cases;
 export async function getStaticProps() {
   const cases = await client.fetch(casesQuery);
   const partnersLogos = await client.fetch(partnersQury);
+  const panerImage = await client.fetch(panerImageQuery, { page: "Cases" });
+
   return {
     props: {
       cases,
       partnersLogos,
+      panerImage,
     },
   };
 }

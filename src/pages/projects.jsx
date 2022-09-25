@@ -10,7 +10,11 @@ import Image from "next/image";
 import DateLocation from "@/components/DateLocation";
 import Btn_Donate_Benfi from "@/components/Btn_Donate_Benfi";
 import ProgresPar from "@/components/ProgresPar";
-import { aboutAchivmetnsListQuery, partnersQury } from "@/lib/queries";
+import {
+  aboutAchivmetnsListQuery,
+  partnersQury,
+  panerImageQuery,
+} from "@/lib/queries";
 import AboutAchivments from "@/components/about/AboutAchivments";
 import Partnars from "@/components/homePage/Partnars";
 import Link from "next/link";
@@ -23,6 +27,7 @@ const projects = ({
   projectsCategories,
   achivmentsList,
   partnersLogos,
+  panerImage,
 }) => {
   const { locale } = useRouter();
   const programTitle = {
@@ -48,7 +53,7 @@ const projects = ({
   const { roundedBr } = langStyle[locale];
   return (
     <section>
-      <PageHero />
+      <PageHero paner={panerImage} />
       <div className="py-10">
         <Container>
           <div className="flex justify-center mb-10">
@@ -160,6 +165,7 @@ export async function getStaticProps() {
   const projectsCategories = await client.fetch(projectsCategoriesQuery);
   const achivmentsList = await client.fetch(aboutAchivmetnsListQuery);
   const partnersLogos = await client.fetch(partnersQury);
+  const panerImage = await client.fetch(panerImageQuery, { page: "Projects" });
 
   return {
     props: {
@@ -167,6 +173,7 @@ export async function getStaticProps() {
       projectsCategories,
       achivmentsList,
       partnersLogos,
+      panerImage,
     },
   };
 }

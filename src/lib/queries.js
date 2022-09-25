@@ -166,7 +166,6 @@ export const moreProjectsQuery = groq`*[_type == "project" && slug.current != $s
     slug,
     title,
    _id,
-    
   }`;
 
 export const moreCasesQuery = groq`*[_type == "projectCase" && slug.current != $slug][0...3]{
@@ -284,3 +283,24 @@ export const aboutAchivmetnsListQuery = groq`*[_type == "achievement"] | order(_
   image,
   }
 }`;
+
+export const panerImageQuery = groq`*[_type == "panerImage"  && page == $page ] [0]{
+  image,
+  _id,
+  page,
+}`;
+
+// search query on projects and cases  where title  contains $search
+export const searchQuery = groq`*[_type == "project" || _type == "projectCase" || _type == "success"] | order(_updatedAt desc) {
+  _id,
+  title,
+  slug,
+  info{
+    mainImage,
+    shortDescription,
+    date,
+    location->{
+      title
+    },
+  }
+}[title.en match $search || title.ar match $search]`;
