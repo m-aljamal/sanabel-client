@@ -10,7 +10,7 @@ import clsx from "clsx";
 import LocalSwitcher from "./LocalSwitcher";
 import { Popover, Transition } from "@headlessui/react";
 import client from "@/lib/sanity";
-import { searchQuery } from "@/lib/queries";
+import { searchQuery, aboutAchivmetnsListQuery } from "@/lib/queries";
 const Header = () => {
   return (
     <header>
@@ -198,24 +198,62 @@ const MainLinksNav = () => {
 };
 
 const Search = () => {
-  const [search, setSearch] = React.useState("");
-  useEffect(() => {
-    const timer = setTimeout(async () => {
-      const data = await fetchSerch();
-      console.log(data);
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, [search]);
+  const [status, setStatus] = React.useState("idle");
+  const [search, setSearch] = React.useState();
+  const [isQuered, setIsQuered] = React.useState(false);
+  const [results, setResults] = React.useState();
+  const [error, setError] = React.useState();
 
-  const fetchSerch = async () => {
-    const res = await client.fetch(searchQuery, {
-      search,
+  useEffect(() => {
+    if (!isQuered) return;
+    // const timer = setTimeout(async () => {
+    setStatus("loading");
+    fetchData();
+    // }, 1000);
+    // return () => clearTimeout(timer);
+  }, [search, isQuered]);
+
+  const fetchData = async () => {
+    const res = await fetch("/api/search", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ search }),
     });
-    return res;
+    const data = await res.json();
+    if (data.error) {
+      setError(data.error);
+      setStatus("error");
+      return;
+    }
+    setResults(data);
+    setStatus("success");
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsQuered(true);
+    setSearch(e.target.elements.search.value);
+  };
+  console.log({
+    status,
+    search,
+    isQuered,
+    results,
+    error,
+  });
   return (
-    <div className="flex relative ">
-      <div className=" absolute left-2  text-gray-400  flex items-center   h-full">
+    <form className="flex relative " onSubmit={handleSubmit}>
+      <input
+        placeholder="البحث...."
+        className="bg-[#4a2353] border-0 p-2 rounded-md placeholder-gray-200  focus:ring-1 focus:ring-gray-500"
+        id="search"
+      />
+      <button
+        type="submit"
+        className=" absolute right-2  text-gray-400  flex items-center   h-full"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5 text-white"
@@ -223,15 +261,8 @@ const Search = () => {
         >
           <path d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" />
         </svg>
-      </div>
-      <input
-        type="search"
-        placeholder="البحث...."
-        className="bg-[#4a2353] border-0 rounded-md placeholder-gray-200 pl-8 focus:ring-1 focus:ring-gray-500"
-        id="search"
-        onChange={(e) => setSearch(e.target.value)}
-      />
-    </div>
+      </button>
+    </form>
   );
 };
 
