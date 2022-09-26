@@ -8,9 +8,10 @@ import { links } from "@/constant/links";
 import { useRouter } from "next/router";
 import clsx from "clsx";
 import LocalSwitcher from "./LocalSwitcher";
-import { Popover, Transition } from "@headlessui/react";
-import client from "@/lib/sanity";
+import { Popover, Transition, Dialog } from "@headlessui/react";
+import client, { imageBuilder } from "@/lib/sanity";
 import { searchQuery, aboutAchivmetnsListQuery } from "@/lib/queries";
+import { useAsync } from "@/hooks/useAsync";
 const Header = () => {
   return (
     <header>
@@ -169,7 +170,23 @@ const MobileNav = () => {
 };
 
 const MainLinksNav = () => {
+  const { data, error, run, isLoading, status, isError, isSuccess } =
+    useAsync();
+  console.log({ data, error, isLoading, status, isError, isSuccess });
   const { locale } = useRouter();
+  let [isOpen, setIsOpen] = React.useState(false);
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  useEffect(() => {
+    data?.length > 0 && openModal();
+  }, [data]);
+
   return (
     <nav className="bg-darkPurple text-white">
       <Container>
@@ -187,8 +204,77 @@ const MainLinksNav = () => {
             <li>
               <LocalSwitcher />
             </li>
-            <li className="hidden lg:block">
-              <Search />
+            <li className="hidden lg:block relative">
+              <Search run={run} openModal={openModal} />
+              <>
+                <Transition appear show={isOpen} as={Fragment}>
+                  <Dialog
+                    as="div"
+                    className="relative z-10"
+                    onClose={closeModal}
+                  >
+                    <Transition.Child
+                      as={Fragment}
+                      enter="ease-out duration-300"
+                      enterFrom="opacity-0"
+                      enterTo="opacity-100"
+                      leave="ease-in duration-200"
+                      leaveFrom="opacity-100"
+                      leaveTo="opacity-0"
+                    >
+                      <div className="fixed inset-0 bg-black bg-opacity-25" />
+                    </Transition.Child>
+
+                    <div className="fixed inset-0 overflow-y-auto">
+                      <div className="flex min-h-full items-center justify-center p-4 text-center">
+                        <Transition.Child
+                          as={Fragment}
+                          enter="ease-out duration-300"
+                          enterFrom="opacity-0 scale-95"
+                          enterTo="opacity-100 scale-100"
+                          leave="ease-in duration-200"
+                          leaveFrom="opacity-100 scale-100"
+                          leaveTo="opacity-0 scale-95"
+                        >
+                          <Dialog.Panel className="w-full max-w-sm transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                            {/* <Dialog.Title
+                              as="h3"
+                              className="text-lg font-medium leading-6 text-gray-900"
+                            >
+                              Payment successful
+                            </Dialog.Title> */}
+                            <div className="mt-2 space-y-3">
+                              {data?.map((item) => (
+                                <div key={item._id} className='flex justify-center gap-5 '>
+                                  <p className="text-primaryPurple font-medium">{item.title[locale]}</p>
+                                  <Image
+                                    src={imageBuilder(
+                                      item.info.mainImage
+                                    ).url()}
+                                    width={150}
+                                    height={80}
+                                    objectFit="cover"
+                                  />
+                                </div>
+                              ))}
+                            </div>
+
+                            {/* <div className="mt-4">
+                              <button
+                                type="button"
+                                className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                onClick={closeModal}
+                              >
+                                Got it, thanks!
+                              </button>
+                            </div> */}
+                          </Dialog.Panel>
+                        </Transition.Child>
+                      </div>
+                    </div>
+                  </Dialog>
+                </Transition>
+              </>
             </li>
           </ul>
         </div>
@@ -197,52 +283,30 @@ const MainLinksNav = () => {
   );
 };
 
-const Search = () => {
-  const [status, setStatus] = React.useState("idle");
+const Search = ({ run }) => {
   const [search, setSearch] = React.useState();
   const [isQuered, setIsQuered] = React.useState(false);
-  const [results, setResults] = React.useState();
-  const [error, setError] = React.useState();
 
   useEffect(() => {
     if (!isQuered) return;
-    // const timer = setTimeout(async () => {
-    setStatus("loading");
-    fetchData();
-    // }, 1000);
-    // return () => clearTimeout(timer);
-  }, [search, isQuered]);
 
-  const fetchData = async () => {
-    const res = await fetch("/api/search", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ search }),
-    });
-    const data = await res.json();
-    if (data.error) {
-      setError(data.error);
-      setStatus("error");
-      return;
-    }
-    setResults(data);
-    setStatus("success");
-  };
+    run(
+      fetch("/api/search", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ search }),
+      })
+    );
+  }, [search, isQuered, run]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsQuered(true);
     setSearch(e.target.elements.search.value);
   };
-  console.log({
-    status,
-    search,
-    isQuered,
-    results,
-    error,
-  });
+
   return (
     <form className="flex relative " onSubmit={handleSubmit}>
       <input

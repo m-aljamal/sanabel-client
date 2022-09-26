@@ -295,6 +295,7 @@ export const searchQuery = groq`*[_type == "project" || _type == "projectCase" |
   _id,
   title,
   slug,
+  _type,
   info{
     mainImage,
     shortDescription,

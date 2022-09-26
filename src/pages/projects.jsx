@@ -122,10 +122,14 @@ const ProjectCard = ({ project }) => {
           layout="fill"
           objectFit="cover"
         />
-        <div className=" absolute  z-10 bg-white  bottom-0 right-0 left-0  h-20 opacity-60 " />
-        <div className=" absolute bottom-0 z-20 text-primaryPurple left-0 right-0 px-1 ">
-          <ProgresPar present={presentage} />
-        </div>
+        {presentage ? (
+          <>
+            <div className=" absolute  z-10 bg-white  bottom-0 right-0 left-0  h-20 opacity-60 " />
+            <div className=" absolute bottom-0 z-20 text-primaryPurple left-0 right-0 px-1 ">
+              <ProgresPar present={presentage} />
+            </div>
+          </>
+        ) : null}
       </div>
       <div className="p-5">
         <h1 className="text-primaryPurple font-medium">
@@ -146,7 +150,7 @@ const ProjectCard = ({ project }) => {
           ) : null}
         </div>
         <div className="my-8">
-          <p>{shortDescription[locale]}</p>
+          <p>{shortDescription && shortDescription[locale]}</p>
           <Link href={`project/${project.slug.current}`}>المزيد....</Link>
         </div>
         <div className="lg:flex justify-between items-center">
