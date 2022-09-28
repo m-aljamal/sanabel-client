@@ -175,12 +175,19 @@ const MainLinksNav = () => {
   console.log({ data, error, isLoading, status, isError, isSuccess });
   const { locale } = useRouter();
   let [isOpen, setIsOpen] = React.useState(false);
+
   function closeModal() {
     setIsOpen(false);
   }
 
   function openModal() {
     setIsOpen(true);
+  }
+
+  function setOnOpen() {
+    if (data?.length && !isOpen) {
+      setIsOpen(true);
+    }
   }
 
   useEffect(() => {
@@ -205,9 +212,13 @@ const MainLinksNav = () => {
               <LocalSwitcher />
             </li>
             <li className="hidden lg:block relative">
-              <Search run={run} openModal={openModal} />
+              <Search run={run} openModal={openModal} setOnOpen={setOnOpen} />
               <>
-                <Transition appear show={isOpen} as={Fragment}>
+                <Transition
+                  appear
+                  show={isOpen && data.length > 0}
+                  as={Fragment}
+                >
                   <Dialog
                     as="div"
                     className="relative z-10"
@@ -245,8 +256,13 @@ const MainLinksNav = () => {
                             </Dialog.Title> */}
                             <div className="mt-2 space-y-3">
                               {data?.map((item) => (
-                                <div key={item._id} className='flex justify-center gap-5 '>
-                                  <p className="text-primaryPurple font-medium">{item.title[locale]}</p>
+                                <div
+                                  key={item._id}
+                                  className="flex justify-center gap-5 "
+                                >
+                                  <p className="text-primaryPurple font-medium">
+                                    {item.title[locale]}
+                                  </p>
                                   <Image
                                     src={imageBuilder(
                                       item.info.mainImage
@@ -283,7 +299,7 @@ const MainLinksNav = () => {
   );
 };
 
-const Search = ({ run }) => {
+const Search = ({ run, setOnOpen }) => {
   const [search, setSearch] = React.useState();
   const [isQuered, setIsQuered] = React.useState(false);
 
@@ -317,6 +333,7 @@ const Search = ({ run }) => {
       <button
         type="submit"
         className=" absolute right-2  text-gray-400  flex items-center   h-full"
+        onClick={setOnOpen}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

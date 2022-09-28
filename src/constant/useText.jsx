@@ -15,6 +15,7 @@ export const useText = () => {
       CasesText: "الحالات",
       successStoryText: "قصص النجاح",
       noDataFound: "لم يتم العثور على بيانات",
+      seeMoreText: "شاهد المزيد",
     },
     en: {
       targetText: "Target",
@@ -27,6 +28,7 @@ export const useText = () => {
       CasesText: "Cases",
       successStoryText: "Success Stories",
       noDataFound: "No Data Found",
+      seeMoreText: "See More",
     },
   };
 

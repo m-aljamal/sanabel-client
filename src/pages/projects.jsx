@@ -8,7 +8,6 @@ import { Container } from "@/components/Container";
 import clsx from "clsx";
 import Image from "next/image";
 import DateLocation from "@/components/DateLocation";
-import Btn_Donate_Benfi from "@/components/Btn_Donate_Benfi";
 import ProgresPar from "@/components/ProgresPar";
 import {
   aboutAchivmetnsListQuery,
@@ -17,11 +16,11 @@ import {
 } from "@/lib/queries";
 import AboutAchivments from "@/components/about/AboutAchivments";
 import Partnars from "@/components/homePage/Partnars";
-import Link from "next/link";
 import ContentSocialLinks from "@/components/ContentSocialLinks";
 import { useText } from "@/constant/useText";
 import { calculatePercentage } from "@/lib/helperFunctions";
 import { useProjectCategory, allCategory } from "@/context/ProjectCategory";
+import { ButtonLink } from "@/components/Button";
 const projects = ({
   projects,
   projectsCategories,
@@ -101,19 +100,17 @@ export default projects;
 const ProjectCard = ({ project }) => {
   const { locale } = useRouter();
 
-  const { targetText, totalText } = useText();
+  const { targetText, totalText, donateNowText, seeMoreText } = useText();
   const {
     mainImage,
     target,
     paid,
     location,
     shortDescription,
-    numberBeneficiaries,
     socialLinks,
     date,
   } = project.info;
   const presentage = calculatePercentage(paid, target);
-
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 gap-2 mt-10 border  border-primaryPurple">
       <div className="relative w-full h-80 md:h-auto ">
@@ -151,10 +148,20 @@ const ProjectCard = ({ project }) => {
         </div>
         <div className="my-8">
           <p>{shortDescription && shortDescription[locale]}</p>
-          <Link href={`project/${project.slug.current}`}>المزيد....</Link>
         </div>
         <div className="lg:flex justify-between items-center">
-          <Btn_Donate_Benfi numberBeneficiaries={numberBeneficiaries} />
+          <div className="flex md:flex-row flex-col gap-4">
+            <ButtonLink href="/donate" className="px-6">
+              {donateNowText}
+            </ButtonLink>
+            <ButtonLink
+              variant="outline"
+              className="text-[12px] px-3 font-medium"
+              href={`project/${project.slug.current}`}
+            >
+              {seeMoreText}
+            </ButtonLink>
+          </div>
           {project.socialLinks && (
             <ContentSocialLinks socialLinks={socialLinks} />
           )}

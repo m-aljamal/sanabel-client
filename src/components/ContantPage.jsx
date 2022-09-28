@@ -95,7 +95,12 @@ const ContantPage = ({
                     className=" flex-wrap"
                   />
                 </div>
-                <PortableText value={body[locale]} />
+                {body && (
+                  <div className="mt-7">
+                    <PortableText blocks={body} />
+                  </div>
+                )}
+
                 <div className="flex gap-8 flex-wrap">
                   {achivments?.map((achiv) => (
                     <Achivment
@@ -106,17 +111,22 @@ const ContantPage = ({
                     />
                   ))}
                 </div>
-                <div className="flex justify-between pt-5 items-center font-semibold">
-                  <div className="text-primaryPurple">
-                    <span>{totalText}: </span>
-                    <span>{paid}$</span>
+
+                {target && paid && target > paid ? (
+                  <div>
+                    <div className="flex justify-between pt-5 items-center font-semibold">
+                      <div className="text-primaryPurple">
+                        <span>{totalText}: </span>
+                        <span>{paid}$</span>
+                      </div>
+                      <div className="text-red-600">
+                        <span>{targetText}: </span>
+                        <span>{target}$</span>
+                      </div>
+                    </div>
+                    <ProgresPar present={presentage} className="px-0" />
                   </div>
-                  <div className="text-red-600">
-                    <span>{targetText}: </span>
-                    <span>{target}$</span>
-                  </div>
-                </div>
-                <ProgresPar present={presentage} className="px-0" />
+                ) : null}
                 <div className="pt-5">
                   <ButtonLink href="/donate" className="rounded-none ">
                     {donateNowText}
