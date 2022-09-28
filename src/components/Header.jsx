@@ -212,11 +212,17 @@ const MainLinksNav = () => {
               <LocalSwitcher />
             </li>
             <li className="hidden lg:block relative">
-              <Search run={run} openModal={openModal} setOnOpen={setOnOpen} />
+              <Search
+                run={run}
+                isOpen={isOpen}
+                openModal={openModal}
+                setOnOpen={setOnOpen}
+                isLoading={isLoading}
+              />
               <>
                 <Transition
                   appear
-                  show={isOpen && data.length > 0}
+                  show={isOpen && data.length > 0 && !isLoading}
                   as={Fragment}
                 >
                   <Dialog
@@ -299,10 +305,10 @@ const MainLinksNav = () => {
   );
 };
 
-const Search = ({ run, setOnOpen }) => {
+const Search = ({ run, setOnOpen, isLoading, isOpen }) => {
   const [search, setSearch] = React.useState();
   const [isQuered, setIsQuered] = React.useState(false);
-
+  const { locale } = useRouter();
   useEffect(() => {
     if (!isQuered) return;
 
@@ -329,20 +335,28 @@ const Search = ({ run, setOnOpen }) => {
         placeholder="البحث...."
         className="bg-[#4a2353] border-0 p-2 rounded-md placeholder-gray-200  focus:ring-1 focus:ring-gray-500"
         id="search"
+        disabled={isOpen}
       />
-      <button
-        type="submit"
-        className=" absolute right-2  text-gray-400  flex items-center   h-full"
-        onClick={setOnOpen}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 text-white"
-          fill="currentColor"
+      {isLoading ? (
+        <p>Loding..</p>
+      ) : (
+        <button
+          type="submit"
+          className={clsx(
+            " absolute   text-gray-400    flex items-center h-full",
+            locale === "en" ? "right-2" : "left-2"
+          )}
+          onClick={setOnOpen}
         >
-          <path d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" />
-        </svg>
-      </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 text-white"
+            fill="currentColor"
+          >
+            <path d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" />
+          </svg>
+        </button>
+      )}
     </form>
   );
 };
