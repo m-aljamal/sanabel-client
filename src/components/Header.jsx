@@ -12,6 +12,7 @@ import { Popover, Transition, Dialog } from "@headlessui/react";
 import client, { imageBuilder } from "@/lib/sanity";
 import { searchQuery, aboutAchivmetnsListQuery } from "@/lib/queries";
 import { useAsync } from "@/hooks/useAsync";
+import { useText } from "@/constant/useText";
 const Header = () => {
   return (
     <header>
@@ -172,8 +173,8 @@ const MobileNav = () => {
 const MainLinksNav = () => {
   const { data, error, run, isLoading, status, isError, isSuccess } =
     useAsync();
-  console.log({ data, error, isLoading, status, isError, isSuccess });
-  const { locale } = useRouter();
+
+  const { locale, asPath } = useRouter();
   let [isOpen, setIsOpen] = React.useState(false);
 
   function closeModal() {
@@ -191,9 +192,20 @@ const MainLinksNav = () => {
   }
 
   useEffect(() => {
-    data?.length > 0 && openModal();
+    openModal();
   }, [data]);
 
+  useEffect(() => {
+    closeModal();
+  }, [asPath]);
+
+  const searchLinks = {
+    project: "/project",
+    projectCase: "/case",
+    success: "/success-story",
+  };
+
+  const { foundSearch, notFoundSearch } = useText();
   return (
     <nav className="bg-darkPurple text-white">
       <Container>
@@ -220,11 +232,7 @@ const MainLinksNav = () => {
                 isLoading={isLoading}
               />
               <>
-                <Transition
-                  appear
-                  show={isOpen && data.length > 0 && !isLoading}
-                  as={Fragment}
-                >
+                <Transition appear show={isOpen && !isLoading} as={Fragment}>
                   <Dialog
                     as="div"
                     className="relative z-10"
@@ -254,42 +262,40 @@ const MainLinksNav = () => {
                           leaveTo="opacity-0 scale-95"
                         >
                           <Dialog.Panel className="w-full max-w-sm transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                            {/* <Dialog.Title
+                            <Dialog.Title
                               as="h3"
-                              className="text-lg font-medium leading-6 text-gray-900"
+                              className="text-lg font-medium leading-6 text-gray-900 text-center mb-5"
                             >
-                              Payment successful
-                            </Dialog.Title> */}
+                              {data?.length ? foundSearch : notFoundSearch}
+                            </Dialog.Title>
                             <div className="mt-2 space-y-3">
                               {data?.map((item) => (
                                 <div
                                   key={item._id}
-                                  className="flex justify-center gap-5 "
+                                  className=" shadow-md p-2   "
                                 >
-                                  <p className="text-primaryPurple font-medium">
-                                    {item.title[locale]}
-                                  </p>
-                                  <Image
-                                    src={imageBuilder(
-                                      item.info.mainImage
-                                    ).url()}
-                                    width={150}
-                                    height={80}
-                                    objectFit="cover"
-                                  />
+                                  <Link
+                                    href={`${searchLinks[item._type]}/${
+                                      item.slug.current
+                                    }`}
+                                  >
+                                    <a className=" grid grid-cols-2 text-right gap-4 ">
+                                      <p className="text-primaryPurple font-medium">
+                                        {item.title[locale]}
+                                      </p>
+                                      <Image
+                                        src={imageBuilder(
+                                          item.info.mainImage
+                                        ).url()}
+                                        width={150}
+                                        height={80}
+                                        objectFit="cover"
+                                      />
+                                    </a>
+                                  </Link>
                                 </div>
                               ))}
                             </div>
-
-                            {/* <div className="mt-4">
-                              <button
-                                type="button"
-                                className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                                onClick={closeModal}
-                              >
-                                Got it, thanks!
-                              </button>
-                            </div> */}
                           </Dialog.Panel>
                         </Transition.Child>
                       </div>
@@ -337,17 +343,37 @@ const Search = ({ run, setOnOpen, isLoading, isOpen }) => {
         id="search"
         disabled={isOpen}
       />
-      {isLoading ? (
-        <p>Loding..</p>
-      ) : (
-        <button
-          type="submit"
-          className={clsx(
-            " absolute   text-gray-400    flex items-center h-full",
-            locale === "en" ? "right-2" : "left-2"
-          )}
-          onClick={setOnOpen}
-        >
+
+      <button
+        type="submit"
+        className={clsx(
+          " absolute   text-gray-400    flex items-center h-full",
+          locale === "en" ? "right-2" : "left-2"
+        )}
+        onClick={setOnOpen}
+      >
+        {isLoading ? (
+          <svg
+            className={`animate-spin h-7 w-7 `}
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            ></circle>
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+          </svg>
+        ) : (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5 text-white"
@@ -355,8 +381,8 @@ const Search = ({ run, setOnOpen, isLoading, isOpen }) => {
           >
             <path d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" />
           </svg>
-        </button>
-      )}
+        )}
+      </button>
     </form>
   );
 };
