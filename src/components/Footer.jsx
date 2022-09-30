@@ -16,52 +16,19 @@ const Footer = () => {
   return (
     <footer className=" bg-primaryPurple  pt-10 pb-5 relative">
       <Container>
-        <div className="  grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4   gap-5 justify-items-center      ">
-          {/* start address */}
-          <div>
-            <div className="relative md:h-20 h-14 ">
-              <Image
-                src="/images/footer/logoWhite.svg"
-                layout="fill"
-                objectFit="contain"
-              />
-            </div>
-            <div className="text-white space-y-3 ">
-              <p className="text-sm mt-5">
-                لمتابعتنا ولمشاهدة المزيد يرجى التواصل عبر الحسابات التالية:
-              </p>
-              <FooterAddress
-                icon="/images/footer/location.svg"
-                label="Kilis-Turkey"
-              />
-              <FooterAddress
-                icon="/images/footer/phone.svg"
-                label="+90 534 779 30 22"
-                style={{ direction: "ltr" }}
-              />
-              <FooterAddress
-                icon="/images/footer/mail.svg"
-                label="info@sanabelsao.org"
-              />
-              <div className="flex gap-2 justify-center sm:justify-start">
-                {socialLinks.map((s) => (
-                  <a
-                    href={s.link}
-                    key={s.id}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="  rounded-full border border-white p-[5px]"
-                  >
-                    <s.icon className="socialIconFooter" />
-                  </a>
-                ))}
-              </div>
-            </div>
+        <div className="   flex   ">
+          <div className="relative  w-1/3  ">
+            <Image
+              src="/images/whiteLogo.svg"
+              width={200}
+              height={100}
+              objectFit="contain"
+            />
           </div>
-          {/* start Pages */}
-          <div className="text-white mt-5 hidden sm:block">
-            <h2 className="font-bold mb-8">الصفحات</h2>
-            <ul className="space-y-3">
+
+          <div className="text-white   w-full">
+            <h2 className="font-bold mb-5">الصفحات</h2>
+            <ul className=" grid grid-cols-5  gap-x-8 gap-y-5">
               {links.map(({ id, href, label }) => (
                 <li key={id}>
                   <Link href={href}>
@@ -71,42 +38,12 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-          {/* start News */}
-          <div className="text-white mt-5 hidden md:block">
-            <h2 className="font-bold mb-8">اخر الأخبار </h2>
-            <ul className="space-y-5">
-              {/* {newsData.map(({ id, text }) => (
-                <li key={id}>{text[locale]?.title}</li>
-              ))} */}
-            </ul>
-          </div>
-          {/* start form */}
-          <div>
-            <div className="text-white mt-5 hidden sm:block">
-              <h2 className="font-bold mb-8">فورم التواصل</h2>
-              <form className=" space-y-2">
-                <input
-                  placeholder="الاسم الكامل"
-                  className="bg-gray-300 px-3 py-1 w-full"
-                />
-                <input
-                  placeholder="الموضوع"
-                  className="bg-gray-300 px-3 py-1 w-full"
-                />
-                <textarea
-                  placeholder="نص الرسالة"
-                  className="bg-gray-300 px-3 py-1 w-full"
-                />
-                <button className=" bg-white  text-primaryPurple font-semibold px-3 py-1 w-full">
-                  إرسال
-                </button>
-              </form>
-            </div>
-          </div>
         </div>
         <div>
           <div className="bg-gray-200 h-[1px] w-full absolute left-0 right-0 bottom-[60px]"></div>
-          <p className="text-white w-full text-center pt-16  text-sm">{text.rights[locale]} {new Date().getFullYear()}</p>
+          <p className="text-white w-full text-center pt-16  text-sm">
+            {text.rights[locale]} {new Date().getFullYear()}
+          </p>
         </div>
       </Container>
     </footer>
