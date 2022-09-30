@@ -61,3 +61,25 @@ export function ButtonLink({
     </Link>
   );
 }
+
+export function OutLink({
+  variant = "solid",
+  color = "slate",
+  href,
+  className,
+  ...props
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={clsx(
+        baseStyles[variant],
+        variantStyles[variant][color],
+        className
+      )}
+      {...props}
+    />
+  );
+}

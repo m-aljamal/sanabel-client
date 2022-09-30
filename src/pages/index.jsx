@@ -20,6 +20,7 @@ import {
   successStoriesQuery,
   aboutProjectQuery,
   partnersQury,
+  formQuery,
 } from "@/lib/queries";
 export default function Home({
   heroImages,
@@ -31,6 +32,7 @@ export default function Home({
   successStories,
   aboutProject,
   partnersLogos,
+  forms,
 }) {
   return (
     <>
@@ -43,7 +45,7 @@ export default function Home({
       </Head>
       <main>
         <Hero heroImages={heroImages} />
-        <JoinUs />
+        <JoinUs forms={forms} />
         <Latest newsData={latestNews} homePagecase={homePagecase} />
         <LatestProjects projects={latestProjects} />
         <About />
@@ -68,6 +70,7 @@ export async function getStaticProps() {
     successStories,
     aboutProject,
     partnersLogos,
+    forms,
   ] = await Promise.all([
     client.fetch(heroImagesQuery),
     client.fetch(latestNewsQuery),
@@ -78,6 +81,7 @@ export async function getStaticProps() {
     client.fetch(successStoriesQuery),
     client.fetch(aboutProjectQuery),
     client.fetch(partnersQury),
+    client.fetch(formQuery),
   ]);
   return {
     props: {
@@ -90,6 +94,7 @@ export async function getStaticProps() {
       successStories,
       aboutProject,
       partnersLogos,
+      forms,
     },
   };
 }

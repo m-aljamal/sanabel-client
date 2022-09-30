@@ -155,8 +155,6 @@ export const projectQuery = groq`*[_type == "project" && slug.current == $slug][
       _key
     } 
   }
-    
-    
   }`;
 
 export const moreProjectsQuery = groq`*[_type == "project" && slug.current != $slug][0...3]{
@@ -290,7 +288,6 @@ export const panerImageQuery = groq`*[_type == "panerImage"  && page == $page ] 
   page,
 }`;
 
-// search query on projects and cases  where title  contains $search
 export const searchQuery = groq`*[_type == "project" || _type == "projectCase" || _type == "success"] | order(_updatedAt desc) {
   _id,
   title,
@@ -305,3 +302,13 @@ export const searchQuery = groq`*[_type == "project" || _type == "projectCase" |
     },
   }
 }[title.en match $search || title.ar match $search]`;
+
+export const formQuery = groq`*[_type == "form"]{
+  _id,
+  slug,
+  title,
+  description,
+  icon,
+  backgroundImage,
+  btnText
+}`;
