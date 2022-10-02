@@ -18,6 +18,7 @@ export const useText = () => {
       seeMoreText: "شاهد المزيد",
       foundSearch: "نتائج البحث",
       notFoundSearch: "لم يتم العثور على نتائج",
+      loadingText: "الرجاء الانتظار",
     },
     en: {
       targetText: "Target",
@@ -33,6 +34,7 @@ export const useText = () => {
       seeMoreText: "See More",
       foundSearch: "Search Results",
       notFoundSearch: "No Results Found",
+      loadingText: "Please Wait",
     },
   };
 

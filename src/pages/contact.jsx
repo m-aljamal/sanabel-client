@@ -1,4 +1,4 @@
-import { Button } from "@/components/Button";
+import { Button, LoadingBtn } from "@/components/Button";
 import { Container } from "@/components/Container";
 import PageHero from "@/components/PageHero";
 import { TitleWithIcon } from "@/components/Title";
@@ -18,6 +18,7 @@ import {
 } from "@/constant/info";
 import { client } from "@/lib/sanity";
 import Partnars from "@/components/homePage/Partnars";
+import { useAsync } from "@/hooks/useAsync";
 
 const contact = ({ partnersLogos, panerImage }) => {
   const { locale } = useRouter();
@@ -104,11 +105,33 @@ const Form = () => {
       send: "Send Message",
     },
   };
-
   const { locale } = useRouter();
   const { title, name, subject, email, phone, message, send } = text[locale];
+  const { run, data, isError, isLoading, status } = useAsync();
+  console.log({
+    data,
+    isError,
+    isLoading,
+  });
   const handleSubmit = (e) => {
     e.preventDefault();
+    run(
+      fetch("/api/sendmail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: e.target.fullName.value,
+          subject: e.target.subject.value,
+          email: e.target.email.value,
+          phone: e.target.phoneNumber.value,
+          message: e.target.message.value,
+          messageFrom: "contact form",
+        }),
+      })
+    );
     console.log({
       name: e.target.fullName.value,
       subject: e.target.subject.value,
@@ -135,9 +158,13 @@ const Form = () => {
               className="w-full border border-primaryPurple active:border-black resize-none focus:outline-none focus:border-black focus:ring-black focus:ring-1 sm:text-sm"
             />
           </div>
-          <Button type="submit" className="rounded-none w-full mt-5">
+          <LoadingBtn
+            type="submit"
+            className="rounded-none w-full mt-5"
+            loading={isLoading}
+          >
             {send}
-          </Button>
+          </LoadingBtn>
         </form>
         <Address />
       </div>

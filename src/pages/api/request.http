@@ -1,0 +1,11 @@
+### 
+POST http://localhost:3000/api/sendmail
+Content-Type: application/json
+
+{
+    "email": "test@gmail.com",
+    "name": "john",
+    "message": "hello world",
+    "subject":"contac",
+    "phone":"0095"
+}

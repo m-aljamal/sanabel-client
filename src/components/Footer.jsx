@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { links } from "@/constant/links";
 import { useRouter } from "next/router";
-import socialLinks from "@/constant/socialLinks";
 const Footer = () => {
   const { locale } = useRouter();
   const text = {
@@ -14,21 +13,21 @@ const Footer = () => {
     },
   };
   return (
-    <footer className=" bg-primaryPurple  pt-10 pb-5 relative">
+    <footer className=" bg-primaryPurple  pt-5 pb-3 relative">
       <Container>
-        <div className="   flex   ">
-          <div className="relative  w-1/3  ">
+        <div className="sm:flex items-center justify-around ">
+          <div className="relative    flex-shrink-0 text-center  ">
             <Image
-              src="/images/whiteLogo.svg"
-              width={200}
-              height={100}
+              src="/images/footer/whiteLogoWithText.svg"
+              width={250}
+              height={180}
               objectFit="contain"
             />
           </div>
 
-          <div className="text-white   w-full">
+          <div className="text-white   ">
             <h2 className="font-bold mb-5">الصفحات</h2>
-            <ul className=" grid grid-cols-5  gap-x-8 gap-y-5">
+            <ul className=" grid md:grid-cols-5  grid-cols-3 gap-x-8 gap-y-5">
               {links.map(({ id, href, label }) => (
                 <li key={id}>
                   <Link href={href}>
@@ -51,16 +50,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-const FooterAddress = ({ icon, label, ...props }) => {
-  return (
-    <div className="flex gap-2 items-center justify-center sm:justify-start ">
-      <div>
-        <Image src={icon} width={40} height={30} objectFit="fill" />
-      </div>
-      <p className="text-white" {...props}>
-        {label}
-      </p>
-    </div>
-  );
-};

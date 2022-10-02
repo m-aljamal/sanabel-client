@@ -1,5 +1,7 @@
 import Link from "next/link";
 import clsx from "clsx";
+import LoadingSpinner from "./LoadingSpinner";
+import { useText } from "@/constant/useText";
 
 const baseStyles = {
   solid:
@@ -81,5 +83,29 @@ export function OutLink({
       )}
       {...props}
     />
+  );
+}
+
+export function LoadingBtn({
+  variant = "solid",
+  color = "slate",
+  className,
+  loading = false,
+  ...props
+}) {
+  const { loadingText } = useText();
+  return (
+    <button
+      className={clsx(
+        baseStyles[variant],
+        variantStyles[variant][color],
+        className
+      )}
+      disabled={loading}
+      {...props}
+    >
+      {loading ? loadingText : props.children}
+      {loading && <LoadingSpinner className="ml-2" />}
+    </button>
   );
 }
