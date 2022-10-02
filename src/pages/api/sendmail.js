@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 export default async function sendEmail(req, res) {
   const { name, email, message, phone, subject, messageFrom } = req.body;
   const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
+    host: " ",
     port: 587,
     secure: process.env.NODE_ENV === "production",
     auth: {
@@ -27,8 +27,16 @@ export default async function sendEmail(req, res) {
 
   try {
     const info = await transporter.sendMail(mailOptions);
-    res.status(200).json({ data: info });
+    res.status(200).json({
+      en: "Message sent successfully",
+      ar: "تم ارسال الرسالة بنجاح",
+    });
   } catch (error) {
-    res.status(500).json({ error });
+    res.status(500).json({
+      error: {
+        en: "Error sending message",
+        ar: "خطأ في ارسال الرسالة",
+      },
+    });
   }
 }

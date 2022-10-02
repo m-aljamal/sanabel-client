@@ -19,7 +19,7 @@ import {
 import { client } from "@/lib/sanity";
 import Partnars from "@/components/homePage/Partnars";
 import { useAsync } from "@/hooks/useAsync";
-
+import { BiErrorAlt } from "react-icons/bi";
 const contact = ({ partnersLogos, panerImage }) => {
   const { locale } = useRouter();
   const text = {
@@ -107,12 +107,8 @@ const Form = () => {
   };
   const { locale } = useRouter();
   const { title, name, subject, email, phone, message, send } = text[locale];
-  const { run, data, isError, isLoading, status } = useAsync();
-  console.log({
-    data,
-    isError,
-    isLoading,
-  });
+  const { run, data, isError, isLoading, status, error } = useAsync();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     run(
@@ -132,17 +128,25 @@ const Form = () => {
         }),
       })
     );
-    console.log({
-      name: e.target.fullName.value,
-      subject: e.target.subject.value,
-      email: e.target.email.value,
-      phone: e.target.phoneNumber.value,
-      message: e.target.message.value,
-    });
   };
+  console.log({
+    data,
+    isError,
+    error,
+    status,
+  });
   return (
     <div>
       <h2 className="text-primaryPurple font-bold py-5">{title}</h2>
+      {isError && (
+        <div className="flex gap-1 items-center">
+          <BiErrorAlt className="h-5 w-5 text-red-700" />
+          <p className="text-lg text-red-500  ">{error[locale]}</p>
+        </div>
+      )}
+      {status === "resolved" && (
+        <p className="text-lg text-green-700 py-4 ">{data[locale]}</p>
+      )}
       <div className="flex flex-col md:flex-row gap-5">
         <form onSubmit={handleSubmit} className="md:w-3/4">
           <div className="flex flex-col md:flex-row  gap-5 ">
