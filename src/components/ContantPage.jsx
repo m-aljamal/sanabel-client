@@ -62,7 +62,6 @@ const ContantPage = ({
       images,
     },
   } = pageContent;
-
   const presentage = calculatePercentage(paid, target);
   const { setSelectedCategory } = useProjectCategory();
   const { locale } = useRouter();
@@ -97,7 +96,7 @@ const ContantPage = ({
                 </div>
                 {body && (
                   <div className="mt-7">
-                    <PortableText blocks={body} />
+                    <PortableText value={body[locale]} />
                   </div>
                 )}
 
