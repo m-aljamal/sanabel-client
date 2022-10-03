@@ -8,7 +8,6 @@ const Latest = ({ newsData, homePagecase }) => {
       <Container>
         <div className=" grid lg:grid-cols-2 grid-cols-1 gap-6   ">
           <LatestNews newsData={newsData} />
-
           <HomePageCase homePagecase={homePagecase} />
         </div>
       </Container>

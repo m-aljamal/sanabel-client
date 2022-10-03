@@ -3,16 +3,17 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { ButtonLink } from "../Button";
 import { Title } from "../Title";
-import socialLinks from "@/constant/socialLinks";
 import ProgresPar from "../ProgresPar";
 import { Container } from "../Container";
 import { imageBuilder } from "@/lib/sanity";
 import clsx from "clsx";
-
+import { useText } from "@/constant/useText";
+import ContentSocialLinks from "@/components/ContentSocialLinks";
 const HomePageCase = ({ homePagecase }) => {
+  const { latestCasesText } = useText();
   return (
     <div className=" py-5 ">
-      <Title title="أهم الحالات" />
+      <Title title={latestCasesText} />
       <Case homePagecase={homePagecase} />
     </div>
   );
@@ -24,9 +25,12 @@ const Case = ({ homePagecase }) => {
   const { locale } = useRouter();
   const {
     title,
-    info: { target, paid, mainImage, shortDescription },
+    slug,
+    info: { target, paid, mainImage, shortDescription, socialLinks },
   } = homePagecase;
-  const presentage = Math.round((paid / target) * 100);
+  const { totalText, targetText, donateNowText, seeMore, helpUsSocialText } =
+    useText();
+
   return (
     <div
       className={clsx(
@@ -39,18 +43,18 @@ const Case = ({ homePagecase }) => {
           layout="fill"
           objectFit="cover"
         />
-        <div className=" absolute  z-10 bg-white  bottom-0 right-0 left-0  h-32 opacity-60 " />
-        <div className=" absolute bottom-0 z-20 text-primaryPurple left-0 right-0 px-1 ">
-          <ProgresPar present={presentage} />
+        <div className="absolute  z-10 bg-white  bottom-0 right-0 left-0  h-32 opacity-60 " />
+        <div className="absolute bottom-0 z-20 text-primaryPurple left-0 right-0 px-1 ">
+          <ProgresPar paid={paid} target={target} />
           <Container>
             <div className=" flex justify-between   font-medium text-center">
               <div>
                 <p>{target}$</p>
-                <p>المجموع</p>
+                <p>{targetText}</p>
               </div>
               <div>
                 <p>{paid}$</p>
-                <p>المدفوع</p>
+                <p>{totalText}</p>
               </div>
             </div>
           </Container>
@@ -65,25 +69,19 @@ const Case = ({ homePagecase }) => {
         </div>
         <div>
           <div className=" mb-5 flex xl:flex-row flex-col gap-5">
-            <ButtonLink href="/" className="px-8">
-              تبرع الأن
+            <ButtonLink href="/donate" className="px-8">
+              {donateNowText}
             </ButtonLink>
-            <ButtonLink href="/" variant="outline" className="px-3">
-              مشاهدة المزيد
+            <ButtonLink
+              href={`/case/${slug.current}`}
+              variant="outline"
+              className="px-3"
+            >
+              {seeMore}
             </ButtonLink>
           </div>
-          <p className="text-primaryPurple font-medium">
-            ساعدنا في المشاركة للتبرع عبر:
-          </p>
-          <ul className="flex gap-4 ">
-            {socialLinks.map((s) => (
-              <a href={s.link} key={s.id}>
-                <li className="mt-4 rounded-full border border-primaryPurple p-[5px]">
-                  <s.icon className="socialIconCases" />
-                </li>
-              </a>
-            ))}
-          </ul>
+          <p className="text-primaryPurple font-medium">{helpUsSocialText}</p>
+          <ContentSocialLinks socialLinks={socialLinks || {}} />
         </div>
       </div>
     </div>

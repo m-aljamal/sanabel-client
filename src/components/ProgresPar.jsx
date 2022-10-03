@@ -1,14 +1,18 @@
+import { calculatePercentage } from "@/lib/helperFunctions";
 import clsx from "clsx";
 import { useRouter } from "next/router";
 import React from "react";
 
-const ProgresPar = ({ present, className }) => {
+const ProgresPar = ({ paid, target, className }) => {
+  const present = calculatePercentage(paid, target);
   const { locale } = useRouter();
   return (
     <div className={clsx("px-4 flex justify-center mb-8", className)}>
       <div className="w-full ring-1 ring-gray-500  h-4 bg-white rounded-lg">
         <div
-          className={` bg-primaryPurple h-4 rounded-r-lg relative`}
+          className={` bg-primaryPurple h-4 ${
+            locale === "ar" ? "rounded-r-lg" : "rounded-l-lg"
+          } relative`}
           style={{ width: `${present}%` }}
         >
           <div

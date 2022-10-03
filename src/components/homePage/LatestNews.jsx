@@ -4,12 +4,14 @@ import Image from "next/image";
 import { Title } from "../Title";
 import { imageBuilder } from "@/lib/sanity";
 import DateLocation from "../DateLocation";
+import { useText } from "@/constant/useText";
 
 const LatestNews = ({ newsData }) => {
+  const { latestNewsText } = useText();
   return (
     <section>
       <div className="py-5">
-        <Title title="أخر الأخبار" />
+        <Title title={latestNewsText} />
       </div>
 
       <div className="space-y-5">

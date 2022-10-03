@@ -1,178 +1,19 @@
-import socialLinks from "@/constant/socialLinks";
 import React, { Fragment, useEffect } from "react";
-import { Container } from "./Container";
+import { Container } from "../Container";
 import Image from "next/image";
 import Link from "next/link";
-import { ButtonLink } from "./Button";
 import { links } from "@/constant/links";
 import { useRouter } from "next/router";
 import clsx from "clsx";
-import LocalSwitcher from "./LocalSwitcher";
-import { Popover, Transition, Dialog } from "@headlessui/react";
-import client, { imageBuilder } from "@/lib/sanity";
-import { searchQuery, aboutAchivmetnsListQuery } from "@/lib/queries";
+import LocalSwitcher from "@/components/LocalSwitcher";
+import { Transition, Dialog } from "@headlessui/react";
+import { imageBuilder } from "@/lib/sanity";
 import { useAsync } from "@/hooks/useAsync";
 import { useText } from "@/constant/useText";
-import LoadingSpinner from "./LoadingSpinner";
-const Header = () => {
-  return (
-    <header>
-      <SoucialLinks />
-      <LogoSection />
-      <MainLinksNav />
-    </header>
-  );
-};
-
-const SoucialLinks = () => {
-  return (
-    <nav className="hidden md:block border-b" style={{ direction: "ltr" }}>
-      <Container>
-        <ul className="flex divide-x w-fit border-r border-l ">
-          {socialLinks.map((s) => (
-            <a href={s.link} target="_blank" rel="noreferrer" key={s.id}>
-              <li className="p-3 group">
-                <s.icon className="socialIconHeader" />
-              </li>
-            </a>
-          ))}
-        </ul>
-      </Container>
-    </nav>
-  );
-};
-
-const LogoSection = () => {
-  return (
-    <nav className="py-5 relative z-50">
-      <Container>
-        <ul className="flex items-center justify-between ">
-          <li className=" relative h-14 w-52">
-            <Link href="/">
-              <>
-                <span className="sr-only">Home</span>
-                <Image
-                  src="/images/headerLogo.svg"
-                  layout="fill"
-                  objectFit="fill"
-                />
-              </>
-            </Link>
-          </li>
-          <li className=" hidden md:block">
-            <div className="flex gap-2 items-center">
-              <Image src="/images/mail.svg" height={50} width={50} />
-              <div>
-                <p>إيميل</p>
-                <p>info@sanabelsao.org</p>
-              </div>
-            </div>
-          </li>
-          <li className=" hidden md:block">
-            <div className="flex gap-2 items-center">
-              <Image src="/images/phone.svg" height={50} width={50} />
-              <div>
-                <p>للاتصال</p>
-                <p style={{ direction: "ltr" }}>+90 534 779 30 22</p>
-              </div>
-            </div>
-          </li>
-          <li>
-            <ButtonLink href="/" className="hidden md:block px-8 font-bold">
-              تبرع الأن
-            </ButtonLink>
-          </li>
-          <li className="md:hidden">
-            <MobileNav />
-          </li>
-        </ul>
-      </Container>
-    </nav>
-  );
-};
-
-const MobileNav = () => {
-  const { locale } = useRouter();
-  return (
-    <Popover>
-      {({ open, close }) => (
-        <>
-          <Popover.Button className="relative z-10 flex h-8 w-8 items-center justify-center [&:not(:focus-visible)]:focus:outline-none">
-            <span className="sr-only">Toggle Navigation</span>
-            <svg
-              aria-hidden="true"
-              className="h-3.5 w-3.5 overflow-visible stroke-slate-700"
-              fill="none"
-              strokeWidth={2}
-              strokeLinecap="round"
-            >
-              <path
-                d="M0 1H14M0 7H14M0 13H14"
-                className={clsx("origin-center transition", {
-                  "scale-90 opacity-0": open,
-                })}
-              />
-              <path
-                d="M2 2L12 12M12 2L2 12"
-                className={clsx("origin-center transition", {
-                  "scale-90 opacity-0": !open,
-                })}
-              />
-            </svg>
-          </Popover.Button>
-          <Transition.Root>
-            <Transition.Child
-              as={Fragment}
-              enter="duration-150 ease-out"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="duration-150 ease-in"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <Popover.Overlay className="fixed inset-0 bg-slate-300/50" />
-            </Transition.Child>
-            <Transition.Child
-              as={Fragment}
-              enter="duration-150 ease-out"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="duration-100 ease-in"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
-            >
-              <Popover.Panel
-                as="ul"
-                className="absolute inset-x-0 mx-4 top-full mt-4 origin-top space-y-4 rounded-2xl bg-white p-6 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5"
-              >
-                {links.map(({ href, id, label }) => (
-                  <li key={id}>
-                    <Link href={href}>
-                      <a className="block w-full" onClick={() => close()}>
-                        {label[locale]}
-                      </a>
-                    </Link>
-                  </li>
-                ))}
-
-                <li
-                  className="border-t border-slate-300/40 pt-4"
-                  onClick={() => close()}
-                >
-                  <LocalSwitcher />
-                </li>
-              </Popover.Panel>
-            </Transition.Child>
-          </Transition.Root>
-        </>
-      )}
-    </Popover>
-  );
-};
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 const MainLinksNav = () => {
-  const { data, error, run, isLoading, status, isError, isSuccess } =
-    useAsync();
+  const { data, run, isLoading } = useAsync();
 
   const { locale, asPath } = useRouter();
   let [isOpen, setIsOpen] = React.useState(false);
@@ -334,11 +175,11 @@ const Search = ({ run, setOnOpen, isLoading, isOpen }) => {
     setIsQuered(true);
     setSearch(e.target.elements.search.value);
   };
-
+  const { searchText } = useText();
   return (
     <form className="flex relative " onSubmit={handleSubmit}>
       <input
-        placeholder="البحث...."
+        placeholder={searchText}
         className="bg-[#4a2353] border-0 p-2 rounded-md placeholder-gray-200  focus:ring-1 focus:ring-gray-500"
         id="search"
         disabled={isOpen}
@@ -368,4 +209,4 @@ const Search = ({ run, setOnOpen, isLoading, isOpen }) => {
   );
 };
 
-export default Header;
+export default MainLinksNav;

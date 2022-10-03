@@ -2,6 +2,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import LoadingSpinner from "./LoadingSpinner";
 import { useText } from "@/constant/useText";
+import { useRouter } from "next/router";
 
 const baseStyles = {
   solid:
@@ -105,7 +106,7 @@ export function LoadingBtn({
       {...props}
     >
       {loading ? loadingText : props.children}
-      {loading && <LoadingSpinner className="ml-2" />}
+      {loading && <LoadingSpinner />}
     </button>
   );
 }

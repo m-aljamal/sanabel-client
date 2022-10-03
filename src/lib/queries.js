@@ -28,7 +28,13 @@ export const homePageCasesQuery = groq`*[_type == "projectCase" && info.showOnHo
           mainImage,
            target,
           paid,
-           
+          socialLinks{
+            facebook,
+            twitter,
+            instagram,
+            youtube,
+            telegram,
+          },
       }
 } `;
 

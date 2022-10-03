@@ -69,6 +69,7 @@ const Hero = ({ heroImages }) => {
                 objectFit="cover"
                 priority
                 quality={100}
+                lang="hero image"
               />
             </section>
           </SwiperSlide>
