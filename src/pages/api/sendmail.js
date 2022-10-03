@@ -36,6 +36,7 @@ export default async function sendEmail(req, res) {
       error: {
         en: "Error sending message",
         ar: "خطأ في ارسال الرسالة",
+        error,
       },
     });
   }

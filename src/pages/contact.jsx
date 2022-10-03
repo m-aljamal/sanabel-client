@@ -108,7 +108,11 @@ const Form = () => {
   const { locale } = useRouter();
   const { title, name, subject, email, phone, message, send } = text[locale];
   const { run, data, isError, isLoading, status, error } = useAsync();
-
+console.log({
+  data,
+  isError,
+  error,
+});
   const handleSubmit = (e) => {
     e.preventDefault();
     run(
