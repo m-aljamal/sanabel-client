@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 export default async function sendEmail(req, res) {
   const { name, email, message, phone, subject, messageFrom } = req.body;
   const transporter = nodemailer.createTransport({
-    host: " ",
+    host: process.env.HOST,
     port: 587,
     secure: process.env.NODE_ENV === "production",
     auth: {
@@ -13,7 +13,7 @@ export default async function sendEmail(req, res) {
   });
   const mailOptions = {
     from: email,
-    to: "mohammadjamol@gmail.com",
+    to: process.env.EMAIL_TO,
     subject: "New message from sanabel website",
     html: `<div>
     <h1>Message from contact ${messageFrom}</h1>

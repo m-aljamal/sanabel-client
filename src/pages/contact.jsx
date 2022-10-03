@@ -129,12 +129,7 @@ const Form = () => {
       })
     );
   };
-  console.log({
-    data,
-    isError,
-    error,
-    status,
-  });
+
   return (
     <div>
       <h2 className="text-primaryPurple font-bold py-5">{title}</h2>
