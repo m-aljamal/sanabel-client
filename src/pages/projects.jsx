@@ -18,9 +18,8 @@ import AboutAchivments from "@/components/about/AboutAchivments";
 import Partnars from "@/components/homePage/Partnars";
 import ContentSocialLinks from "@/components/ContentSocialLinks";
 import { useText } from "@/constant/useText";
-import { calculatePercentage } from "@/lib/helperFunctions";
 import { useProjectCategory, allCategory } from "@/context/ProjectCategory";
-import { ButtonLink } from "@/components/Button";
+import { DonateBtn, SeeMoreBtn } from "@/components/Button";
 const projects = ({
   projects,
   projectsCategories,
@@ -28,11 +27,9 @@ const projects = ({
   partnersLogos,
   panerImage,
 }) => {
+  const { ourProgramsText } = useText();
   const { locale } = useRouter();
-  const programTitle = {
-    ar: "برامجنا",
-    en: "Our Programs",
-  };
+
   const { setSelectedCategory, selectedCategory } = useProjectCategory();
 
   const filtredProjects = projects.filter(
@@ -56,7 +53,7 @@ const projects = ({
       <div className="py-10">
         <Container>
           <div className="flex justify-center mb-10">
-            <Title title={programTitle[locale]} />
+            <Title title={ourProgramsText} />
           </div>
           <div>
             <div className="flex flex-col md:flex-row justify-center gap-3">
@@ -100,7 +97,7 @@ export default projects;
 const ProjectCard = ({ project }) => {
   const { locale } = useRouter();
 
-  const { targetText, totalText, donateNowText, seeMoreText } = useText();
+  const { targetText, totalText } = useText();
   const {
     mainImage,
     target,
@@ -110,7 +107,6 @@ const ProjectCard = ({ project }) => {
     socialLinks,
     date,
   } = project.info;
-  const presentage = calculatePercentage(paid, target);
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 gap-2 mt-10 border  border-primaryPurple">
       <div className="relative w-full h-80 md:h-auto ">
@@ -119,52 +115,44 @@ const ProjectCard = ({ project }) => {
           layout="fill"
           objectFit="cover"
         />
-        {presentage ? (
-          <>
+        {paid && target && target >= paid ? (
+          <div>
             <div className=" absolute  z-10 bg-white  bottom-0 right-0 left-0  h-20 opacity-60 " />
             <div className=" absolute bottom-0 z-20 text-primaryPurple left-0 right-0 px-1 ">
-              <ProgresPar present={presentage} />
+              <ProgresPar paid={paid} target={target} />
             </div>
-          </>
+          </div>
         ) : null}
       </div>
-      <div className="p-5">
+      <div className="p-5 space-y-1">
         <h1 className="text-primaryPurple font-medium">
           {project.title[locale]}
         </h1>
-        <div className="flex gap-16 text-sm py-3">
-          <p>
-            {totalText}: {paid}$
-          </p>
-          <p className="text-red-600">
-            {targetText}: {target}$
-          </p>
-        </div>
+        {paid && target && target >= paid ? (
+          <div className="flex gap-16 text-sm py-3">
+            <p>
+              {totalText}: {paid}$
+            </p>
+            <p className="text-red-600">
+              {targetText}: {target}$
+            </p>
+          </div>
+        ) : null}
         <div className="sm:flex justify-between">
           <DateLocation date={date} location={location.title[locale]} />
           {project?.accept ? (
             <p className="text-sm py-2 md:py-0">{project?.accept[locale]}</p>
           ) : null}
         </div>
-        <div className="my-8">
-          <p>{shortDescription && shortDescription[locale]}</p>
-        </div>
+
+        <p className="py-2">{shortDescription && shortDescription[locale]}</p>
+
         <div className="lg:flex justify-between items-center">
           <div className="flex md:flex-row flex-col gap-4">
-            <ButtonLink href="/donate" className="px-6">
-              {donateNowText}
-            </ButtonLink>
-            <ButtonLink
-              variant="outline"
-              className="text-[12px] px-3 font-medium"
-              href={`project/${project.slug.current}`}
-            >
-              {seeMoreText}
-            </ButtonLink>
+            <DonateBtn />
+            <SeeMoreBtn href={`project/${project.slug.current}`} />
           </div>
-          {project.socialLinks && (
-            <ContentSocialLinks socialLinks={socialLinks} />
-          )}
+          {socialLinks && <ContentSocialLinks socialLinks={socialLinks} />}
         </div>
       </div>
     </div>
