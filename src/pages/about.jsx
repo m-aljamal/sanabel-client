@@ -12,12 +12,18 @@ import {
   partnersQury,
   panerImageQuery,
 } from "@/lib/queries";
-const about = ({ achivmentsList, partnersLogos, paner }) => {
+import { projectsCategoriesQuery } from "@/lib/queries";
+const about = ({
+  achivmentsList,
+  partnersLogos,
+  paner,
+  projectsCategories,
+}) => {
   return (
     <section>
       <PageHero paner={paner} />
       <AboutDescription />
-      <Programmes />
+      <Programmes projectsCategories={projectsCategories} />
       <JoinUs />
       <Collapse />
       <AboutAchivments achivmentsList={achivmentsList} />
@@ -30,6 +36,7 @@ export default about;
 
 export async function getStaticProps() {
   const achivmentsList = await client.fetch(aboutAchivmetnsListQuery);
+  const projectsCategories = await client.fetch(projectsCategoriesQuery);
   const partnersLogos = await client.fetch(partnersQury);
   const paner = await client.fetch(panerImageQuery, { page: "About Sanabel" });
   return {
@@ -37,6 +44,7 @@ export async function getStaticProps() {
       achivmentsList,
       partnersLogos,
       paner,
+      projectsCategories,
     },
   };
 }

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { ButtonLink } from "../Button";
 import { imageBuilder } from "@/lib/sanity";
+import { useText } from "@/constant/useText";
 
 const Achivments = ({ achivmentsData }) => {
   const { locale } = useRouter();
@@ -39,12 +40,13 @@ const Achivments = ({ achivmentsData }) => {
 export default Achivments;
 
 const SeeMoreAchivments = () => {
+  const { ourAchievementsText, yourDonationText, seeMore } = useText();
   return (
     <>
-      <h2 className="text-white text-xl"> منجزاتنا</h2>
-      <p className="py-3 text-white">بفضل سخائكم أنجزنا الكثير من الحملات...</p>
-      <ButtonLink href="/" color="white">
-        مشاهدة المزيد
+      <h2 className="text-white text-xl"> {ourAchievementsText}</h2>
+      <p className="py-3 text-white">{yourDonationText}</p>
+      <ButtonLink href="/about" color="white">
+        {seeMore}
       </ButtonLink>
     </>
   );

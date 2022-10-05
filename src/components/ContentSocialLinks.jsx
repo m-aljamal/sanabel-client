@@ -8,7 +8,7 @@ const ContentSocialLinks = ({ socialLinks, className }) => {
   );
 
   return (
-    <div className={clsx("flex gap-1  pt-4 lg:pt-0 justify-center", className)}>
+    <div className={clsx("flex gap-1  pt-4 lg:pt-0", className)}>
       {socialLinksKeys?.map((social) => (
         <a
           href={socialLinks[social]}

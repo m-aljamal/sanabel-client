@@ -1,13 +1,12 @@
 import { TitleWithIcon } from "../Title";
 import Image from "next/image";
 import { imageBuilder } from "@/lib/sanity";
+import { useText } from "@/constant/useText";
 const Media = ({ mediaData }) => {
+  const { mediaText, seeOurNewsOnSocialText } = useText();
   return (
     <section>
-      <TitleWithIcon
-        title="الميديا"
-        subTitle="يمكنكم مشاهدة المزيد عبر حساباتنا على السوشل ميديا"
-      />
+      <TitleWithIcon title={mediaText} subTitle={seeOurNewsOnSocialText} />
       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4 gap-2 ">
         {mediaData.map((img) => (
           <div key={img._id} className="relative  h-[300px] ">

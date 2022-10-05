@@ -1,5 +1,6 @@
 import { createClient, createPreviewSubscriptionHook } from "next-sanity";
 import createImageUrlBuilder from "@sanity/image-url";
+import { getFileAsset } from "@sanity/asset-utils";
 
 const config = {
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
@@ -10,6 +11,11 @@ const config = {
 
 export const imageBuilder = (source) =>
   createImageUrlBuilder(config).image(source);
+
+export const videoAsset = (source) => {
+  const { url } = getFileAsset(source, config);
+  return url;
+};
 
 export const usePreviewSubscription = createPreviewSubscriptionHook(config);
 export const client = createClient(config);

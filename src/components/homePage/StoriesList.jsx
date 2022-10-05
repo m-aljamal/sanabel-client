@@ -5,11 +5,13 @@ import { useRouter } from "next/router";
 import { Container } from "../Container";
 import { LocationMarkerIcon, CalendarIcon } from "@heroicons/react/outline";
 import { imageBuilder } from "@/lib/sanity";
+import { useText } from "@/constant/useText";
 
 const StoriesList = ({ successStories }) => {
+  const { successStoryText } = useText();
   return (
-    <section className=" mt-10  ">
-      <TitleWithIcon title="قصص النجاح" />
+    <section className=" mt-10 ">
+      <TitleWithIcon title={successStoryText} />
       <Container>
         <div className=" lg:grid grid-cols-3 my-10 border border-primaryPurple">
           {successStories.map((storey) => (

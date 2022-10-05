@@ -32,7 +32,6 @@ const ContantPage = ({
     CasesText,
     successStoryText,
   } = useText();
-
   const pagesInfo = {
     project: {
       linkText: projectsText,

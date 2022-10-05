@@ -2,7 +2,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import LoadingSpinner from "./LoadingSpinner";
 import { useText } from "@/constant/useText";
-import { useRouter } from "next/router";
+import { FaHeart } from "react-icons/fa";
 
 const baseStyles = {
   solid:
@@ -110,3 +110,30 @@ export function LoadingBtn({
     </button>
   );
 }
+
+export const DonateBtn = ({ className }) => {
+  const { donateNowText } = useText();
+  return (
+    <ButtonLink href="/donate" className={clsx("px-7", className)}>
+      {donateNowText}
+    </ButtonLink>
+  );
+};
+
+export const BenfitBtn = ({ className, number }) => {
+  const { benfitText } = useText();
+  return (
+    <Button
+      variant="outline"
+      className={clsx(" text-[12px]  font-medium", className)}
+    >
+      <div className="flex items-center gap-1 ">
+        <div className="flex gap-1 items-center">
+          <FaHeart className="w-3 h-3 " />
+          <p className="-mb-[3px]">{number}</p>
+        </div>
+        <p>{benfitText}</p>
+      </div>
+    </Button>
+  );
+};

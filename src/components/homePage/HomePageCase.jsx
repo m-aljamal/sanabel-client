@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { ButtonLink } from "../Button";
+import { ButtonLink, DonateBtn } from "../Button";
 import { Title } from "../Title";
 import ProgresPar from "../ProgresPar";
 import { Container } from "../Container";
@@ -69,9 +69,7 @@ const Case = ({ homePagecase }) => {
         </div>
         <div>
           <div className=" mb-5 flex xl:flex-row flex-col gap-5">
-            <ButtonLink href="/donate" className="px-8">
-              {donateNowText}
-            </ButtonLink>
+            <DonateBtn />
             <ButtonLink
               href={`/case/${slug.current}`}
               variant="outline"
@@ -81,7 +79,10 @@ const Case = ({ homePagecase }) => {
             </ButtonLink>
           </div>
           <p className="text-primaryPurple font-medium">{helpUsSocialText}</p>
-          <ContentSocialLinks socialLinks={socialLinks || {}} />
+          <ContentSocialLinks
+            socialLinks={socialLinks || {}}
+            className="mt-2"
+          />
         </div>
       </div>
     </div>

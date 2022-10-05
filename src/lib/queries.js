@@ -195,9 +195,12 @@ export const moreSuccessStoriesQuery = groq`*[_type == "successStory" && slug.cu
 }`;
 
 export const projectsCategoriesQuery = groq`*[_type == "projectCategory"]{
-    title,
-    _id
-  }`;
+  _id,
+  title,
+  description,
+  mp4,
+  webm,
+} `;
 
 export const mediaQuery = groq`*[_type == "media"  ] | order(_updatedAt desc){
   image,

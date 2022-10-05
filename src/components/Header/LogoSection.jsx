@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "../Container";
 import Link from "next/link";
 import Image from "next/image";
-import { ButtonLink } from "../Button";
+import { DonateBtn } from "../Button";
 import MobileNavigation from "./MobileNavigation";
 import { useText } from "@/constant/useText";
 import { INFO_EMAIL } from "@/constant/info";
@@ -55,13 +55,8 @@ const LogoSection = () => {
               </div>
             </div>
           </li>
-          <li>
-            <ButtonLink
-              href="/donate"
-              className="hidden md:block px-8 font-bold"
-            >
-              {donateNowText}
-            </ButtonLink>
+          <li className="hidden md:block">
+            <DonateBtn />
           </li>
           <li className="md:hidden">
             <MobileNavigation />

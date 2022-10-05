@@ -6,12 +6,13 @@ import Image from "next/image";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { imageBuilder } from "@/lib/sanity";
-
+import { useText } from "@/constant/useText";
 
 const Partnars = ({ partnersLogos }) => {
+  const { ourPartnersText } = useText();
   return (
     <section className="py-10">
-      <TitleWithIcon title="شركاؤنا في العمل الإنساني" />
+      <TitleWithIcon title={ourPartnersText} />
       <div className="py-8">
         <Swiper
           autoplay

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { links } from "@/constant/links";
 import { useRouter } from "next/router";
+import { useText } from "@/constant/useText";
 const Footer = () => {
   const { locale } = useRouter();
   const text = {
@@ -12,6 +13,7 @@ const Footer = () => {
       en: "All rights reserved to Sanabel organization",
     },
   };
+  const { pagestText } = useText();
   return (
     <footer className=" bg-primaryPurple  pt-5 pb-3 relative">
       <Container>
@@ -26,7 +28,7 @@ const Footer = () => {
           </div>
 
           <div className="text-white   ">
-            <h2 className="font-bold mb-5">الصفحات</h2>
+            <h2 className="font-bold mb-5">{pagestText}</h2>
             <ul className=" grid md:grid-cols-5  grid-cols-3 gap-x-8 gap-y-5">
               {links.map(({ id, href, label }) => (
                 <li key={id}>
