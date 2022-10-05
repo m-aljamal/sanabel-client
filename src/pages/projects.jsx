@@ -27,7 +27,7 @@ const projects = ({
   partnersLogos,
   panerImage,
 }) => {
-  const { ourProgramsText } = useText();
+  const { ourProgramsText, noProjectFound } = useText();
   const { locale } = useRouter();
 
   const { setSelectedCategory, selectedCategory } = useProjectCategory();
@@ -37,7 +37,6 @@ const projects = ({
       project.category._id === selectedCategory?._id ||
       selectedCategory?._id === "all"
   );
-
   const langStyle = {
     ar: {
       roundedBr: "md:first:rounded-r-lg md:last:rounded-l-lg",
@@ -75,9 +74,15 @@ const projects = ({
             </div>
 
             <div>
-              {filtredProjects?.map((project) => (
-                <ProjectCard project={project} key={project._id} />
-              ))}
+              {filtredProjects.length ? (
+                filtredProjects?.map((project) => (
+                  <ProjectCard project={project} key={project._id} />
+                ))
+              ) : (
+                <p className="py-8 text-red-500 mx-auto text-center font-bold">
+                  {noProjectFound}
+                </p>
+              )}
             </div>
           </div>
         </Container>

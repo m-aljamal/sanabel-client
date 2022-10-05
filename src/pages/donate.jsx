@@ -8,6 +8,7 @@ import { partnersQury, panerImageQuery } from "@/lib/queries";
 import Partnars from "@/components/homePage/Partnars";
 import { client } from "@/lib/sanity";
 import clsx from "clsx";
+import { useAsync } from "@/hooks/useAsync";
 
 const donate = ({ partnersLogos, panerImage }) => {
   const { locale } = useRouter();
@@ -83,9 +84,29 @@ const donate = ({ partnersLogos, panerImage }) => {
     btntext,
     personInfoTitle,
   } = text[locale];
-
+  const { run, data, isError, isLoading, status, error } = useAsync();
   const handleSubmit = (e) => {
     e.preventDefault();
+    run(
+      fetch("/api/sendmail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          donateAmount: +e.target.amount.value,
+          fullName: e.target.name.value,
+          country: e.target.country.value,
+          city: e.target.city.value,
+          phone: e.target.phone.value,
+          email: e.target.email.value,
+          donateForProject: e.target.donateForProject.value,
+          notes: e.target.notes.value,
+          messageFrom: "donate form",
+        }),
+      })
+    );
     console.log({
       donateAmount: +e.target.amount.value,
       fullName: e.target.name.value,

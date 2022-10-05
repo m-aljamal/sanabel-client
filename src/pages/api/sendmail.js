@@ -1,7 +1,21 @@
 import nodemailer from "nodemailer";
 
 export default async function sendEmail(req, res) {
-  const { name, email, message, phone, subject, messageFrom } = req.body;
+  const {
+    name,
+    email,
+    message,
+    phone,
+    subject,
+    messageFrom,
+    donateAmount,
+    fullName,
+    country,
+    city,
+    donateForProject,
+    notes,
+  } = req.body;
+
   const transporter = nodemailer.createTransport({
     service: "gmail",
     host: process.env.HOST,
@@ -12,7 +26,7 @@ export default async function sendEmail(req, res) {
       pass: process.env.PASSWORD,
     },
   });
-  const mailOptions = {
+  const contactMailOptions = {
     from: email,
     to: process.env.EMAIL_TO,
     subject: "New message from sanabel website",
@@ -25,7 +39,24 @@ export default async function sendEmail(req, res) {
     <p>Message: ${message}</p>
     </div>`,
   };
-
+  const donateMailOptions = {
+    from: email,
+    to: process.env.EMAIL_TO,
+    subject: "New message from sanabel website",
+    html: `<div>
+    <h1>Message from contact ${messageFrom}</h1>
+    <h3>Message from ${fullName}</h3>
+    <p>Donate Amount: ${donateAmount}</p>
+    <p>Country: ${country}</p>
+    <p>City: ${city}</p>
+    <p>Phone: ${phone}</p>
+    <p>Email: ${email}</p>
+    <p>Donate For Project: ${donateForProject}</p>
+    <p>Notes: ${notes}</p>
+    </div>`,
+  };
+  const mailOptions =
+    messageFrom === "contact form" ? contactMailOptions : donateMailOptions;
   try {
     const info = await transporter.sendMail(mailOptions);
     res.status(200).json({

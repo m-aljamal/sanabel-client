@@ -1,4 +1,4 @@
-import { Button, LoadingBtn } from "@/components/Button";
+import { LoadingBtn } from "@/components/Button";
 import { Container } from "@/components/Container";
 import PageHero from "@/components/PageHero";
 import { TitleWithIcon } from "@/components/Title";
@@ -9,34 +9,21 @@ import { ImLocation2 } from "react-icons/im";
 import { FaPhoneVolume } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { partnersQury, panerImageQuery } from "@/lib/queries";
-import {
-  ADDRESS,
-  CONTACT_EMAIL,
-  INFO_EMAIL,
-  PHONE_1,
-  PHONE_2,
-} from "@/constant/info";
+import { ADDRESS, CONTACT_EMAIL, INFO_EMAIL, PHONE_2 } from "@/constant/info";
 import { client } from "@/lib/sanity";
 import Partnars from "@/components/homePage/Partnars";
 import { useAsync } from "@/hooks/useAsync";
 import { BiErrorAlt } from "react-icons/bi";
+import { useText } from "@/constant/useText";
+import PhoneNumber from "@/components/PhoneNumber";
 const contact = ({ partnersLogos, panerImage }) => {
-  const { locale } = useRouter();
-  const text = {
-    ar: {
-      title: "السنابل على السوشل ميديا",
-    },
-    en: {
-      title: "Follow us on social media",
-    },
-  };
-  const { title } = text[locale];
+  const { sanOnScoialMediaText } = useText();
   return (
     <section>
       <PageHero paner={panerImage} />
       <div className="pt-10">
         <Container>
-          <TitleWithIcon title={title} />
+          <TitleWithIcon title={sanOnScoialMediaText} />
           <SocialILinks />
           <Map />
           <Form />
@@ -62,7 +49,7 @@ const SocialILinks = () => {
           rel="noreferrer"
           className="rounded-full border border-primaryPurple p-[8px]   "
         >
-          <s.icon className="w-5 h-5 text-lightPurple     " />
+          <s.icon className="w-5 h-5 text-lightPurple" />
         </a>
       ))}
     </div>
@@ -85,28 +72,16 @@ const Map = () => {
 };
 
 const Form = () => {
-  const text = {
-    ar: {
-      title: "فورم التواصل",
-      name: "الاسم الكامل",
-      subject: "الموضوع",
-      email: "اﻹيميل",
-      phone: "رقم الهاتف",
-      message: "نص الرسالة",
-      send: "ارسال الرسالة",
-    },
-    en: {
-      title: "Contact Form",
-      name: "Full Name",
-      subject: "Subject",
-      email: "Email",
-      phone: "Phone Number",
-      message: "Message",
-      send: "Send Message",
-    },
-  };
+  const {
+    contactFormText,
+    nameText,
+    subjectText,
+    emailText,
+    phoneText,
+    messageText,
+    sendText,
+  } = useText();
   const { locale } = useRouter();
-  const { title, name, subject, email, phone, message, send } = text[locale];
   const { run, data, isError, isLoading, status, error } = useAsync();
 
   const handleSubmit = (e) => {
@@ -132,7 +107,7 @@ const Form = () => {
 
   return (
     <div>
-      <h2 className="text-primaryPurple font-bold py-5">{title}</h2>
+      <h2 className="text-primaryPurple font-bold py-5">{contactFormText}</h2>
       {isError && (
         <div className="flex gap-1 items-center">
           <BiErrorAlt className="h-5 w-5 text-red-700" />
@@ -146,14 +121,14 @@ const Form = () => {
         <form onSubmit={handleSubmit} className="md:w-3/4">
           <div className="flex flex-col md:flex-row  gap-5 ">
             <div className="w-full space-y-4">
-              <Input id="fullName" placeholder={name} />
-              <Input id="subject" placeholder={subject} />
-              <Input id="email" placeholder={email} />
-              <Input id="phoneNumber" placeholder={phone} />
+              <Input id="fullName" placeholder={nameText} />
+              <Input id="subject" placeholder={subjectText} />
+              <Input id="email" placeholder={emailText} />
+              <Input id="phoneNumber" placeholder={phoneText} />
             </div>
             <textarea
               id="message"
-              placeholder={message}
+              placeholder={messageText}
               className="w-full border border-primaryPurple active:border-black resize-none focus:outline-none focus:border-black focus:ring-black focus:ring-1 sm:text-sm"
             />
           </div>
@@ -162,7 +137,7 @@ const Form = () => {
             className="rounded-none w-full mt-5"
             loading={isLoading}
           >
-            {send}
+            {sendText}
           </LoadingBtn>
         </form>
         <Address />
@@ -178,20 +153,7 @@ const Input = ({ ...props }) => {
 };
 
 const Address = () => {
-  const text = {
-    ar: {
-      title: "العنوان",
-      phone: "الهاتف",
-      email: "الايميل",
-    },
-    en: {
-      title: "Address",
-      phone: "Phone",
-      email: "Email",
-    },
-  };
-  const { locale } = useRouter();
-  const { title, phone, email } = text[locale];
+  const { addreessText, emailText, phoneText } = useText();
   return (
     <div className=" space-y-4  md:w-1/4">
       <div className="flex gap-4 ">
@@ -199,7 +161,9 @@ const Address = () => {
           <ImLocation2 className=" w-3 h-3  text-white   " />
         </div>
         <div>
-          <h2 className="text-sm font-semibold text-primaryPurple">{title}:</h2>
+          <h2 className="text-sm font-semibold text-primaryPurple">
+            {addreessText}:
+          </h2>
           <p>{ADDRESS}</p>
         </div>
       </div>
@@ -209,10 +173,12 @@ const Address = () => {
           <FaPhoneVolume className=" w-3 h-3  text-white   " />
         </div>
         <div>
-          <h2 className="text-sm font-semibold text-primaryPurple">{phone}:</h2>
+          <h2 className="text-sm font-semibold text-primaryPurple">
+            {phoneText}:
+          </h2>
           <div className=" text-right">
-            <p style={{ direction: "ltr" }}>{PHONE_1}</p>
-            <p style={{ direction: "ltr" }}>{PHONE_2}</p>
+            <PhoneNumber />
+            <PhoneNumber number={PHONE_2} />
           </div>
         </div>
       </div>
@@ -221,7 +187,9 @@ const Address = () => {
           <MdEmail className=" w-3 h-3  text-white   " />
         </div>
         <div>
-          <h2 className="text-sm font-semibold text-primaryPurple">{email}:</h2>
+          <h2 className="text-sm font-semibold text-primaryPurple">
+            {emailText}:
+          </h2>
           <div className=" text-right">
             <p style={{ direction: "ltr" }}>{INFO_EMAIL}</p>
             <p style={{ direction: "ltr" }}>{CONTACT_EMAIL}</p>

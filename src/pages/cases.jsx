@@ -9,6 +9,7 @@ import CircleProgres from "@/components/CircleProgres";
 import { ButtonLink } from "@/components/Button";
 import Partnars from "@/components/homePage/Partnars";
 import { calculatePercentage } from "@/lib/helperFunctions";
+import { useText } from "@/constant/useText";
 const cases = ({ cases, partnersLogos, panerImage }) => {
   return (
     <section>
@@ -50,21 +51,9 @@ const CaseCard = ({ onseCase }) => {
     slug,
     info: { mainImage, shortDescription, target, paid },
   } = onseCase;
-  const text = {
-    ar: {
-      requested: "المطلوب",
-      remaningText: "المتبقي",
-      btn: "مشاهدة الحالة",
-    },
-    en: {
-      requested: "Requested",
-      remaningText: "Remaning",
-      btn: "View Case",
-    },
-  };
-  const { requested, remaningText, btn } = text[locale];
-  const presentage = calculatePercentage(paid, target);
 
+  const presentage = calculatePercentage(paid, target);
+  const { targetText, totalText, viewCaseText } = useText();
   return (
     <div>
       <div className="relative w-full  h-[300px] ">
@@ -85,10 +74,10 @@ const CaseCard = ({ onseCase }) => {
               <CircleProgres percentage={presentage} />
               <div className="text-sm text-primaryPurple">
                 <p>
-                  {requested}: {target}$
+                  {targetText}: {target}$
                 </p>
                 <p>
-                  {remaningText}: {paid}$
+                  {totalText}: {paid}$
                 </p>
               </div>
             </div>
@@ -97,7 +86,7 @@ const CaseCard = ({ onseCase }) => {
               href={`case/${slug.current}`}
               className="text-xs  mt-5 "
             >
-              {btn}
+              {viewCaseText}
             </ButtonLink>
           </div>
         </div>

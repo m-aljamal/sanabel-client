@@ -38,6 +38,7 @@ export default success;
 const SuccessCard = ({ story }) => {
   const { locale } = useRouter();
   const { info, title, slug } = story;
+  const { viewStoryText } = useText();
   return (
     <Container>
       <div className="grid md:grid-cols-2 grid-cols-1  bg-white shadow-lg ">
@@ -60,7 +61,7 @@ const SuccessCard = ({ story }) => {
             href={`/success-story/${slug.current}`}
             className="px-7 text-[12px] "
           >
-            مشاهدة القصة
+            {viewStoryText}
           </ButtonLink>
         </div>
       </div>
