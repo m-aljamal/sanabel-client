@@ -8,7 +8,7 @@ import { useText } from "@/constant/useText";
 import { useProjectCategory } from "@/context/ProjectCategory";
 
 const Programmes = ({ projectsCategories }) => {
-  const { ourProgramsText } = useText();
+  const { ourProgramsText, seeMore } = useText();
   const { locale } = useRouter();
   const { setSelectedCategory } = useProjectCategory();
 
@@ -42,7 +42,7 @@ const Programmes = ({ projectsCategories }) => {
                   className="border-0 font-medium "
                   onClick={() => setSelectedCategory(proCat)}
                 >
-                  مشاهدة المزيد
+                  {seeMore}
                 </ButtonLink>
               </div>
             </li>

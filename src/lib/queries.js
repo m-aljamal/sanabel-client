@@ -321,3 +321,9 @@ export const formQuery = groq`*[_type == "form"]{
   backgroundImage,
   btnText
 }`;
+
+export const aboutTextQuery = groq`*[_type == "aboutUs"]{
+title,
+_id,
+description
+}`;

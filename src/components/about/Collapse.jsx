@@ -76,10 +76,10 @@ const title = {
   en: "Work with us to build a better future… !",
 };
 
-const Collapse = () => {
+const Collapse = ({ aboutText }) => {
   const { locale } = useRouter();
   const [open, setOpen] = React.useState({
-    id: 1,
+    _id: aboutText[0]._id,
   });
   return (
     <section className="py-10">
@@ -97,18 +97,18 @@ const Collapse = () => {
               {title[locale]}
             </h2>
             <div>
-              {data.map((d) => (
+              {aboutText.map((item) => (
                 <Accordion
-                  id={d.id}
-                  key={d.id}
-                  title={d[locale].title}
-                  content={d[locale].body}
+                  id={item._id}
+                  key={item._id}
+                  title={item.title[locale]}
+                  content={item.description[locale]}
                   setOpen={() =>
-                    d.id === open.id
-                      ? setOpen({ id: null })
-                      : setOpen({ id: d.id })
+                    item._id === open._id
+                      ? setOpen({ _id: null })
+                      : setOpen({ _id: item._id })
                   }
-                  openId={open.id}
+                  openId={open._id}
                 />
               ))}
             </div>
