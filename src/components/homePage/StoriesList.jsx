@@ -43,18 +43,18 @@ const SeccessStory = ({ storey }) => {
 
       <div className="sm:h-[300px] overflow-hidden   sm:w-[50%] lg:w-auto ">
         <div className="p-4">
-          <h2 className="text-primaryPurple  ">{title[locale]}</h2>
+          <h2 className="text-primaryPurple font-bold  ">{title[locale]}</h2>
           <div className="flex gap-2 items-center py-2">
             <div className="flex gap-1 ">
               <CalendarIcon className="w-4 h-4 text-primaryPurple" />
-              <p className="text-sm">{date}</p>
+              <p className="text-md">{date}</p>
             </div>
             <div className="flex gap-1 ">
               <LocationMarkerIcon className="w-4 h-4 text-primaryPurple" />
-              <p className="text-sm">{location.title[locale]}</p>
+              <p className="text-md">{location.title[locale]}</p>
             </div>
           </div>
-          <p>{shortDescription[locale]}</p>
+          <p className="text-md">{shortDescription[locale]}</p>
         </div>
       </div>
     </div>

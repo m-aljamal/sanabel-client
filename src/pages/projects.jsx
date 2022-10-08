@@ -130,9 +130,9 @@ const ProjectCard = ({ project }) => {
         ) : null}
       </div>
       <div className="p-5 space-y-1">
-        <h1 className="text-primaryPurple font-medium">
+        <h2 className="text-primaryPurple font-bold">
           {project.title[locale]}
-        </h1>
+        </h2>
         {paid && target && target >= paid ? (
           <div className="flex gap-16 text-sm py-3">
             <p>

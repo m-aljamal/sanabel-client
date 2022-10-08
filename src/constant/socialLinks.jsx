@@ -17,35 +17,35 @@ export const socialMediaIcons = {
 const socialLinks = [
   {
     id: 1,
-    link: "",
+    link: "https://www.facebook.com/SanabelAlamal.S.A.O",
     icon: function faceIcon({ className }) {
       return <GrFacebookOption className={className} />;
     },
   },
   {
     id: 2,
-    link: "",
+    link: "https://t.me/sanabesao",
     icon: function telegram({ className }) {
       return <FaTelegramPlane className={className} />;
     },
   },
   {
     id: 3,
-    link: "",
+    link: "https://www.youtube.com/channel/UCVorx5BxYaYbdE_gxDD1xXA",
     icon: function youtube({ className }) {
       return <GrYoutube className={className} />;
     },
   },
   {
     id: 4,
-    link: "",
+    link: "https://twitter.com/SanabelSAO",
     icon: function twitter({ className }) {
       return <GrTwitter className={className} />;
     },
   },
   {
     id: 5,
-    link: "https://www.facebook.com/",
+    link: "https://www.instagram.com/sanabelalamal.s.a.o",
     icon: function instgram({ className }) {
       return <GrInstagram className={className} />;
     },

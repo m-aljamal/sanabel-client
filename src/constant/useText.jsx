@@ -5,8 +5,8 @@ export const useText = () => {
 
   const text = {
     ar: {
-      targetText: "الهدف",
-      totalText: "المجموع",
+      targetText: "الاحتياج",
+      totalText: "التبرعات",
       projectsText: "المشاريع",
       donateNowText: "تبرع الآن",
       commonPostsText: "منشورات شائعة",
@@ -57,6 +57,8 @@ export const useText = () => {
       messageText: "نص الرسالة",
       sendText: "ارسال الرسالة",
       addreessText: "العنوان",
+      seeCase: " مشاهدة الحالة",
+      seeProject: "مشاهدة المشروع",
     },
     en: {
       targetText: "Target",
@@ -112,6 +114,8 @@ export const useText = () => {
       messageText: "Message Text",
       sendText: "Send Message",
       addreessText: "Address",
+      seeCase: "See Case",
+      seeProject: "See Project",
     },
   };
 

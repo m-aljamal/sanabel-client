@@ -8,7 +8,7 @@ const DateLocation = ({ date, location }) => {
         <CalendarIcon className="w-4 h-4 text-primaryPurple" />
         <p className="text-sm">{new Date(date).toLocaleDateString()}</p>
       </div>
-      <div className="flex gap-1 ">
+      <div className="flex gap-1   ">
         <LocationMarkerIcon className="w-4 h-4 text-primaryPurple" />
         <p className="text-sm">{location}</p>
       </div>

@@ -40,12 +40,12 @@ const News = ({ title, newDate, location, shortDescription, image }) => {
             className="w-full h-full"
           />
         </div>
-        <div className="w-full mt-4 lg:mt-0">
-          <h2 className="text-md text-primaryPurple font-medium ">
+        <div className="w-full mt-4 lg:mt-0 space-y-2">
+          <h2 className="text-md text-primaryPurple font-bold  ">
             {title[locale]}
           </h2>
           <DateLocation date={newDate} location={location.title[locale]} />
-          <p className="text-sm mt-1">{shortDescription[locale]}</p>
+          <p className="text-md mt-1">{shortDescription[locale]}</p>
         </div>
       </a>
     </section>

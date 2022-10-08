@@ -28,8 +28,7 @@ const Case = ({ homePagecase }) => {
     slug,
     info: { target, paid, mainImage, shortDescription, socialLinks },
   } = homePagecase;
-  const { totalText, targetText, donateNowText, seeMore, helpUsSocialText } =
-    useText();
+  const { totalText, targetText, helpUsSocialText, seeCase } = useText();
 
   return (
     <div
@@ -47,14 +46,14 @@ const Case = ({ homePagecase }) => {
         <div className="absolute bottom-0 z-20 text-primaryPurple left-0 right-0 px-1 ">
           <ProgresPar paid={paid} target={target} />
           <Container>
-            <div className=" flex justify-between   font-medium text-center">
-              <div>
+            <div className="font-bold space-y-2">
+              <div className="flex  justify-evenly">
+                <p>{targetText}:</p>
                 <p>{target}$</p>
-                <p>{targetText}</p>
               </div>
-              <div>
+              <div className="flex justify-evenly">
+                <p>{totalText}:</p>
                 <p>{paid}$</p>
-                <p>{totalText}</p>
               </div>
             </div>
           </Container>
@@ -62,10 +61,10 @@ const Case = ({ homePagecase }) => {
       </div>
       <div className="w-full flex flex-col  justify-between">
         <div>
-          <h2 className="text-primaryPurple text-lg font-medium">
+          <h2 className="text-primaryPurple text-lg font-bold">
             {title[locale]}
           </h2>
-          <p className="text-sm mt-5">{shortDescription[locale]}</p>
+          <p className="text-md mt-5">{shortDescription[locale]}</p>
         </div>
         <div>
           <div className=" mb-5 flex xl:flex-row flex-col gap-5">
@@ -75,7 +74,7 @@ const Case = ({ homePagecase }) => {
               variant="outline"
               className="px-3"
             >
-              {seeMore}
+              {seeCase}
             </ButtonLink>
           </div>
           <p className="text-primaryPurple font-medium">{helpUsSocialText}</p>
