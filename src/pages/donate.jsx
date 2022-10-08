@@ -1,4 +1,4 @@
-import { Button } from "@/components/Button";
+import { Button, LoadingBtn } from "@/components/Button";
 import { Container } from "@/components/Container";
 import PageHero from "@/components/PageHero";
 import { TitleWithIcon } from "@/components/Title";
@@ -9,7 +9,7 @@ import Partnars from "@/components/homePage/Partnars";
 import { client } from "@/lib/sanity";
 import clsx from "clsx";
 import { useAsync } from "@/hooks/useAsync";
-
+import ErrorMessage from "@/components/ErrorMessage";
 const donate = ({ partnersLogos, panerImage }) => {
   const { locale } = useRouter();
   const text = {
@@ -87,6 +87,8 @@ const donate = ({ partnersLogos, panerImage }) => {
   const { run, data, isError, isLoading, status, error } = useAsync();
   const handleSubmit = (e) => {
     e.preventDefault();
+    const amount = +e.target.amount.value;
+    const otherAmount = +e.target.otherAmount.value;
     run(
       fetch("/api/sendmail", {
         method: "POST",
@@ -95,7 +97,8 @@ const donate = ({ partnersLogos, panerImage }) => {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          donateAmount: +e.target.amount.value,
+          donateAmount:
+            amount < otherAmount ? otherAmount : amount || otherAmount,
           fullName: e.target.name.value,
           country: e.target.country.value,
           city: e.target.city.value,
@@ -108,7 +111,7 @@ const donate = ({ partnersLogos, panerImage }) => {
       })
     );
     console.log({
-      donateAmount: +e.target.amount.value,
+      donateAmount: amount < otherAmount ? otherAmount : amount || otherAmount,
       fullName: e.target.name.value,
       country: e.target.country.value,
       city: e.target.city.value,
@@ -189,10 +192,17 @@ const donate = ({ partnersLogos, panerImage }) => {
                     className="active:border-black w-full placeholder:text-xs border-gray-300 resize-none focus:outline-none focus:border-black focus:ring-black focus:ring-1 sm:text-sm"
                   />
                 </div>
-
-                <Button type="submit" className="    rounded-none  ">
+                {isError && <ErrorMessage error={error[locale]} />}
+                {status === "resolved" && (
+                  <p className="text-lg text-green-700 py-4 ">{data[locale]}</p>
+                )}
+                <LoadingBtn
+                  type="submit"
+                  loading={isLoading}
+                  className="rounded-none "
+                >
                   {btntext}
-                </Button>
+                </LoadingBtn>
               </div>
             </form>
           </div>

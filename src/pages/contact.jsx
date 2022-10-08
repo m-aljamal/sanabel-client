@@ -13,9 +13,9 @@ import { ADDRESS, CONTACT_EMAIL, INFO_EMAIL, PHONE_2 } from "@/constant/info";
 import { client } from "@/lib/sanity";
 import Partnars from "@/components/homePage/Partnars";
 import { useAsync } from "@/hooks/useAsync";
-import { BiErrorAlt } from "react-icons/bi";
 import { useText } from "@/constant/useText";
 import PhoneNumber from "@/components/PhoneNumber";
+import ErrorMessage from "@/components/ErrorMessage";
 const contact = ({ partnersLogos, panerImage }) => {
   const { sanOnScoialMediaText } = useText();
   return (
@@ -108,12 +108,7 @@ const Form = () => {
   return (
     <div>
       <h2 className="text-primaryPurple font-bold py-5">{contactFormText}</h2>
-      {isError && (
-        <div className="flex gap-1 items-center">
-          <BiErrorAlt className="h-5 w-5 text-red-700" />
-          <p className="text-lg text-red-500  ">{error[locale]}</p>
-        </div>
-      )}
+      {isError && <ErrorMessage error={error[locale]} />}
       {status === "resolved" && (
         <p className="text-lg text-green-700 py-4 ">{data[locale]}</p>
       )}
