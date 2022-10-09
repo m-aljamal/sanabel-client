@@ -1,6 +1,5 @@
 import { useText } from "@/constant/useText";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import React from "react";
 import { Container } from "../Container";
 import { Title } from "../Title";
@@ -13,7 +12,7 @@ const AboutDescription = () => {
         <div className=" flex flex-col md:flex-row justify-center gap-16 items-center">
           <div className="hidden md:inline-block">
             <Image
-              src="/placeHolder/photo-15.jpg"
+              src="/images/photo-15.webp"
               width={400}
               height={250}
               objectFit="cover"

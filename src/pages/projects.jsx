@@ -19,7 +19,7 @@ import Partnars from "@/components/homePage/Partnars";
 import ContentSocialLinks from "@/components/ContentSocialLinks";
 import { useText } from "@/constant/useText";
 import { useProjectCategory, allCategory } from "@/context/ProjectCategory";
-import { DonateBtn, SeeMoreBtn } from "@/components/Button";
+import { DonateBtn, ButtonLink } from "@/components/Button";
 const projects = ({
   projects,
   projectsCategories,
@@ -102,7 +102,7 @@ export default projects;
 const ProjectCard = ({ project }) => {
   const { locale } = useRouter();
 
-  const { targetText, totalText } = useText();
+  const { targetText, totalText, seeProject } = useText();
   const {
     mainImage,
     target,
@@ -155,7 +155,12 @@ const ProjectCard = ({ project }) => {
         <div className="lg:flex justify-between items-center">
           <div className="flex md:flex-row flex-col gap-4">
             <DonateBtn />
-            <SeeMoreBtn href={`project/${project.slug.current}`} />
+            <ButtonLink
+              variant="outline"
+              href={`project/${project.slug.current}`}
+            >
+              {seeProject}
+            </ButtonLink>
           </div>
           {socialLinks && <ContentSocialLinks socialLinks={socialLinks} />}
         </div>

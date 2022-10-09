@@ -138,7 +138,7 @@ export const BenfitBtn = ({ className, number }) => {
   );
 };
 
-export const SeeMoreBtn = ({ className, href = "/" }) => {
+export const SeeMoreBtn = ({ className, href = "/",  }) => {
   const { seeMoreText } = useText();
   return (
     <ButtonLink variant="outline" className={className} href={href}>
