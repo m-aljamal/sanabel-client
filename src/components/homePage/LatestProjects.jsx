@@ -42,10 +42,10 @@ const ProjectCard = ({ project }) => {
           objectFit="cover"
         />
       </div>
-      <div className="p-4">
-        <h2 className="text-primaryPurple font-medium mb-4">{title[locale]}</h2>
+      <div className="p-4 space-y-4">
+        <h2 className="text-primaryPurple font-bold">{title[locale]}</h2>
         <p>{shortDescription[locale]}</p>
-        <div className="mt-4 flex flex-col items-center gap-4">
+        <div className=" flex flex-row items-center gap-4">
           <DonateBtn className="w-full" />
           <ButtonLink
             variant="outline"

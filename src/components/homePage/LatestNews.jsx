@@ -45,7 +45,9 @@ const News = ({ title, newDate, location, shortDescription, image }) => {
             {title[locale]}
           </h2>
           <DateLocation date={newDate} location={location.title[locale]} />
-          <p className="text-md mt-1">{shortDescription[locale]}</p>
+          <p className="text-md mt-1 text-">
+            {shortDescription[locale]}
+          </p>
         </div>
       </a>
     </section>

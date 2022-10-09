@@ -46,14 +46,14 @@ const AboutAchivments = ({ achivmentsList, style = "dark" }) => {
 
   const { bg, titleStyle, list, buttonStyle } = baseStyle[style];
   return (
-    <section className={clsx("py-10", bg)}>
+    <section className={clsx("py-10", bg)} id="#aboutAchivement">
       <Container>
         <TitleWithIcon title={title} subTitle={subtitle} color={titleStyle} />
         <div className="grid grid-cols-4 grid-flow-row place-items-center mt-10 gap-6">
           {achivmentsList.slice(0, numberOfAchivments).map((archive, i) => (
             <div
               key={i}
-              className={clsx("flex flex-col space-y-2 items-center", list)}
+              className={clsx("flex flex-col   items-center", list)}
             >
               <Image
                 src={imageBuilder(
@@ -70,7 +70,7 @@ const AboutAchivments = ({ achivmentsList, style = "dark" }) => {
                 end={archive.achievement.number}
                 duration={2}
                 separator=" "
-                className="md:text-xl font-bold"
+                className="md:text-xl font-bold mt-4"
               />
 
               <h2 className="md:text-xl ">

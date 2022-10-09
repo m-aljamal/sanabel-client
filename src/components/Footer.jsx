@@ -13,40 +13,23 @@ const Footer = () => {
       en: "All rights reserved to Sanabel organization",
     },
   };
-  const { pagestText } = useText();
   return (
-    <footer className=" bg-primaryPurple  pt-5 pb-3 relative">
-      <Container>
-        <div className="sm:flex items-center justify-around ">
-          <div className="relative    flex-shrink-0 text-center  ">
-            <Image
-              src="/images/footer/whiteLogoWithText.svg"
-              width={250}
-              height={180}
-              objectFit="contain"
-            />
-          </div>
-
-          <div className="text-white   ">
-            <h2 className="font-bold mb-5">{pagestText}</h2>
-            <ul className=" grid md:grid-cols-5  grid-cols-3 gap-x-8 gap-y-5">
-              {links.map(({ id, href, label }) => (
-                <li key={id}>
-                  <Link href={href}>
-                    <a>{label[locale]}</a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+    <footer>
+      <div className="bg-primaryPurple">
+        <div className="flex  justify-center">
+          <Image
+            src="/images/footer/whiteLogoWithText.svg"
+            width={250}
+            height={180}
+            objectFit="contain"
+          />
         </div>
-        <div>
-          <div className="bg-gray-200 h-[1px] w-full absolute left-0 right-0 bottom-[60px]"></div>
-          <p className="text-white w-full text-center pt-16  text-sm">
-            {text.rights[locale]} {new Date().getFullYear()}
-          </p>
-        </div>
-      </Container>
+      </div>
+      <div className=" bg-white py-2">
+        <p className="text-primaryPurple text-bold w-full text-center text-sm font-bold ">
+          {text.rights[locale]} {new Date().getFullYear()}
+        </p>
+      </div>
     </footer>
   );
 };

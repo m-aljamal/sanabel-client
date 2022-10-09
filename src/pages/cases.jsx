@@ -53,7 +53,7 @@ const CaseCard = ({ onseCase }) => {
   } = onseCase;
 
   const presentage = calculatePercentage(paid, target);
-  const { targetText, totalText, viewCaseText } = useText();
+  const { targetText, totalText, viewCaseText, donateNowText } = useText();
   return (
     <div>
       <div className="relative w-full  h-[300px] ">
@@ -72,9 +72,9 @@ const CaseCard = ({ onseCase }) => {
         </div>
         <div className=" border-t border-primaryPurple mt-2  ">
           <div className="mt-5   ">
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-8 items-center justify-center">
               <CircleProgres percentage={presentage} />
-              <div className="text-sm text-primaryPurple">
+              <div className="text-sm text-primaryPurple font-bold">
                 <p>
                   {targetText}: {target}$
                 </p>
@@ -83,13 +83,21 @@ const CaseCard = ({ onseCase }) => {
                 </p>
               </div>
             </div>
-
-            <ButtonLink
-              href={`case/${slug.current}`}
-              className="text-xs  mt-5 "
-            >
-              {viewCaseText}
-            </ButtonLink>
+            <div className=" flex justify-center gap-5 mt-3  font-bold">
+              <ButtonLink
+                href={`case/${slug.current}`}
+                className="text-sm py-0 px-5"
+              >
+                {viewCaseText}
+              </ButtonLink>
+              <ButtonLink
+                href="/donate"
+                variant="outline"
+                className="py-0 px-5 text-sm"
+              >
+                {donateNowText}
+              </ButtonLink>
+            </div>
           </div>
         </div>
       </div>

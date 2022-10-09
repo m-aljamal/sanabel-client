@@ -31,7 +31,7 @@ export default async function sendEmail(req, res) {
     to: process.env.EMAIL_TO,
     subject: "New message from sanabel website",
     html: `<div>
-    <h1>Message from contact ${messageFrom}</h1>
+    <h1>Message from ${messageFrom}</h1>
     <h3>Message from ${name}</h3>
     <p>Subject: ${subject}</p>
     <p>Phone: ${phone}</p>
@@ -44,7 +44,7 @@ export default async function sendEmail(req, res) {
     to: process.env.EMAIL_TO,
     subject: "New message from sanabel website",
     html: `<div>
-    <h1>Message from contact ${messageFrom}</h1>
+    <h1>Message from ${messageFrom}</h1>
     <h3>Message from ${fullName}</h3>
     <p>Donate Amount: ${donateAmount}</p>
     <p>Country: ${country}</p>

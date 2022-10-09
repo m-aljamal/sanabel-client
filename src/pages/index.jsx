@@ -50,6 +50,7 @@ export default function Home({
         <LatestProjects projects={latestProjects} />
         <About />
         <Media mediaData={mediaData} />
+        {/* !todo link to the achivenemts in about page */}
         <Achivments achivmentsData={achivmentsHomePage} />
         <StoriesList successStories={successStories} />
         <AboutProjects aboutProject={aboutProject} />

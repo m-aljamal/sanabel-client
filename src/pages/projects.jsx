@@ -59,10 +59,10 @@ const projects = ({
               {[allCategory, ...projectsCategories].map((category) => (
                 <button
                   className={clsx(
-                    " px-7 py-3 ",
+                    " px-5 py-1 ",
                     category._id === selectedCategory?._id
-                      ? "bg-primaryPurple text-white"
-                      : "bg-gray-100 text-primaryPurple border-primaryPurple border",
+                      ? "bg-primaryPurple text-white font-bold"
+                      : "bg-white text-primaryPurple border-primaryPurple border font-bold",
                     roundedBr
                   )}
                   key={category._id}
@@ -133,16 +133,7 @@ const ProjectCard = ({ project }) => {
         <h2 className="text-primaryPurple font-bold">
           {project.title[locale]}
         </h2>
-        {paid && target && target >= paid ? (
-          <div className="flex gap-16 text-sm py-3">
-            <p>
-              {totalText}: {paid}$
-            </p>
-            <p className="text-red-600">
-              {targetText}: {target}$
-            </p>
-          </div>
-        ) : null}
+
         <div className="sm:flex justify-between">
           <DateLocation date={date} location={location.title[locale]} />
           {project?.accept ? (
@@ -151,13 +142,23 @@ const ProjectCard = ({ project }) => {
         </div>
 
         <p className="py-2">{shortDescription && shortDescription[locale]}</p>
-
+        {paid && target && target >= paid ? (
+          <div className="flex gap-16 text-sm py-3 font-bold">
+            <p>
+              {totalText}: {paid}$
+            </p>
+            <p >
+              {targetText}: {target}$
+            </p>
+          </div>
+        ) : null}
         <div className="lg:flex justify-between items-center">
           <div className="flex md:flex-row flex-col gap-4">
             <DonateBtn />
             <ButtonLink
               variant="outline"
               href={`project/${project.slug.current}`}
+              className='font-bold'
             >
               {seeProject}
             </ButtonLink>

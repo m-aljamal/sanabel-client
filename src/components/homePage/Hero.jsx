@@ -11,17 +11,17 @@ import { PortableText } from "@portabletext/react";
 const components = {
   block: {
     first: ({ children }) => (
-      <h1 className="bg-primaryPurple w-fit py-2 px-4 text-lg md:text-xl font-bold">
+      <h1 className="bg-primaryPurple w-fit py-1 px-2 text-lg md:text-xl font-bold">
         {children}
       </h1>
     ),
     second: ({ children }) => (
-      <h1 className="bg-primaryPurple w-fit text-xl md:text-2xl py-2 px-4">
+      <h1 className="bg-primaryPurple w-fit text-xl md:text-xl py-1 px-2">
         {children}
       </h1>
     ),
     hashtag: ({ children }) => (
-      <p className="text-primaryPurple bg-white w-fit py-2 px-4 text-md md:text-xl">
+      <p className="text-primaryPurple bg-white w-fit py-1 px-2 text-md md:text-xl">
         {children}
       </p>
     ),

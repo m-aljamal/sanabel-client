@@ -46,7 +46,7 @@ const JoinSection = ({ form }) => {
                 href={form.slug.current}
                 variant="outline"
                 color="white"
-                className="mt-2 ring-white text-xs px-6"
+                className="mt-2 ring-white text-xs px-6 font-bold"
               >
                 {form.btnText[locale]}
               </OutLink>

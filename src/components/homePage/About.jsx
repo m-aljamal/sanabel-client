@@ -14,7 +14,7 @@ const About = () => {
             <Image src="/images/whiteLogo.svg" width={50} height={50} />
             <h2 className="md:text-2xl text-lg font-bold">{aboutTitleText}</h2>
             <p className="mb-3">{aboutBodyText}</p>
-            <ButtonLink href="/about" color="white" className="px-8">
+            <ButtonLink href="/about" color="white" className="px-8 font-bold">
               {knowMoreBtn}
             </ButtonLink>
           </div>

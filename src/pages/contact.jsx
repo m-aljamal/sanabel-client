@@ -60,7 +60,7 @@ const Map = () => {
   return (
     <div className="my-5">
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3198.4088196493262!2d37.130072816398226!3d36.712741653775794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x152fd14b3888bf3b%3A0x3c4e81e098a827ed!2z2YfZitim2Kkg2KrYt9mI2YrYsSDYp9mE2KrYudmE2YrZhQ!5e0!3m2!1sen!2str!4v1663164409468!5m2!1sen!2str"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3198.4231378098416!2d37.1322937!3d36.7123977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x152fd1f38568a529%3A0xb09555cf8bce0c31!2z2YXZhti42YXYqSDYp9mE2LPZhtin2KjZhCBzYW5hYmVsIG9yZ2FuaXphdGlvbg!5e0!3m2!1sen!2str!4v1665340844112!5m2!1sen!2str"
         width="100%"
         height="450"
         allowFullScreen=""

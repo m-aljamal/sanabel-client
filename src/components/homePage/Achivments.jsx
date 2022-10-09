@@ -12,13 +12,13 @@ const Achivments = ({ achivmentsData }) => {
   return (
     <section className="bg-primaryPurple mt-1">
       <Container>
-        <ul className=" grid sm:grid-cols-5 grid-cols-2 py-10  space-y-5 sm:space-y-0">
+        <ul className=" grid sm:grid-cols-5 grid-cols-2 py-10    sm:space-y-0">
           <li className="hidden sm:block">
             <SeeMoreAchivments />
           </li>
           {achivmentsData.map((achiv) => (
             <li
-              className="text-white text-center flex flex-col space-y-2"
+              className="text-white text-center flex flex-col  "
               key={achiv._id}
             >
               <Image
@@ -30,12 +30,12 @@ const Achivments = ({ achivmentsData }) => {
                 style={{ direction: "ltr" }}
                 start={0}
                 end={achiv.achievement.number}
-                duration={2}
-                separator=" "
-                className="sm:text-2xl text-xl font-bold"
+                duration={20}
+                separator=","
+                className="sm:text-2xl text-xl font-bold pt-5"
               />
 
-              <h2 className="text-xl">{achiv.achievement.title[locale]}</h2>
+              <h2 className="text-xl ">{achiv.achievement.title[locale]}</h2>
             </li>
           ))}
           <li className="sm:hidden col-span-2 text-center">
@@ -53,9 +53,9 @@ const SeeMoreAchivments = () => {
   const { ourAchievementsText, yourDonationText, seeMore } = useText();
   return (
     <>
-      <h2 className="text-white text-xl"> {ourAchievementsText}</h2>
+      <h2 className="text-white text-xl font-bold"> {ourAchievementsText}</h2>
       <p className="py-3 text-white">{yourDonationText}</p>
-      <ButtonLink href="/about" color="white">
+      <ButtonLink href="/about" color="white" className='font-bold' >
         {seeMore}
       </ButtonLink>
     </>

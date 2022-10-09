@@ -6,7 +6,7 @@ import { FaHeart } from "react-icons/fa";
 
 const baseStyles = {
   solid:
-    "inline-flex justify-center rounded-2xl py-1 px-4 text-sm   tracking-tight shadow-sm focus:outline-none",
+    "inline-flex flex items-center justify-center rounded-2xl py-1 px-4 text-sm   tracking-tight shadow-sm focus:outline-none",
   outline:
     "inline-flex justify-center rounded-2xl border py-[calc(theme(spacing.1)-1px)] px-[calc(theme(spacing.4)-1px)] text-sm   tracking-tight focus:outline-none",
 };
@@ -114,7 +114,7 @@ export function LoadingBtn({
 export const DonateBtn = ({ className }) => {
   const { donateNowText } = useText();
   return (
-    <ButtonLink href="/donate" className={clsx("px-7", className)}>
+    <ButtonLink href="/donate" className={clsx("px-7 font-bold", className)}>
       {donateNowText}
     </ButtonLink>
   );
@@ -138,7 +138,7 @@ export const BenfitBtn = ({ className, number }) => {
   );
 };
 
-export const SeeMoreBtn = ({ className, href = "/",  }) => {
+export const SeeMoreBtn = ({ className, href = "/" }) => {
   const { seeMoreText } = useText();
   return (
     <ButtonLink variant="outline" className={className} href={href}>

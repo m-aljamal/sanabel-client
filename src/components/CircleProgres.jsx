@@ -36,7 +36,7 @@ function CircleProgres({ strokeWidth = 5, percentage = 50, className }) {
         />
 
         <text
-          className="CircularProgressbar-text"
+          className="CircularProgressbar-text font-bold"
           x={50}
           y={50}
           style={{

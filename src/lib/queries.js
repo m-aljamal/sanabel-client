@@ -38,12 +38,13 @@ export const homePageCasesQuery = groq`*[_type == "projectCase" && info.showOnHo
       }
 } `;
 
-export const casesQuery = groq`*[_type == "projectCase"  ] | order(_createdAt desc){
+export const casesQuery = groq`*[_type == "projectCase"  ] | order(info.date desc){
   _id,
   title,
   slug,
  
   info{
+    date,
     mainImage,
     target,
     paid,
@@ -100,7 +101,7 @@ export const latestProjectsQuery = groq`*[_type == "project" && info.showOnHome 
  
 }`;
 
-export const projectsQuery = groq`*[_type == "project" ] | order(_createdAt desc){
+export const projectsQuery = groq`*[_type == "project" ] | order(info.date desc){
   slug,
   title,
   _id,
@@ -210,7 +211,7 @@ export const mediaQuery = groq`*[_type == "media"  ] | order(_createdAt desc){
 
 export const achivmentsHomePageQuery = groq`*[_type == "achievement"] | order(_createdAt desc) [0...4]`;
 
-export const successStoriesPageQuery = groq`*[_type == "success"] | order(_createdAt desc){
+export const successStoriesPageQuery = groq`*[_type == "success"] | order(info.date desc){
   slug,
   title,
   _id,

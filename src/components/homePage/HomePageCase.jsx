@@ -43,20 +43,18 @@ const Case = ({ homePagecase }) => {
           objectFit="cover"
         />
         <div className="absolute  z-10 bg-white  bottom-0 right-0 left-0  h-32 opacity-60 " />
-        <div className="absolute bottom-0 z-20 text-primaryPurple left-0 right-0 px-1 ">
-          <ProgresPar paid={paid} target={target} />
-          <Container>
-            <div className="font-bold space-y-2">
-              <div className="flex  justify-evenly">
-                <p>{targetText}:</p>
-                <p>{target}$</p>
-              </div>
-              <div className="flex justify-evenly">
-                <p>{totalText}:</p>
-                <p>{paid}$</p>
-              </div>
+        <div className="absolute -bottom-2 z-20 text-primaryPurple left-0 right-0 px-1  ">
+          <div className="font-bold space-y-2 mb-3">
+            <div className="flex  justify-evenly">
+              <p>{targetText}:</p>
+              <p>{target}$</p>
             </div>
-          </Container>
+            <div className="flex justify-evenly">
+              <p>{totalText}:</p>
+              <p>{paid}$</p>
+            </div>
+          </div>
+          <ProgresPar paid={paid} target={target} />
         </div>
       </div>
       <div className="w-full flex flex-col  justify-between">
@@ -72,15 +70,15 @@ const Case = ({ homePagecase }) => {
             <ButtonLink
               href={`/case/${slug.current}`}
               variant="outline"
-              className="px-3"
+              className="px-3 font-bold "
             >
               {seeCase}
             </ButtonLink>
           </div>
-          <p className="text-primaryPurple font-medium">{helpUsSocialText}</p>
+          <p className="text-primaryPurple font-medium text-center">{helpUsSocialText}</p>
           <ContentSocialLinks
             socialLinks={socialLinks || {}}
-            className="mt-2"
+            className="mt-2 justify-center"
           />
         </div>
       </div>

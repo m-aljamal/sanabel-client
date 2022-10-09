@@ -6,19 +6,19 @@ const Achivment = ({ image, number, text }) => {
   return (
     <div
       style={{ direction: "ltr" }}
-      className={
-        "text-primaryPurple flex flex-row  gap-3 space-y-2 items-center "
-      }
+      className={"text-primaryPurple flex flex-row  gap-3   items-center "}
     >
       <div>
-        <h2 className="md:text-lg ">{text}</h2>
-        <CountUp
-          start={0}
-          end={number}
-          duration={2}
-          separator=" "
-          className="md:text-lg font-bold"
-        />
+        {number > 1 ? (
+          <CountUp
+            start={0}
+            end={number}
+            duration={2}
+            separator=","
+            className="md:text-lg font-bold   "
+          />
+        ) : null}
+        <h2 className="md:text-lg -mt-2">{text}</h2>
       </div>
       <Image src={imageBuilder(image).url()} width={40} height={40} />
     </div>

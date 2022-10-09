@@ -125,18 +125,13 @@ const ContantPage = ({
                     <ProgresPar present={presentage} className="px-0" />
                   </div>
                 ) : null}
-                <div className="pt-5">
-                  <ButtonLink href="/donate" className="rounded-none ">
-                    {donateNowText}
-                  </ButtonLink>
-                </div>
               </div>
             </div>
             <div className="md:w-1/3">
               <h2 className="text-primaryPurple font-semibold text-sm  ">
                 {commonPostsText}
               </h2>
-              <div className="md:space-y-5  mt-3 sm:grid sm:grid-cols-3 space-y-3 sm:space-y-0  md:block">
+              <div className="md:space-y-5  mt-3 sm:grid  sm:grid-cols-3 space-y-3 sm:space-y-0  md:block">
                 {morePosts?.map((post) => (
                   <div
                     key={post._id}
@@ -166,7 +161,7 @@ const ContantPage = ({
                 <h2 className="text-primaryPurple font-semibold text-sm">
                   {ourProgramsText}
                 </h2>
-                <ul className="grid grid-cols-2 sm:grid-cols-3  md:grid-cols-2  lg:grid-cols-3 gap-2 list-disc mt-4 place-items-center md:place-items-start ">
+                <ul className="grid grid-cols-2 gap-2 list-disc mt-4 place-items-center md:place-items-start ">
                   {projectsCategories?.map((cat) => (
                     <li
                       key={cat._id}

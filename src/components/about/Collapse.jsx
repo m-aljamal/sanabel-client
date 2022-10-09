@@ -128,11 +128,11 @@ const Accordion = ({ id, title, content, setOpen, openId }) => {
         <h2 className=" text-primaryPurple font-bold">{title}</h2>
         {openId === id ? (
           <div className=" bg-primaryPurple px-5 rounded-bl-lg rounded-tr-lg h-4 flex ">
-            <ChevronDownIcon className="text-white" />
+            <ChevronDownIcon className="text-white w-5 h-5" />
           </div>
         ) : (
           <div className=" bg-primaryPurple px-5 rounded-bl-lg rounded-tr-lg h-4 flex">
-            <ChevronUpIcon className="text-white   " />
+            <ChevronUpIcon className="text-white w-5 h-5  " />
           </div>
         )}
       </div>
