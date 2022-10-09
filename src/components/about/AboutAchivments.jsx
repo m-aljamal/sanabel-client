@@ -65,6 +65,7 @@ const AboutAchivments = ({ achivmentsList, style = "dark" }) => {
                 height={50}
               />
               <CountUp
+                style={{ direction: "ltr" }}
                 start={0}
                 end={archive.achievement.number}
                 duration={2}

@@ -5,12 +5,13 @@ import Image from "next/image";
 const Achivment = ({ image, number, text }) => {
   return (
     <div
+      style={{ direction: "ltr" }}
       className={
-        "text-primaryPurple flex flex-row gap-3 space-y-2 items-center"
+        "text-primaryPurple flex flex-row  gap-3 space-y-2 items-center "
       }
     >
-      <Image src={imageBuilder(image).url()} width={40} height={40} />
       <div>
+        <h2 className="md:text-lg ">{text}</h2>
         <CountUp
           start={0}
           end={number}
@@ -18,9 +19,8 @@ const Achivment = ({ image, number, text }) => {
           separator=" "
           className="md:text-lg font-bold"
         />
-
-        <h2 className="md:text-lg ">{text}</h2>
       </div>
+      <Image src={imageBuilder(image).url()} width={40} height={40} />
     </div>
   );
 };

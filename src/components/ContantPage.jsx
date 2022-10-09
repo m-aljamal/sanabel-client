@@ -80,7 +80,7 @@ const ContantPage = ({
                 />
               </div>
               <div className="mt-7 space-y-3">
-                <h2 className="font-medium text-primaryPurple">
+                <h2 className="font-bold text-primaryPurple">
                   {title[locale]}
                 </h2>
                 <div className="flex justify-between items-end">
@@ -99,7 +99,7 @@ const ContantPage = ({
                   </div>
                 )}
 
-                <div className="flex gap-8 flex-wrap">
+                <div className="flex  gap-8 flex-wrap">
                   {achivments?.map((achiv) => (
                     <Achivment
                       key={achiv._key}

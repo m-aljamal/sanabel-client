@@ -11,7 +11,6 @@ import Image from "next/image";
 import { Container } from "@/components/Container";
 import DateLocation from "@/components/DateLocation";
 import Partnars from "@/components/homePage/Partnars";
-import Btn_Donate_Benfi from "@/components/Btn_Donate_Benfi";
 import { ButtonLink } from "@/components/Button";
 import { useText } from "@/constant/useText";
 const success = ({ successStories, partnersLogos, panerImage }) => {
@@ -50,13 +49,13 @@ const SuccessCard = ({ story }) => {
           />
         </div>
         <div className="p-4 space-y-3">
-          <h2 className="text-primaryPurple">{title[locale]}</h2>
+          <h2 className="text-primaryPurple font-bold">{title[locale]}</h2>
           <DateLocation
             date={info.date}
             location={info.location.title[locale]}
           />
           <p>{info.shortDescription[locale]}</p>
-          {/* <Btn_Donate_Benfi btnText="seeStory" numberBeneficiaries="50" /> */}
+
           <ButtonLink
             href={`/success-story/${slug.current}`}
             className="px-7 text-[12px] "

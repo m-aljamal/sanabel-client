@@ -64,7 +64,9 @@ const CaseCard = ({ onseCase }) => {
         />
       </div>
       <div className=" p-4  bg-white   shadow-2xl">
-        <h2 className="text-primaryPurple py-2 text-lg">{title[locale]}</h2>
+        <h2 className="text-primaryPurple py-2 text-lg font-bold">
+          {title[locale]}
+        </h2>
         <div className="text-sm text-gray-800  ">
           <p>{shortDescription[locale]}</p>
         </div>

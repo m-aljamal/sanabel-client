@@ -183,7 +183,7 @@ export const moreCasesQuery = groq`*[_type == "projectCase" && slug.current != $
 
 }`;
 
-export const moreSuccessStoriesQuery = groq`*[_type == "successStory" && slug.current != $slug][0...3]{
+export const moreSuccessStoriesQuery = groq`*[_type == "success" && slug.current != $slug][0...3]{
   info{
     mainImage, 
   },

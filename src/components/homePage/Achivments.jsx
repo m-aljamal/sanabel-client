@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { ButtonLink } from "../Button";
 import { imageBuilder } from "@/lib/sanity";
 import { useText } from "@/constant/useText";
+import CountUp from "react-countup";
 
 const Achivments = ({ achivmentsData }) => {
   const { locale } = useRouter();
@@ -16,15 +17,24 @@ const Achivments = ({ achivmentsData }) => {
             <SeeMoreAchivments />
           </li>
           {achivmentsData.map((achiv) => (
-            <li className="text-white text-center" key={achiv._id}>
+            <li
+              className="text-white text-center flex flex-col space-y-2"
+              key={achiv._id}
+            >
               <Image
                 src={imageBuilder(achiv.achievement.image).url()}
                 width={70}
                 height={70}
               />
-              <h2 className="sm:text-2xl text-xl font-bold">
-                {achiv.achievement.number}
-              </h2>
+              <CountUp
+                style={{ direction: "ltr" }}
+                start={0}
+                end={achiv.achievement.number}
+                duration={2}
+                separator=" "
+                className="sm:text-2xl text-xl font-bold"
+              />
+
               <h2 className="text-xl">{achiv.achievement.title[locale]}</h2>
             </li>
           ))}
