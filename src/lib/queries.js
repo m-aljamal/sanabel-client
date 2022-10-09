@@ -19,7 +19,7 @@ export const latestNewsQuery = groq`*[_type == "news"] | order(newDate desc) [0.
         image,
       }`;
 
-export const homePageCasesQuery = groq`*[_type == "projectCase" && info.showOnHome == true ] | order(_updatedAt desc)  [0]{
+export const homePageCasesQuery = groq`*[_type == "projectCase" && info.showOnHome == true ] | order(_createdAt desc)  [0]{
         _id,
         title,
         slug,
@@ -38,10 +38,11 @@ export const homePageCasesQuery = groq`*[_type == "projectCase" && info.showOnHo
       }
 } `;
 
-export const casesQuery = groq`*[_type == "projectCase"  ] | order(_updatedAt desc){
+export const casesQuery = groq`*[_type == "projectCase"  ] | order(_createdAt desc){
   _id,
   title,
   slug,
+ 
   info{
     mainImage,
     target,
@@ -50,6 +51,7 @@ export const casesQuery = groq`*[_type == "projectCase"  ] | order(_updatedAt de
     shortDescription,
     numberBeneficiaries,
     socialLinks,
+    
   }
   
 }`;
@@ -86,7 +88,7 @@ export const caseQuery = groq`*[_type == "projectCase" && slug.current == $slug]
   }
 }`;
 
-export const latestProjectsQuery = groq`*[_type == "project" && info.showOnHome == true] | order(_updatedAt desc)  [0...3]{
+export const latestProjectsQuery = groq`*[_type == "project" && info.showOnHome == true] | order(_createdAt desc)  [0...3]{
   info{
     mainImage, 
     numberBeneficiaries,
@@ -98,8 +100,7 @@ export const latestProjectsQuery = groq`*[_type == "project" && info.showOnHome 
  
 }`;
 
-export const projectsQuery = groq`*[_type == "project" ] | order(_updatedAt desc){
-   
+export const projectsQuery = groq`*[_type == "project" ] | order(_createdAt desc){
   slug,
   title,
   _id,
@@ -202,14 +203,14 @@ export const projectsCategoriesQuery = groq`*[_type == "projectCategory"]{
   webm,
 } `;
 
-export const mediaQuery = groq`*[_type == "media"  ] | order(_updatedAt desc){
+export const mediaQuery = groq`*[_type == "media"  ] | order(_createdAt desc){
   image,
   _id
 }`;
 
-export const achivmentsHomePageQuery = groq`*[_type == "achievement"] | order(_updatedAt desc) [0...4]`;
+export const achivmentsHomePageQuery = groq`*[_type == "achievement"] | order(_createdAt desc) [0...4]`;
 
-export const successStoriesPageQuery = groq`*[_type == "success"] | order(_updatedAt desc){
+export const successStoriesPageQuery = groq`*[_type == "success"] | order(_createdAt desc){
   slug,
   title,
   _id,
@@ -222,7 +223,7 @@ export const successStoriesPageQuery = groq`*[_type == "success"] | order(_updat
     },
   }
 } `;
-export const successStoriesQuery = groq`*[_type == "success" && info.showOnHome == true] | order(_updatedAt desc)[0...3]{
+export const successStoriesQuery = groq`*[_type == "success" && info.showOnHome == true] | order(_createdAt desc)[0...3]{
   _id,
   title,
   slug,
@@ -269,19 +270,19 @@ export const successStoryQuery = groq`*[_type == "success" && slug.current == $s
   }
 }`;
 
-export const aboutProjectQuery = groq`*[_type == "activeProject"] | order(_updatedAt desc)[0]{
+export const aboutProjectQuery = groq`*[_type == "activeProject"] | order(_createdAt desc)[0]{
   body,
   image,
   title,
   
 }`;
 
-export const partnersQury = groq`*[_type == "partners"] | order(_updatedAt desc){
+export const partnersQury = groq`*[_type == "partners"] | order(_createdAt desc){
   image,
   _id
 }`;
 
-export const aboutAchivmetnsListQuery = groq`*[_type == "achievement"] | order(_updatedAt desc){
+export const aboutAchivmetnsListQuery = groq`*[_type == "achievement"] | order(_createdAt desc){
   _id,
   darkImage,
   achievement{
@@ -297,7 +298,7 @@ export const panerImageQuery = groq`*[_type == "panerImage"  && page == $page ] 
   page,
 }`;
 
-export const searchQuery = groq`*[_type == "project" || _type == "projectCase" || _type == "success"] | order(_updatedAt desc) {
+export const searchQuery = groq`*[_type == "project" || _type == "projectCase" || _type == "success"] | order(_createdAt desc) {
   _id,
   title,
   slug,
