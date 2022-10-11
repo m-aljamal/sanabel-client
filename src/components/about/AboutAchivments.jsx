@@ -29,11 +29,11 @@ const AboutAchivments = ({ achivmentsList, style = "dark" }) => {
   const sectionTitle = {
     ar: {
       title: "منجزاتنا",
-      subtitle: "بفضل بخائكم أنجزنا الكثير من الحملات....",
+      subtitle: "بفضل بخائكم أنجزنا الكثير من الحملات...",
     },
     en: {
       title: "Our achievements",
-      subtitle: "We have achieved many achievements....",
+      subtitle: "We have achieved many achievements...",
     },
   };
   const { title, subtitle } = sectionTitle[locale];
@@ -46,15 +46,12 @@ const AboutAchivments = ({ achivmentsList, style = "dark" }) => {
 
   const { bg, titleStyle, list, buttonStyle } = baseStyle[style];
   return (
-    <section className={clsx("py-10", bg)} id="#aboutAchivement">
+    <section className={clsx("py-10", bg)} id="about-achivement">
       <Container>
         <TitleWithIcon title={title} subTitle={subtitle} color={titleStyle} />
         <div className="grid grid-cols-4 grid-flow-row place-items-center mt-10 gap-6">
           {achivmentsList.slice(0, numberOfAchivments).map((archive, i) => (
-            <div
-              key={i}
-              className={clsx("flex flex-col   items-center", list)}
-            >
+            <div key={i} className={clsx("flex flex-col   items-center", list)}>
               <Image
                 src={imageBuilder(
                   style === "light"
@@ -69,7 +66,7 @@ const AboutAchivments = ({ achivmentsList, style = "dark" }) => {
                 start={0}
                 end={archive.achievement.number}
                 duration={2}
-                separator=" "
+                separator=","
                 className="md:text-xl font-bold mt-4"
               />
 

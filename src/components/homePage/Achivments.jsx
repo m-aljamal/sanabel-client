@@ -55,7 +55,11 @@ const SeeMoreAchivments = () => {
     <>
       <h2 className="text-white text-xl font-bold"> {ourAchievementsText}</h2>
       <p className="py-3 text-white">{yourDonationText}</p>
-      <ButtonLink href="/about" color="white" className='font-bold' >
+      <ButtonLink
+        href="/about#about-achivement"
+        color="white"
+        className="font-bold"
+      >
         {seeMore}
       </ButtonLink>
     </>
