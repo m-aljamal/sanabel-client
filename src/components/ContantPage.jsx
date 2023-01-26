@@ -122,7 +122,7 @@ const ContantPage = ({
                         <span>{target}$</span>
                       </div>
                     </div>
-                    <ProgresPar present={presentage} className="px-0" />
+                    <ProgresPar paid={paid} target={target} className="px-0" />
                   </div>
                 ) : null}
               </div>

@@ -6,6 +6,7 @@ import React from "react";
 const ProgresPar = ({ paid, target, className }) => {
   const present = calculatePercentage(paid, target);
   const { locale } = useRouter();
+
   return (
     <div className={clsx("px-4 flex justify-center mb-8", className)}>
       <div className="w-full ring-1 ring-gray-500  h-4 bg-white rounded-lg">
