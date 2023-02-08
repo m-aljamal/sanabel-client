@@ -55,10 +55,11 @@ const Hero = ({ heroImages }) => {
                     className="space-y-4 mt-2 md:mt-0"
                     style={{ direction: locale === "ar" ? "rtl" : "ltr" }}
                   >
+                    {heroText &&
                     <PortableText
                       value={heroText[locale]}
                       components={components}
-                    />
+                    />}
                   </div>
                 </Container>
               </div>
