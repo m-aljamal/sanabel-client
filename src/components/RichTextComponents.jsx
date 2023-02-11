@@ -34,6 +34,7 @@ export const RichTextComponents = {
         {children}
       </blockquote>
     ),
+    normal: ({ children }) => <p className="leading-6 my-5">{children}</p>,
   },
   marks: {
     link: ({ children, value }) => {

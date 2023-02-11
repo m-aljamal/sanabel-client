@@ -63,6 +63,7 @@ const ContantPage = ({
   const { setSelectedCategory } = useProjectCategory();
   const { locale } = useRouter();
   const { linkText, morePostLink } = pagesInfo[page];
+  
   return (
     <div>
       <div className="mb-8">
@@ -100,7 +101,7 @@ const ContantPage = ({
                   </div>
                 )}
 
-                <div className="flex  gap-8 flex-wrap">
+                <div className="flex  gap-8 flex-wrap pt-8">
                   {achivments?.map((achiv) => (
                     <Achivment
                       key={achiv._key}
@@ -114,7 +115,7 @@ const ContantPage = ({
                 {target && paid && target > paid ? (
                   <div>
                     <div className="flex justify-between pt-5 items-center font-semibold">
-                      <div className="text-primaryPurple">
+                      <div className="text-primaryPurple mb-5">
                         <span>{totalText}: </span>
                         <span>{paid}$</span>
                       </div>

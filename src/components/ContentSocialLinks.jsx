@@ -6,7 +6,6 @@ const ContentSocialLinks = ({ socialLinks, className }) => {
   const socialLinksKeys = Object.keys(socialLinks).filter(
     (key) => socialLinks[key]
   );
-
   return (
     <div className={clsx("flex gap-2  pt-4 lg:pt-0", className)}>
       {socialLinksKeys?.map((social) => (
