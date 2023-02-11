@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import HeroLink from "@/components/HeroLink";
 import { useRouter } from "next/router";
 import { imageBuilder } from "@/lib/sanity";
@@ -10,10 +10,9 @@ import { PortableText } from "@portabletext/react";
 import Achivment from "@/components/Achivment";
 import { useText } from "@/constant/useText";
 import ProgresPar from "@/components/ProgresPar";
-import { calculatePercentage } from "@/lib/helperFunctions";
-import { ButtonLink } from "@/components/Button";
 import Link from "next/link";
 import { useProjectCategory } from "@/context/ProjectCategory";
+import { RichTextComponents } from "./RichTextComponents";
 
 const ContantPage = ({
   pageContent,
@@ -61,7 +60,6 @@ const ContantPage = ({
       images,
     },
   } = pageContent;
-  const presentage = calculatePercentage(paid, target);
   const { setSelectedCategory } = useProjectCategory();
   const { locale } = useRouter();
   const { linkText, morePostLink } = pagesInfo[page];
@@ -95,7 +93,10 @@ const ContantPage = ({
                 </div>
                 {body && (
                   <div className="mt-7">
-                    <PortableText value={body[locale]} />
+                    <PortableText
+                      value={body[locale]}
+                      components={RichTextComponents}
+                    />
                   </div>
                 )}
 
